@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const chalk = require('chalk');
 const { exitCode } = require('./exitCodes');
 const { infoLog, errorLog } = require('./log');
 const { getReadme } = require('./readmeGenerator');
@@ -23,7 +22,7 @@ let init = {
  */
 exports.createProject = (initResult) => {
   init = initResult;
-  infoLog(chalk.green('Creating...'));
+  infoLog('Creating...');
   try {
     updatePackageJson();
     removeJunks();
@@ -33,7 +32,7 @@ exports.createProject = (initResult) => {
     errorLog(e);
     process.exit(exitCode.failCreatePj.code);
   }
-  infoLog(chalk.green('Created project:', init.destinationPath));
+  infoLog('Created project:', init.destinationPath);
 };
 
 /**
@@ -49,7 +48,7 @@ function updatePackageJson() {
   packageJson.repository.type = '';
   packageJson.repository.url = '';
   fs.writeFileSync(pkgJsonPath, JSON.stringify(packageJson, null, '  '));
-  infoLog(chalk.green('Write project meta in package.json'));
+  infoLog('Write project meta in package.json');
 }
 
 /**
@@ -64,7 +63,7 @@ function removeJunks() {
 
   const readmePath = path.join(init.destinationPath, './README.md');
   fs.writeFileSync(readmePath, getReadme(init.projectName));
-  infoLog(chalk.green('Remove junks'));
+  infoLog('Remove junks');
 }
 
 /**
@@ -74,5 +73,5 @@ function initGitRepo() {
   execSync(`git init ${init.destinationPath}`);
   execSync(`git -C ${init.destinationPath} add -A`);
   execSync(`git -C ${init.destinationPath} commit -m "inital commit"`);
-  infoLog(chalk.green('Initalized git repository'));
+  infoLog('Initalized git repository');
 }

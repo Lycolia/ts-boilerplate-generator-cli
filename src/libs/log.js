@@ -2,9 +2,9 @@
 
 const chalk = require('chalk');
 
-exports.infoLog = (message) => {
-  console.info(chalk.yellow('[TS-gen]'), message);
+exports.infoLog = (...message) => {
+  console.info(chalk.yellow('[TS-gen]'), chalk.green(message));
 };
-exports.errorLog = (message) => {
+exports.errorLog = (...message) => {
   console.error(chalk.yellow('[TS-gen]'), chalk.red('[ERROR]'), message);
 };

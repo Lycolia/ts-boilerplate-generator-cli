@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const chalk = require('chalk');
 const { exitCode } = require('./exitCodes');
 const { infoLog, errorLog } = require('./log');
 
@@ -21,14 +20,14 @@ let result = {
  * @returns initalize result
  */
 exports.getProjectMeta = () => {
-  infoLog(chalk.green('Initalizing...'));
+  infoLog('Initalizing...');
   const execPath = getExecPath();
   setDestPath(execPath);
   pullBoilerplate();
-  infoLog(chalk.green('Initalized!!'));
+  infoLog('Initalized!!');
 
   return result;
-}
+};
 
 /**
  * Get command execute path,
@@ -100,7 +99,7 @@ function pullBoilerplate() {
         stdio: 'ignore',
       }
     );
-    infoLog(chalk.green('Pulled Project files'));
+    infoLog('Pulled Project files');
   } catch (e) {
     errorLog(exitCode.failPull.subject);
     process.exit(exitCode.failPull.code);
