@@ -1,8 +1,7 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "ts-server-boilerplate project Generator CLI",
-  "type": "module",
   "keywords": [
     "typescript",
     "generator",

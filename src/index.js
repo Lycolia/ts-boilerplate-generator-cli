@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import fs from 'fs';
-import path from 'path';
-import { execSync } from 'child_process';
-import chalk from 'chalk';
-import { exitCode } from './exitCodes';
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+const chalk = require('chalk');
+const { exitCode } = require('./exitCodes');
 
 //#region Global objects
 

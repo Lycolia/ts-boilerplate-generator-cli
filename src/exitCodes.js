@@ -1,4 +1,4 @@
-export const exitCode = {
+exports.exitCode = {
   ok: { code: 0, subject: 'OK', message: 'OK' },
   cdNotExists: {
     code: 1,
