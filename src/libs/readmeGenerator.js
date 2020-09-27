@@ -1,3 +1,5 @@
+// @ts-check
+
 const readme = `
 
 ## How to using
