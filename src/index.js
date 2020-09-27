@@ -173,6 +173,11 @@ function createProject() {
     fs.unlinkSync(licensePath);
     const gitPath = path.join(destinationPath, './.git');
     fs.rmdirSync(gitPath, { recursive: true });
+    infoLog(chalk.green('Remove junks'));
+
+    // git init
+    execSync(`git init ${destinationPath}`);
+    infoLog(chalk.green('Create git repository'));
   } catch (e) {
     errorLog(exitCode.failCreatePj.subject);
     errorLog(e);
