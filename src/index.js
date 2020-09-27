@@ -1,39 +1,11 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-const chalk = require('chalk');
+import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
+import chalk from 'chalk';
+import { exitCode } from './exitCodes';
 
 //#region Global objects
-
-const exitCode = {
-  ok: { code: 0, subject: 'OK', message: 'OK' },
-  cdNotExists: {
-    code: 1,
-    subject: 'Current directory may does not exist',
-    message: 'Be retry in existing directory',
-  },
-  existsDistPath: {
-    code: 2,
-    subject: 'Project directory already exists',
-    message: 'Please specify another project name',
-  },
-  invalidArg: {
-    code: 3,
-    subject: 'Invalid argument',
-    message: 'usage: tsg [project-name]',
-  },
-  failPull: {
-    code: 4,
-    subject: 'Failure pull repository.',
-    message: '',
-  },
-  failCreatePj: {
-    code: 5,
-    subject: 'Failure create project.',
-    message: '',
-  },
-};
 
 let projectName = '';
 let destinationPath = '';

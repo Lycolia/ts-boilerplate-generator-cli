@@ -2,6 +2,7 @@
   "name": "@lycolia/ts-boilerplate-generator-cli",
   "version": "0.0.6",
   "description": "ts-server-boilerplate project Generator CLI",
+  "type": "module",
   "keywords": [
     "typescript",
     "generator",
@@ -18,8 +19,8 @@
   },
   "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "node inspect ./src/index.js"
+    "start": "node --es-module-specifier-resolution=node ./src/index.js",
+    "dev": "node --es-module-specifier-resolution=node inspect ./src/index.js"
   },
   "author": "Lycolia",
   "license": "MIT",
