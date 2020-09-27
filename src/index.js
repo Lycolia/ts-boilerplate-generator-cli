@@ -4,6 +4,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 const chalk = require('chalk');
 const { exitCode } = require('./exitCodes');
+const { getReadme } = require('./readme');
 
 //#region Global objects
 
@@ -134,7 +135,7 @@ function createProject() {
 
     // git init
     execSync(`git init ${destinationPath}`);
-    infoLog(chalk.green('Create git repository!!'));
+    infoLog(chalk.green('Initalized git repository'));
   } catch (e) {
     errorLog(exitCode.failCreatePj.subject);
     errorLog(e);
@@ -169,8 +170,7 @@ function removeJunks() {
   fs.rmdirSync(gitPath, { recursive: true });
 
   const readmePath = path.join(destinationPath, './README.md');
-  const readme = `# ${projectName}\n`;
-  fs.writeFileSync(readmePath, readme);
+  fs.writeFileSync(readmePath, getReadme(projectName));
   infoLog(chalk.green('Remove junks'));
 }
 
