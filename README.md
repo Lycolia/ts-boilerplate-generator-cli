@@ -1,9 +1,10 @@
 # ts-boilerplate-generator
-Generating project by [ts-server-boilerplate](https://github.com/Lycolia/ts-server-boilerplate)
+
+[ts-server-boilerplate](https://github.com/Lycolia/ts-server-boilerplate) project Generator CLI
 
 ## Install
 
-- `npm i -g @lycolia/ts-boilerplate-generator`
+- `npm i -g @lycolia/ts-boilerplate-generator-cli`
 
 ## Using
 

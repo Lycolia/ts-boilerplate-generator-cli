@@ -1,7 +1,7 @@
 {
-  "name": "@lycolia/ts-boilerplate-generator",
+  "name": "@lycolia/ts-boilerplate-generator-cli",
   "version": "0.0.1",
-  "description": "Generating project by ts-server-boilerplate",
+  "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
     "generator",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lycolia/ts-boilerplate-generator"
+    "url": "https://github.com/Lycolia/ts-boilerplate-generator-cli"
   },
   "bin": {
     "tsg": "./src/index.js"
