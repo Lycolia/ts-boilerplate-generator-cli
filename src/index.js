@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const chalk = require('chalk');
-const { exitCode } = require('./exitCodes');
-const { getReadme } = require('./readmeGenerator');
+const { exitCode } = require('./libs/exitCodes');
+const { getReadme } = require('./libs/readmeGenerator');
 
 //#region Global objects
 
@@ -132,10 +132,7 @@ function createProject() {
   try {
     updatePackageJson();
     removeJunks();
-
-    // git init
-    execSync(`git init ${destinationPath}`);
-    infoLog(chalk.green('Initalized git repository'));
+    initGitRepo();
   } catch (e) {
     errorLog(exitCode.failCreatePj.subject);
     errorLog(e);
@@ -172,6 +169,13 @@ function removeJunks() {
   const readmePath = path.join(destinationPath, './README.md');
   fs.writeFileSync(readmePath, getReadme(projectName));
   infoLog(chalk.green('Remove junks'));
+}
+
+function initGitRepo() {
+  execSync(`git init ${destinationPath}`);
+  execSync(`git -C ${destinationPath} add -A`);
+  execSync(`git -C ${destinationPath} commit -m "inital commit"`);
+  infoLog(chalk.green('Initalized git repository'));
 }
 
 //#endregion
