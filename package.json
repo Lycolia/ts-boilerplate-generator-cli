@@ -1,0 +1,37 @@
+{
+  "name": "@lycolia/ts-boilerplate-generator",
+  "version": "0.0.1",
+  "description": "Generating project by ts-server-boilerplate",
+  "keywords": [
+    "typescript",
+    "generator",
+    "generate",
+    "boilerplate",
+    "project"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lycolia/ts-boilerplate-generator"
+  },
+  "bin": {
+    "tsg": "./src/index.js"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "node inspect ./src/index.js"
+  },
+  "author": "Lycolia",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/node": "^13.9.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.1"
+  }
+}
