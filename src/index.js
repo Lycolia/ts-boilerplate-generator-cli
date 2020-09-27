@@ -4,7 +4,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 const chalk = require('chalk');
 const { exitCode } = require('./exitCodes');
-const { getReadme } = require('./readme');
+const { getReadme } = require('./readmeGenerator');
 
 //#region Global objects
 
