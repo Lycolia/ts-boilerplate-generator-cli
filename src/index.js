@@ -155,34 +155,51 @@ function pullBoilerplate() {
  * Exit process when exception throws
  */
 function createProject() {
+  infoLog(chalk.green('Creating...'));
   try {
-    // configure package.json
-    const pkgJsonPath = path.join(destinationPath, './package.json');
-    const packageJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
-    packageJson.name = projectName;
-    packageJson.description = projectName;
-    packageJson.author = '';
-    packageJson.license = '';
-    packageJson.repository.type = '';
-    packageJson.repository.url = '';
-    fs.writeFileSync(pkgJsonPath, JSON.stringify(packageJson, null, '  '));
-    infoLog(chalk.green('Write project meta in package.json'));
-
-    // remove junks
-    const licensePath = path.join(destinationPath, './LICENSE');
-    fs.unlinkSync(licensePath);
-    const gitPath = path.join(destinationPath, './.git');
-    fs.rmdirSync(gitPath, { recursive: true });
-    infoLog(chalk.green('Remove junks'));
+    updatePackageJson();
+    removeJunks();
 
     // git init
     execSync(`git init ${destinationPath}`);
-    infoLog(chalk.green('Create git repository'));
+    infoLog(chalk.green('Create git repository!!'));
   } catch (e) {
     errorLog(exitCode.failCreatePj.subject);
     errorLog(e);
     process.exit(exitCode.failCreatePj.code);
   }
+}
+
+/**
+ * Update package.json
+ */
+function updatePackageJson() {
+  const pkgJsonPath = path.join(destinationPath, './package.json');
+  const packageJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+  packageJson.name = projectName;
+  packageJson.description = projectName;
+  packageJson.author = '';
+  packageJson.license = '';
+  packageJson.repository.type = '';
+  packageJson.repository.url = '';
+  fs.writeFileSync(pkgJsonPath, JSON.stringify(packageJson, null, '  '));
+  infoLog(chalk.green('Write project meta in package.json'));
+}
+
+/**
+ * Remove junk files and Clean README
+ */
+function removeJunks() {
+  const licensePath = path.join(destinationPath, './LICENSE');
+  fs.unlinkSync(licensePath);
+
+  const gitPath = path.join(destinationPath, './.git');
+  fs.rmdirSync(gitPath, { recursive: true });
+
+  const readmePath = path.join(destinationPath, './README.md');
+  const readme = `# ${projectName}\n`;
+  fs.writeFileSync(readmePath, readme);
+  infoLog(chalk.green('Remove junks'));
 }
 
 //#endregion
