@@ -26,6 +26,7 @@ exports.createProject = (initResult) => {
   try {
     updatePackageJson();
     removeJunks();
+    installNodeModules();
     initGitRepo();
   } catch (e) {
     errorLog(exitCode.failCreatePj.subject);
@@ -77,4 +78,10 @@ function initGitRepo() {
   execSync(`git -C ${init.destinationPath} add -A`);
   execSync(`git -C ${init.destinationPath} commit -m "inital commit"`);
   infoLog('Initalized git repository');
+}
+
+function installNodeModules() {
+  infoLog('Installing node modules...');
+  execSync(`npm i --prefix ${init.destinationPath}`, { stdio: 'ignore' });
+  infoLog('Installed node modules!');
 }

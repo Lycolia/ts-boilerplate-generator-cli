@@ -1,5 +1,7 @@
 # History
 
+- 0.1.7
+  - Add function install node modules
 - 0.1.6-1
   - Fix degrade
 - 0.1.6
