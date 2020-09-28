@@ -1,5 +1,4 @@
-// @ts-check
-
+//@ts-check
 const readme = `
 
 ## How to using
@@ -12,6 +11,9 @@ const readme = `
     - serve on hot reloading
 `;
 
-exports.getReadme = (projectName) => {
-  return `# ${projectName}\n\n- ${projectName}` + readme;
-};
+/**
+ * @param {string} projectName
+ */
+export function getReadme(projectName) {
+  return `# ${projectName}\n\n- ${projectName}${readme}`;
+}
