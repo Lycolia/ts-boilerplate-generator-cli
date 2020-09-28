@@ -58,6 +58,9 @@ function removeJunks() {
   const licensePath = path.join(init.destinationPath, './LICENSE');
   fs.unlinkSync(licensePath);
 
+  const pkglockPath = path.join(init.destinationPath, './package-lock.json');
+  fs.unlinkSync(pkglockPath);
+
   const gitPath = path.join(init.destinationPath, './.git');
   fs.rmdirSync(gitPath, { recursive: true });
 
