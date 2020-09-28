@@ -13,4 +13,4 @@
 ## Roadmap
 
 - Unit test
-- Support Yeoman like mode
+- Support `npm init` like mode
