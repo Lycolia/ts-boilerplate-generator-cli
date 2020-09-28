@@ -1,8 +1,17 @@
 {
-  "extends": ["plugin:prettier/recommended", "prettier"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "prettier"],
   "parserOptions": {
-    "ecmaVersion": 6,
     "sourceType": "script"
+  },
+  "env": {
+    "es2020": true, // automatically sets the ecmaVersion parser option to 11
+    "node": true,
+    "browser": false,
+    "amd": true
+  },
+  "globals": {
+    "require": true,
+    "process": true
   },
   "rules": {
     "semi": "error"
