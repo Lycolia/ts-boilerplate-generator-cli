@@ -23,7 +23,7 @@ exports.getProjectMeta = () => {
   infoLog('Initalizing...');
   const execPath = getExecPath();
   setDestPath(execPath);
-  pullBoilerplate();
+  cloneBoilerplate();
   infoLog('Initalized!!');
 
   return result;
@@ -88,18 +88,19 @@ function canAllocPath(path) {
 }
 
 /**
- * Pull boilerplate from github,
+ * Clone boilerplate from github,
  * Exit process when exception throws
  */
-function pullBoilerplate() {
+function cloneBoilerplate() {
   try {
+    infoLog('Checkouting Project files...');
     execSync(
-      `git clone https://github.com/Lycolia/ts-server-boilerplate.git ${result.destinationPath} > /dev/null`,
+      `git clone https://github.com/Lycolia/ts-server-boilerplate.git ${result.destinationPath}`,
       {
         stdio: 'ignore',
       }
     );
-    infoLog('Pulled Project files');
+    infoLog('Checkouted Project files!');
   } catch (e) {
     errorLog(exitCode.failPull.subject);
     process.exit(exitCode.failPull.code);
