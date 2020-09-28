@@ -14,6 +14,6 @@ const readme = `
 /**
  * @param {string} projectName
  */
-export function getReadme(projectName) {
+exports.getReadme = (projectName) => {
   return `# ${projectName}\n\n- ${projectName}${readme}`;
-}
+};
