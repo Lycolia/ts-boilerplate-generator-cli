@@ -9,3 +9,8 @@
 ## Using
 
 - `tsg [project-name]`
+
+## Roadmap
+
+- Unit test
+- Support Yeoman like mode
