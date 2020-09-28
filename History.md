@@ -1,6 +1,6 @@
 # History
 
-- 0.1.6
+- 0.1.6-1
   - Fix degrade
 - 0.1.6
   - Add `package.json` `keywords`
