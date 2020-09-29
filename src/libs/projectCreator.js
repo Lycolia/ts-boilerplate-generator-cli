@@ -8,44 +8,37 @@ const { infoLog, errorLog } = require('./log');
 const { getReadme } = require('./readmeGenerator');
 
 /**
- * Init result
- */
-let init = {
-  destinationPath: '',
-  projectName: '',
-};
-
-/**
  * Create project,
  * Exit process when exception throws
- * @params {array} initResult
+ * @param {{ destPath: string, name: string, description: string, author: string, license: string }} projectConfig
  */
-exports.createProject = (initResult) => {
-  init = initResult;
+exports.createProject = (projectConfig) => {
   infoLog('Creating...');
   try {
-    updatePackageJson();
-    removeJunks();
-    installNodeModules();
-    initGitRepo();
+    updatePackageJson(projectConfig);
+    removeJunks(projectConfig);
+    installNodeModules(projectConfig);
+    initGitRepo(projectConfig);
   } catch (e) {
     errorLog(exitCode.failCreatePj.subject);
     errorLog(e);
     process.exit(exitCode.failCreatePj.code);
   }
-  infoLog('Created project:', init.destinationPath);
+  infoLog(`Created project: ${projectConfig.destPath}`);
 };
 
 /**
  * Update package.json
+ * @param {{ destPath: string, name: string, description: string, author: string, license: string }} projectConfig
  */
-function updatePackageJson() {
-  const pkgJsonPath = path.join(init.destinationPath, './package.json');
+function updatePackageJson(projectConfig) {
+  const pkgJsonPath = path.join(projectConfig.destPath, './package.json');
   const packageJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
-  packageJson.name = init.projectName;
-  packageJson.description = init.projectName;
-  packageJson.author = '';
-  packageJson.license = '';
+  packageJson.name = projectConfig.name;
+  packageJson.version = '0.0.1';
+  packageJson.description = projectConfig.description;
+  packageJson.author = projectConfig.author;
+  packageJson.license = projectConfig.license;
   packageJson.repository.type = '';
   packageJson.repository.url = '';
   fs.writeFileSync(pkgJsonPath, JSON.stringify(packageJson, null, '  '));
@@ -54,41 +47,50 @@ function updatePackageJson() {
 
 /**
  * Remove junk files and Clean README
+ * @param {{ destPath: string, name: string, description: string, author: string, license: string }} projectConfig
  */
-function removeJunks() {
-  const licensePath = path.join(init.destinationPath, './LICENSE');
+function removeJunks(projectConfig) {
+  const licensePath = path.join(projectConfig.destPath, './LICENSE');
   fs.unlinkSync(licensePath);
 
-  const pkglockPath = path.join(init.destinationPath, './package-lock.json');
+  const pkglockPath = path.join(projectConfig.destPath, './package-lock.json');
   fs.unlinkSync(pkglockPath);
 
-  const gitPath = path.join(init.destinationPath, './.git');
+  const gitPath = path.join(projectConfig.destPath, './.git');
   fs.rmdirSync(gitPath, { recursive: true });
 
-  const readmePath = path.join(init.destinationPath, './README.md');
-  fs.writeFileSync(readmePath, getReadme(init.projectName));
+  const readmePath = path.join(projectConfig.destPath, './README.md');
+  fs.writeFileSync(
+    readmePath,
+    getReadme(projectConfig.name, projectConfig.description)
+  );
   infoLog('Remove junks');
 }
 
 /**
  * Initalize git repo
+ * @param {{ destPath: string, name: string, description: string, author: string, license: string }} projectConfig
  */
-function initGitRepo() {
-  execSync(`git init ${init.destinationPath}`);
-  execSync(`git -C ${init.destinationPath} add -A`);
-  execSync(`git -C ${init.destinationPath} commit -m "inital commit"`);
+function initGitRepo(projectConfig) {
+  execSync(`git init ${projectConfig.destPath}`);
+  execSync(`git -C ${projectConfig.destPath} add -A`);
+  execSync(`git -C ${projectConfig.destPath} commit -m "inital commit"`);
   infoLog('Initalized git repository');
 }
 
-function installNodeModules() {
+/**
+ * Install node_modules
+ * @param {{ destPath: string, name: string, description: string, author: string, license: string }} projectConfig
+ */
+function installNodeModules(projectConfig) {
   infoLog('Installing node modules...');
   if (process.platform === 'win32') {
     // TODO: npm --prefix bug
     // https://github.com/npm/cli/issues/1290
-    execSync(`cd ${init.destinationPath}`, { stdio: 'ignore' });
+    execSync(`cd ${projectConfig.destPath}`, { stdio: 'ignore' });
     execSync(`npm i`, { stdio: 'ignore' });
   } else {
-    execSync(`npm i --prefix ${init.destinationPath}`, { stdio: 'ignore' });
+    execSync(`npm i --prefix ${projectConfig.destPath}`, { stdio: 'ignore' });
   }
   infoLog('Installed node modules!');
 }

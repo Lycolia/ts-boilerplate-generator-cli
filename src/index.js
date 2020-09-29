@@ -1,8 +1,16 @@
 #!/usr/bin/env node
-// @ts-check
+//@ts-check
 
-const { getProjectMeta } = require('./libs/initalizer');
+const { getProjectConfig } = require('./libs/initalizer');
 const { createProject } = require('./libs/projectCreator');
+const { exitCode } = require('./libs/exitCodes');
+const { errorLog } = require('./libs/log');
 
-const init = getProjectMeta();
-createProject(init);
+getProjectConfig()
+  .then((conf) => {
+    createProject(conf);
+  })
+  .catch((e) => {
+    errorLog(exitCode.unmanagedException.subject);
+    process.exit(exitCode.unmanagedException.code);
+  });

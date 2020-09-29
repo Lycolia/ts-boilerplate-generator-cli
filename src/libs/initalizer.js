@@ -5,28 +5,26 @@ const path = require('path');
 const { execSync } = require('child_process');
 const { exitCode } = require('./exitCodes');
 const { infoLog, errorLog } = require('./log');
-
-/**
- * This result
- */
-let result = {
-  destinationPath: '',
-  projectName: '',
-};
+const { propmtConfigureDialog } = require('./dialog');
+const { getProjectName } = require('./argument');
 
 /**
  * Initalize app and Get project meta
  *
- * @returns initalize result
+ * @returns {Promise<{ destPath: string, name: string, description: string, author: string, license: string }>}
  */
-exports.getProjectMeta = () => {
+exports.getProjectConfig = async () => {
   infoLog('Initalizing...');
-  const execPath = getExecPath();
-  setDestPath(execPath);
-  cloneBoilerplate();
+
+  const meta = await getProjectMeta();
+  const destPath = getDestPath(getExecPath(), meta);
+  cloneBoilerplate(destPath);
   infoLog('Initalized!!');
 
-  return result;
+  return {
+    destPath: destPath,
+    ...meta,
+  };
 };
 
 /**
@@ -45,31 +43,38 @@ function getExecPath() {
 }
 
 /**
- * Set valid destination path and Set project name from execute arguments,
- * Exit process when invalid path
+ * Get project meta
+ * @returns {Promise<{ name: string, description: string, author: string, license: string }>}
  */
-function setDestPath(execPath) {
-  if (process.argv.length === 3) {
-    const argPath = process.argv[2].trimEnd();
-    result.projectName = argPath;
-    const distPath = path.join(execPath, argPath);
-    if (argPath && canAllocPath(distPath)) {
-      // not empty argument and can alloc path
-      result.destinationPath = distPath;
-    } else if (!argPath) {
-      // empty path
-      errorLog(exitCode.invalidArg.subject);
-      errorLog(exitCode.invalidArg.message);
-      process.exit(exitCode.invalidArg.code);
-    } else {
-      errorLog(exitCode.existsDistPath.subject);
-      errorLog(exitCode.existsDistPath.message);
-      process.exit(exitCode.existsDistPath.code);
-    }
+async function getProjectMeta() {
+  const projectName = getProjectName();
+  if (projectName) {
+    return {
+      name: projectName,
+      description: projectName,
+      author: '',
+      license: 'Unlicense',
+    };
   } else {
-    errorLog(exitCode.invalidArg.subject);
-    errorLog(exitCode.invalidArg.message);
-    process.exit(exitCode.invalidArg.code);
+    return await propmtConfigureDialog();
+  }
+}
+
+/**
+ * Get valid destination path and Set project name from execute arguments,
+ * Exit process when invalid path
+ * @param {string} execPath
+ * @param {{ name: string, description: string, author: string, license: string }} projectMeta
+ */
+function getDestPath(execPath, projectMeta) {
+  const distPath = path.join(execPath, projectMeta.name);
+  if (canAllocPath(distPath)) {
+    // can alloc path
+    return distPath;
+  } else {
+    errorLog(exitCode.existsDistPath.subject);
+    errorLog(exitCode.existsDistPath.message);
+    process.exit(exitCode.existsDistPath.code);
   }
 }
 
@@ -91,11 +96,11 @@ function canAllocPath(path) {
  * Clone boilerplate from github,
  * Exit process when exception throws
  */
-function cloneBoilerplate() {
+function cloneBoilerplate(destPath) {
   try {
     infoLog('Checkouting Project files...');
     execSync(
-      `git clone https://github.com/Lycolia/ts-server-boilerplate.git ${result.destinationPath}`,
+      `git clone https://github.com/Lycolia/ts-server-boilerplate.git ${destPath}`,
       {
         stdio: 'ignore',
       }

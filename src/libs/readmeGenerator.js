@@ -13,7 +13,8 @@ const readme = `
 
 /**
  * @param {string} projectName
+ * @param {string} projectDesc
  */
-exports.getReadme = (projectName) => {
-  return `# ${projectName}\n\n- ${projectName}${readme}`;
+exports.getReadme = (projectName, projectDesc) => {
+  return `# ${projectName}\n\n- ${projectDesc}${readme}`;
 };

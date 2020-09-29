@@ -1,5 +1,9 @@
 # History
 
+- 0.2.0
+  - Add Yeoman like generator
+- 0.1.9
+  - Pass
 - 0.1.8
   - Fix [npm for windows bug issue](https://github.com/npm/cli/issues/1290)
 - 0.1.7

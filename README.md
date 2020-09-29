@@ -8,9 +8,8 @@
 
 ## Using
 
-- `tsg [project-name]`
+- `tsg [project-name]` or `tsg`
 
 ## Roadmap
 
-- Unit test
-- Support `npm init` like mode
+- Add test function

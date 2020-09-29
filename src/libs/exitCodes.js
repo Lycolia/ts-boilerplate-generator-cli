@@ -22,12 +22,17 @@ exports.exitCode = {
   },
   failPull: {
     code: 5,
-    subject: 'Failure pull repository.',
+    subject: 'Failure pull repository',
     message: '',
   },
   failCreatePj: {
     code: 6,
-    subject: 'Failure create project.',
+    subject: 'Failure create project',
+    message: '',
+  },
+  unmanagedException: {
+    code: 999,
+    subject: 'Unmanaged exception has occurred',
     message: '',
   },
 };
