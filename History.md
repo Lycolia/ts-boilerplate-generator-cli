@@ -1,5 +1,7 @@
 # History
 
+- 0.2.0-1
+  - ver++
 - 0.2.0
   - Add Yeoman like generator
 - 0.1.9
