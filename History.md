@@ -1,5 +1,7 @@
 # History
 
+- 0.1.8
+  - Fix [npm for windows bug issue](https://github.com/npm/cli/issues/1290)
 - 0.1.7
   - Add function install node modules
 - 0.1.6-1
