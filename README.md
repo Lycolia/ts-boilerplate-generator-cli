@@ -11,8 +11,9 @@
 
 - Linux
   - Windows does not support, though works WSL
-- git
-- configured git user
+- Git
+  - and configured git user
+- Node.js 12+
 
 ## Using
 
