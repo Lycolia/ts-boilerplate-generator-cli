@@ -1,5 +1,7 @@
 # History
 
+- 0.2.1-1
+  - ver++
 - 0.2.1
   - Windows is no longer supported
 - 0.2.0-3
