@@ -18,11 +18,6 @@
 
 - `tsg [project-name]` or `tsg`
 
-## Todo
-
-- `npm --prefix` does not work on win32
-  - reason [npm bug](https://github.com/npm/cli/issues/1290)
-
 ## Roadmap
 
 - Add test function
