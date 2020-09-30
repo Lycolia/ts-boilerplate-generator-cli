@@ -6,6 +6,11 @@ const { createProject } = require('./libs/projectCreator');
 const { exitCode } = require('./libs/exitCodes');
 const { errorLog } = require('./libs/log');
 
+if (process.platform === 'win32') {
+  errorLog(exitCode.win32NotSupport.subject);
+  process.exit(exitCode.win32NotSupport.code);
+}
+
 getProjectConfig()
   .then((conf) => {
     createProject(conf);

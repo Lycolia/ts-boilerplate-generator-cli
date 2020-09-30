@@ -84,13 +84,6 @@ function initGitRepo(projectConfig) {
  */
 function installNodeModules(projectConfig) {
   infoLog('Installing node modules...');
-  if (process.platform === 'win32') {
-    // TODO: npm --prefix bug
-    // https://github.com/npm/cli/issues/1290
-    execSync(`cd ${projectConfig.destPath}`, { stdio: 'ignore' });
-    execSync(`npm i`, { stdio: 'ignore' });
-  } else {
-    execSync(`npm i --prefix ${projectConfig.destPath}`, { stdio: 'ignore' });
-  }
+  execSync(`npm i --prefix ${projectConfig.destPath}`, { stdio: 'ignore' });
   infoLog('Installed node modules!');
 }

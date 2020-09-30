@@ -1,5 +1,9 @@
 # History
 
+- 0.2.1
+  - Windows is no longer supported
+- 0.2.0-3
+  - Remove function npm init for windows (reason npm bug)
 - 0.2.0-2
   - ver++
 - 0.2.0-1

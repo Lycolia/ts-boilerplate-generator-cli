@@ -1,3 +1,5 @@
+//@ts-check
+
 exports.exitCode = {
   ok: { code: 0, subject: 'OK', message: 'OK' },
   cancelledCreatePj: {
@@ -28,6 +30,11 @@ exports.exitCode = {
   failCreatePj: {
     code: 6,
     subject: 'Failure create project',
+    message: '',
+  },
+  win32NotSupport: {
+    code: 900,
+    subject: 'Windows dose not supoort',
     message: '',
   },
   unmanagedException: {
