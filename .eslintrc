@@ -14,6 +14,8 @@
     "process": true
   },
   "rules": {
-    "semi": "error"
+    "brace-style": ["warn", "1tbs"], // ブロックインデントのスタイリング
+    "object-curly-spacing": ["warn", "always"], // { foo: 1 }のスペース
+    "space-infix-ops": ["warn", { "int32Hint": false }] // 1 + 1のような演算子のスペース
   }
 }
