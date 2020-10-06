@@ -1,5 +1,7 @@
 # History
 
+- 0.2.2-3
+  - bugfix
 - 0.2.2-2
   - bugfix
 - 0.2.2-1
