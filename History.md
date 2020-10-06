@@ -1,5 +1,7 @@
 # History
 
+- 0.2.2
+  - Windows resupported
 - 0.2.1-1
   - ver++
 - 0.2.1
