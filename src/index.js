@@ -10,7 +10,7 @@ getProjectConfig()
   .then((conf) => {
     createProject(conf);
   })
-  .catch((e) => {
+  .catch(() => {
     errorLog(exitCode.unmanagedException.subject);
     process.exit(exitCode.unmanagedException.code);
   });
