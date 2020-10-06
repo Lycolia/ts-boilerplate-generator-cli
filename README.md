@@ -9,8 +9,6 @@
 
 ## Required
 
-- Linux
-  - Windows does not support, though works WSL
 - Git
   - and configured git user
 - Node.js 12+
