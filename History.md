@@ -1,4 +1,7 @@
 # History
+
+- 0.3.0-1
+  - update readme
 - 0.3.0
   - update readme, add testing
 - 0.2.2-3
