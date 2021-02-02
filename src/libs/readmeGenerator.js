@@ -9,6 +9,8 @@ const readme = `
   - \`npm run serve\`
   - \`npm run dev\`
     - serve on hot reloading
+  - \`npm run test\`
+    - run jest
 `;
 
 /**
