@@ -11,7 +11,7 @@ export type CLIOptions = {
   description: string;
   license: string;
   projectName: string;
-  type: string;
+  type: ProjectType;
   yeoman: boolean;
 };
 
