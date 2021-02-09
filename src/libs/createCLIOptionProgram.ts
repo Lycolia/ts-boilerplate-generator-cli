@@ -4,6 +4,17 @@ import { program } from 'commander';
 export type ProjectType = 'vanilla' | 'react-ts' | 'cli-ts';
 
 /**
+ * this CLI options
+ */
+export type CLIOptions = {
+  author: string;
+  description: string;
+  license: string;
+  projectName: string;
+  type: string;
+};
+
+/**
  * defined CLI options and helps
  *
  * @returns parsed CLI options
@@ -19,10 +30,14 @@ export const createCLIOptionProgram = () => {
       'no description'
     )
     .option('-l, --license <license>', 'project license', 'MIT')
-    .option('-p, --project-name <author>', 'project name', 'no-name-project')
-    .option('-t, --type <author>', 'project type', 'vanilla')
+    .option(
+      '-p, --project-name <projectName>',
+      'project name',
+      'no-name-project'
+    )
+    .option('-t, --type <type>', 'project type', 'vanilla')
     .version(version)
     .addHelpText('beforeAll', banner)
     .parse(process.argv);
-  return program.opts();
+  return program.opts() as CLIOptions;
 };
