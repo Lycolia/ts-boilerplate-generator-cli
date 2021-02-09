@@ -1,5 +1,5 @@
 import { version } from '../../package.json';
-import { program } from 'commander';
+import { program, Option } from 'commander';
 
 export type ProjectType = 'vanilla' | 'react-ts' | 'cli-ts';
 
@@ -12,6 +12,7 @@ export type CLIOptions = {
   license: string;
   projectName: string;
   type: string;
+  yeoman: boolean;
 };
 
 /**
@@ -19,7 +20,7 @@ export type CLIOptions = {
  *
  * @returns parsed CLI options
  */
-export const createCLIOptionProgram = () => {
+export const createCLIOptionsProgram = () => {
   const banner = `|| TypeScript project Generator ||
 `;
   program
@@ -35,7 +36,12 @@ export const createCLIOptionProgram = () => {
       'project name',
       'no-name-project'
     )
-    .option('-t, --type <type>', 'project type', 'vanilla')
+    .addOption(
+      new Option('-t, --type <type>', 'project type')
+        .choices(['vanilla', 'react-ts', 'cli-ts'])
+        .default('vanilla')
+    )
+    .option('-y, --yeoman', 'use yeoman style generator', false)
     .version(version)
     .addHelpText('beforeAll', banner)
     .parse(process.argv);
