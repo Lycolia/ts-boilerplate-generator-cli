@@ -17,7 +17,7 @@ export const ProjectTypesChoices = [...ProjectTypes].map((type) => {
  */
 export const DialogInputOptions: PromptObject<string>[] = [
   {
-    type: 'text',
+    type: 'autocomplete',
     name: 'type',
     message: ProjectOptionDef.description.type,
     initial: ProjectOptionDef.default.type,
