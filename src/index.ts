@@ -5,18 +5,18 @@ import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
 import { createProject } from './libs/ProjectCreator';
 import { ProjectOption } from './models/ProjectOptions';
 
-const getProjectOptions = async () => {
+const getProjectOptions = async (): Promise<ProjectOption> => {
   const opts = createCLIOptionsProgram();
 
   return opts.useGenerator
     ? await promptProjectGeneratorDialog()
-    : ({
+    : {
         author: opts.author,
         description: opts.description,
         license: opts.license,
         projectName: opts.projectName,
         type: opts.type,
-      } as ProjectOption);
+      };
 };
 
 getProjectOptions()
