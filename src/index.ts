@@ -5,7 +5,10 @@ import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
 import { createProject } from './libs/ProjectCreator';
 import { ProjectOption } from './models/ProjectOptions';
 
-const getProjectOptions = async (): Promise<ProjectOption> => {
+/**
+ * get project options (argument | dialog)
+ */
+export const getProjectOptions = async (): Promise<ProjectOption> => {
   const opts = createCLIOptionsProgram();
 
   return opts.useGenerator
