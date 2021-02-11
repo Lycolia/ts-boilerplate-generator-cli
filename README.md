@@ -35,11 +35,11 @@ When no option then launch yeoman style generator
   - `-p`, `--project-name` <projectName> project name (default: `@unknown/no-name-project`)
   - `-t`, `--type` <type> project type (choices: `ts-server`, `ts-react`, `ts-cli`, default: `ts-server`)
     - `ts-server`
-      - [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
+      - create from [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
     - `ts-react`
-      - [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
+      - create from [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
     - `ts-cli`
-      - [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
+      - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
   - `-V`, `--version` output the version number
   - `-h`, `--help` display help for command
 - Example
