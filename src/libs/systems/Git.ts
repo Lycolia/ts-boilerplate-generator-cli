@@ -11,8 +11,8 @@ import { infoLog } from '../Log';
 export const validateInstalled = () => {
   try {
     execSync('git --help');
-  } catch (e) {
-    throw new TsgException(ErrorReasons.gitNotFound, e);
+  } catch (error) {
+    throw new TsgException(ErrorReasons.gitNotFound, error);
   }
 };
 
@@ -28,8 +28,8 @@ export const canCommiting = () => {
       configs.match(/user\.name=.+/) !== null &&
       configs.match(/user\.email=.+/) !== null
     );
-  } catch (e) {
-    throw new TsgException(ErrorReasons.unmanagedException, e);
+  } catch (error) {
+    throw new TsgException(ErrorReasons.unmanagedException, error);
   }
 };
 
@@ -45,8 +45,8 @@ export const clone = (repositoryUrl: string) => {
     execSync(`git clone ${repositoryUrl}`, {
       stdio: 'ignore',
     });
-  } catch (e) {
-    throw new TsgException(ErrorReasons.failPull, e);
+  } catch (error) {
+    throw new TsgException(ErrorReasons.failPull, error);
   }
 };
 

@@ -43,7 +43,7 @@ export const renameDirectory = (oldName: string, newName: string) => {
     } else if (process.platform === 'win32') {
       execSync(`REN ${oldName} ${newName}`);
     }
-  } catch (e) {
-    throw new TsgException(ErrorReasons.unmanagedException, e);
+  } catch (error) {
+    throw new TsgException(ErrorReasons.unmanagedException, error);
   }
 };
