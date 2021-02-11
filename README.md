@@ -2,12 +2,11 @@
 
 This is generator for TypeScript project boilerplate
 
-- TypeScript project Generator CLI
-  - Supports following
-    - Anything server app
-    - React v17 app
-    - Anything CLI app
-  - And ESLint, Prettier and Jest are included!!
+- Support following project
+  - Anything server app
+  - React v17 app
+  - Anything CLI app
+- And ESLint, Prettier and Jest are included!!
 - Support Yeoman style generator
 
 ## Install

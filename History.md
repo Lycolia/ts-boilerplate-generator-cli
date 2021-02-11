@@ -1,6 +1,8 @@
 # History
 
-- 0.4.1
+- 0.4.0-2
+  - update readme
+- 0.4.0-1
   - fix bugs
 - 0.4.0
   - Translate JS -> TS
