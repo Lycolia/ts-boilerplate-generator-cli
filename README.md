@@ -1,5 +1,7 @@
 # TypeScript project Generator CLI
 
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Node.js v12 later](https://img.shields.io/badge/node.js-v12_later-green)](LICENSE)
+
 This is generator for TypeScript project boilerplate
 
 - Support following project
@@ -33,10 +35,12 @@ When no option then launch yeoman style generator
   - `-p`, `--project-name` <projectName> project name (default: `@unknown/no-name-project`)
   - `-t`, `--type` <type> project type (choices: `ts-server`, `ts-react`, `ts-cli`, default: `ts-server`)
     - `ts-server`
-      - blank boilerplate for server app
+      - [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
     - `ts-react`
-      - react-router included boilerplate for React v17
+      - [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
     - `ts-cli`
-      - blank boilerplate for CLI app
+      - [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
   - `-V`, `--version` output the version number
   - `-h`, `--help` display help for command
+- Example
+  - `tsg -a your-own-name -d YourProjectDescription -l AGPL-3.0-or-later -p @your-own-name/your-project-name -t ts-react`
