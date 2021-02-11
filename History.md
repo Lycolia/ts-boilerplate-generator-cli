@@ -1,5 +1,7 @@
 # History
 
+- 0.4.0-6
+  - update readme
 - 0.4.0-5
   - update readme
 - 0.4.0-4

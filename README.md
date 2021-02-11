@@ -28,7 +28,7 @@ When no option then launch yeoman style generator
 
 - Basics
   - `tsg` or `tsg [options]`
-- CLI Options
+- CLI Options (All optional)
   - `-a`, `--author` <author> project author (default: `unknown`)
   - `-d`, `--description` <description> project description (default: `no description`)
   - `-l`, `--license` <license> project license (default: `MIT`)
