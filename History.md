@@ -1,5 +1,7 @@
 # History
 
+- 0.4.1
+  - update all npm package to latest
 - 0.4.0-6
   - update readme
 - 0.4.0-5
