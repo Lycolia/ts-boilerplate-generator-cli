@@ -23,7 +23,10 @@ export const createProject = (projectOpt: ProjectOption) => {
   const repoUrl = Repositories[projectOpt.type];
   git.clone(repoUrl);
   infoLog('Input project options...');
-  renameDirectory(repoUrl.replace(/^.+\/(.+?)\.git$/, '$1'), distPath);
+  renameDirectory(
+    repoUrl.replace(/^.+\/(.+?)\.git$/, '$1'),
+    projectOpt.projectName.replace(/(\\|\/)/g, '-')
+  );
   cleanup(distPath);
   updateReadMe(projectOpt, distPath);
   updatePackageJson(projectOpt, distPath);
