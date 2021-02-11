@@ -10,11 +10,7 @@ const logBanner = '[TS-gen]';
  * @param messages
  */
 export const infoLog = (...messages: unknown[]) => {
-  console.info(
-    chalk.bgGreen.black(logBanner),
-    chalk.white('[INFO]'),
-    chalk.green(messages)
-  );
+  console.info(chalk.bgGreen.black(logBanner), chalk.white('[INFO]'), messages);
 };
 
 /**
@@ -25,7 +21,7 @@ export const warnLog = (...messages: unknown[]) => {
   console.warn(
     chalk.bgGreen.black(logBanner),
     chalk.yellow('[WARN]'),
-    chalk.white(messages)
+    messages
   );
 };
 
@@ -37,6 +33,6 @@ export const errorLog = (...messages: unknown[]) => {
   console.error(
     chalk.bgGreen.black(logBanner),
     chalk.bgRed.white('[ERROR]'),
-    chalk.white(messages)
+    messages
   );
 };
