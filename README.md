@@ -24,7 +24,7 @@ This is generator for TypeScript project boilerplate
 Can setup for README.md and package.json and workspace directory by configure CLI options
 When no option then launch yeoman style generator
 
-- Basic
+- Basics
   - `tsg` or `tsg [options]`
 - CLI Options
   - `-a`, `--author` <author> project author (default: `unknown`)
