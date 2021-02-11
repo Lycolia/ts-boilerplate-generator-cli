@@ -12,6 +12,10 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    // enforce the consistent use of either backticks, double, or single quotes
+    "quotes": ["error", "single"],
+    // Disallow await inside of loops, should use Promise.all()
+    "no-await-in-loop": "error",
     // Allow non-explicit return types on functions and class methods
     "@typescript-eslint/explicit-function-return-type": "off",
     // Allow non-explicit return types on exported functions

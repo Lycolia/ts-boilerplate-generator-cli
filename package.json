@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.3.0-3",
+  "version": "0.4.0",
   "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
@@ -21,7 +21,7 @@
   "main": "./dist/src/index.js",
   "scripts": {
     "start": "npx ts-node ./src/index.ts",
-    "dev": "node -r ts-node/register --inspect ./src/index.ts",
+    "dev": "node -r ts-node/register --inspect-brk ./src/index.ts",
     "build": "npx tsc",
     "test": "npx jest"
   },
@@ -38,6 +38,8 @@
     "@types/commander": "^2.12.2",
     "@types/jest": "^26.0.20",
     "@types/node": "^13.9.0",
+    "@types/prompts": "^2.0.9",
+    "@types/validate-npm-package-name": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "eslint": "^7.10.0",

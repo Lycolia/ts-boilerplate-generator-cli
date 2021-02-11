@@ -1,21 +1,28 @@
 #!/usr/bin/env node
 
-// const { getProjectConfig } = require('./libs/initalizer');
-// const { createProject } = require('./libs/projectCreator');
-// const { exitCode } = require('./libs/exitCodes');
-// const { errorLog } = require('./libs/log');
-// const { getArgs } = require('./libs/argument');
+import { createCLIOptionsProgram } from './libs/dialogs/CreateCLIOptionsProgram';
+import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
+import { createProject } from './libs/ProjectCreator';
+import { ProjectOption } from './models/ProjectOptions';
 
-import { createCLIOptionsProgram } from './libs/createCLIOptionsProgram';
+const getProjectOptions = async () => {
+  const opts = createCLIOptionsProgram();
 
-const a = createCLIOptionsProgram();
-console.log(a);
+  return opts.useGenerator
+    ? await promptProjectGeneratorDialog()
+    : ({
+        author: opts.author,
+        description: opts.description,
+        license: opts.license,
+        projectName: opts.projectName,
+        type: opts.type,
+      } as ProjectOption);
+};
 
-// getProjectConfig()
-//   .then((conf) => {
-//     createProject(conf);
-//   })
-//   .catch(() => {
-//     errorLog(exitCode.unmanagedException.subject);
-//     process.exit(exitCode.unmanagedException.code);
-//   });
+getProjectOptions()
+  .then((options) => {
+    createProject(options);
+  })
+  .catch((e) => {
+    console.error(e);
+  });
