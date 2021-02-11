@@ -2,6 +2,10 @@
 
 - 0.4.0
   - Translate JS -> TS
+  - Support multiple boilerplate
+    - TypeScript Server
+    - TypeScript React
+    - TypeScript CLI
 - 0.3.0-3
   - update readme
 - 0.3.0-2
