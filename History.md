@@ -1,5 +1,7 @@
 # History
 
+- 0.4.0
+  - Translate JS -> TS
 - 0.3.0-3
   - update readme
 - 0.3.0-2

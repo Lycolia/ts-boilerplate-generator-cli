@@ -1,21 +1,35 @@
 {
-  "extends": ["eslint:recommended", "plugin:prettier/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": ["@typescript-eslint"],
   "parserOptions": {
-    "sourceType": "script"
-  },
-  "env": {
-    "es2020": true, // automatically sets the ecmaVersion parser option to 11
-    "node": true,
-    "browser": false,
-    "amd": true
-  },
-  "globals": {
-    "require": true,
-    "process": true
+    "project": "./tsconfig.json"
   },
   "rules": {
-    "brace-style": ["warn", "1tbs"], // ブロックインデントのスタイリング
-    "object-curly-spacing": ["warn", "always"], // { foo: 1 }のスペース
-    "space-infix-ops": ["warn", { "int32Hint": false }] // 1 + 1のような演算子のスペース
+    // enforce the consistent use of either backticks, double, or single quotes
+    "quotes": ["error", "single"],
+    // Disallow await inside of loops, should use Promise.all()
+    "no-await-in-loop": "error",
+    // Allow non-explicit return types on functions and class methods
+    "@typescript-eslint/explicit-function-return-type": "off",
+    // Allow non-explicit return types on exported functions
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    // Disallow usage of the any type
+    "@typescript-eslint/no-explicit-any": 1,
+    // Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean
+    "@typescript-eslint/no-inferrable-types": [
+      "warn",
+      {
+        "ignoreParameters": true
+      }
+    ],
+    // Warn on declared but not used variable
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }
