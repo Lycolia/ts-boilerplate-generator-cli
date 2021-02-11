@@ -3,7 +3,10 @@
 import { createCLIOptionsProgram } from './libs/dialogs/CreateCLIOptionsProgram';
 import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
 import { createProject } from './libs/ProjectCreator';
+import { exitProgram } from './libs/systems/ProgramExiter';
+import { ErrorReasons } from './models/ExitReasons';
 import { ProjectOption } from './models/ProjectOptions';
+import { TsgException } from './models/TsgException';
 
 /**
  * get project options (argument | dialog)
@@ -26,6 +29,9 @@ getProjectOptions()
   .then((options) => {
     createProject(options);
   })
-  .catch((e) => {
-    console.error(e);
+  .catch((error) => {
+    if (typeof error === TsgException.toString()) {
+      exitProgram(error);
+    }
+    exitProgram(new TsgException(ErrorReasons.unmanagedException), error);
   });
