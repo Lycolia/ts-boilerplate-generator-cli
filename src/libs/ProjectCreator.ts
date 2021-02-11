@@ -157,7 +157,7 @@ export const installNpmModules = (projectDest: string) => {
     } else {
       execSync(`npm i --prefix ${projectDest}`, { stdio: 'ignore' });
     }
-  } catch (e) {
-    throw new TsgException(ErrorReasons.failNpmInst, e);
+  } catch (error) {
+    throw new TsgException(ErrorReasons.failNpmInst, error);
   }
 };
