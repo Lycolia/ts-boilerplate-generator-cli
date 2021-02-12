@@ -1,19 +1,31 @@
+import { ErrorReasons } from '../../models/ExitReasons';
 import { TsgException } from '../../models/TsgException';
 import { errorLog } from '../Log';
 
 /**
  * exit this app
- * @param tsgex this app Exception
- * @param error error
+ * @param error this app Exception
  */
-export const exitProgram = (tsgex: TsgException, error?: unknown) => {
-  errorLog(tsgex.reason.subject);
-  if (tsgex.reason.message !== undefined) {
-    errorLog(tsgex.reason.message);
+export const exitApp = (error: unknown) => {
+  if (error instanceof TsgException) {
+    exitProgram(error as TsgException);
+  } else {
+    exitProgram(new TsgException(ErrorReasons.unmanagedException, error));
   }
-  if (error !== undefined) {
-    errorLog(error);
+};
+
+/**
+ * exit this program
+ * @param tsgEx exception
+ */
+const exitProgram = (tsgEx: TsgException) => {
+  errorLog(tsgEx.reason.subject);
+  if (tsgEx.reason.message !== undefined) {
+    errorLog(tsgEx.reason.message);
+  }
+  if (tsgEx.error !== undefined) {
+    errorLog(tsgEx.error);
   }
 
-  process.exit(tsgex.reason.code);
+  process.exit(tsgEx.reason.code);
 };
