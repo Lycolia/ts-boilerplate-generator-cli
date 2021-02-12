@@ -3,6 +3,7 @@
 import { createCLIOptionsProgram } from './libs/dialogs/CreateCLIOptionsProgram';
 import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
 import { createProject } from './libs/ProjectCreator';
+import { exitApp } from './libs/systems/ProgramExiter';
 import { ProjectOption } from './models/ProjectOptions';
 
 /**
@@ -26,6 +27,6 @@ getProjectOptions()
   .then((options) => {
     createProject(options);
   })
-  .catch((e) => {
-    console.error(e);
+  .catch((error) => {
+    exitApp(error);
   });

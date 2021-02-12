@@ -1,5 +1,8 @@
 # History
 
+- 0.4.2
+  - fix #9 log issue
+  - fix logging progrem on app exit
 - 0.4.1
   - update all npm package to latest
 - 0.4.0-6

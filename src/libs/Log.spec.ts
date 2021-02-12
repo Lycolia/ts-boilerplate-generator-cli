@@ -1,4 +1,3 @@
-import { TsgException } from '../models/TsgException';
 import { infoLog, warnLog, errorLog } from './Log';
 
 describe('infoLog', () => {
