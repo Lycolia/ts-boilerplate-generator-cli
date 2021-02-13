@@ -1,5 +1,8 @@
 # History
 
+- 0.4.4
+  - fix bug for missing writing from package.json
+  - downgrade node version from GitHub Actions
 - 0.4.3-1
   - add created messages
 - 0.4.3

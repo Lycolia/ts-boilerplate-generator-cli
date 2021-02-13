@@ -16,7 +16,7 @@ jobs:
       # setup nodejs
       - uses: actions/setup-node@v2.1.4
         with:
-          node-version: '14'
+          node-version: '12'
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
