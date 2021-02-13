@@ -20,15 +20,7 @@ export const getCwdPath = () => {
  * @param distPath create destination path
  */
 export const availableDestination = (distPath: string) => {
-  return canAllocPath(distPath);
-};
-
-/**
- * is path not exists
- * @param path path
- */
-export const canAllocPath = (path: string) => {
-  return !fs.existsSync(path);
+  return !fs.existsSync(distPath);
 };
 
 /**
