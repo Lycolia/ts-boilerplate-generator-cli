@@ -1,7 +1,8 @@
-# workflow name
-name: beforeTesting
-# on trigger
-on: [pull_request]
+name: npm publish after passing testing
+on:
+  push:
+    branches:
+      - master
 # defined jobs
 jobs:
   # job name
@@ -12,7 +13,7 @@ jobs:
     steps:
       # clone repository
       - uses: actions/checkout@v2
-      # install node
+      # setup nodejs
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'

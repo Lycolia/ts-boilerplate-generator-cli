@@ -1,6 +1,6 @@
 # History
 
-- 0.4.2-1
+- 0.4.2-1 ... 0.4.2-5
   - add auto testing and npm publishing
 - 0.4.2
   - fix #9 log issue
