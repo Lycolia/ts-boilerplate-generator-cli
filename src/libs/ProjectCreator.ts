@@ -33,6 +33,7 @@ export const createProject = (projectOpt: ProjectOption) => {
   installNpmModules(distPath);
   git.init(distPath);
   infoLog('Project Created!!');
+  infoLog(`Press run: cd ${projectOpt.projectName.replace(/(\\|\/)/g, '-')}`);
 };
 
 /**
