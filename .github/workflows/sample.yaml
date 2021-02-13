@@ -19,8 +19,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
-      - name: npm install npm can-npm-publish
-        run: npm i can-npm-publish
       - name: can npm publish?
         run: npx can-npm-publish
       - name: run testing
