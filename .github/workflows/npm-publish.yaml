@@ -6,7 +6,7 @@ on:
 # defined jobs
 jobs:
   # job name
-  check-bats-version:
+  ubuntu-testing-publish:
     # runnner
     runs-on: ubuntu-latest
     # run commands
