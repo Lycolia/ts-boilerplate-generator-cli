@@ -1,4 +1,4 @@
-import { canAllocPath, getCwdPath } from './FileSystem';
+import { availableDestination, getCwdPath } from './FileSystem';
 
 describe('getdistPath', () => {
   it('function can work', () => {
@@ -6,11 +6,11 @@ describe('getdistPath', () => {
   });
 });
 
-describe('canAllocPath', () => {
-  it('can alloc', () => {
-    expect(canAllocPath('/home/foo')).toBe(true);
+describe('availableDestination', () => {
+  it('available', () => {
+    expect(availableDestination('/home/foo')).toBe(true);
   });
-  it('can not alloc', () => {
-    expect(canAllocPath('/home')).toBe(false);
+  it('unavailable', () => {
+    expect(availableDestination('/home')).toBe(false);
   });
 });
