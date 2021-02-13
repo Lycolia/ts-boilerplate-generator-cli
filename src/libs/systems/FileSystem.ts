@@ -31,9 +31,9 @@ export const availableDestination = (distPath: string) => {
 export const renameDirectory = (oldName: string, newName: string) => {
   try {
     if (process.platform === 'linux') {
-      execSync(`mv ${oldName}/ ${newName}`);
+      execSync(`mv ${oldName}/ ${newName}`, { stdio: 'ignore' });
     } else if (process.platform === 'win32') {
-      execSync(`REN ${oldName} ${newName}`);
+      execSync(`REN ${oldName} ${newName}`, { stdio: 'ignore' });
     }
   } catch (error) {
     throw new TsgException(ErrorReasons.mvCmdFail, error);
