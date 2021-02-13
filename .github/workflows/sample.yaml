@@ -27,4 +27,5 @@ jobs:
       - name: run publish
         run: npm publish
         env:
+          username: lycolia
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
