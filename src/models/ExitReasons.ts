@@ -25,18 +25,13 @@ export const ErrorReasons = {
     subject: 'Project directory already exists',
     message: 'please specify another project name',
   } as ErrorReason,
-  cdCmdFail: {
-    code: 102,
-    subject: 'cd command failed',
-    message: 'please specify another project name',
-  } as ErrorReason,
   mvCmdFail: {
     code: 103,
-    subject: 'mv command failed',
+    subject: 'failed create project directory',
   } as ErrorReason,
   failPull: {
     code: 200,
-    subject: 'Failed git pull from boilerplate repository',
+    subject: 'failed git pull from boilerplate repository',
   } as ErrorReason,
   cancelledCreatePj: {
     code: 300,
@@ -45,10 +40,10 @@ export const ErrorReasons = {
   } as ErrorReason,
   failNpmInst: {
     code: 400,
-    subject: 'Failed npm install',
+    subject: 'failed npm install',
   } as ErrorReason,
   unmanagedException: {
     code: 999,
-    subject: 'Unmanaged exception has occurred',
+    subject: 'unmanaged exception has occurred',
   } as ErrorReason,
 };
