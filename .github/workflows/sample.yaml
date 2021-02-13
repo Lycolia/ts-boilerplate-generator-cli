@@ -16,5 +16,15 @@ jobs:
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'
-      - run: npm i
-      - run: npm t
+      - name: npm continuous install
+        run: npm ci
+      - name: npm install npm publish validator
+        run: npm i can-npm-publish
+      - name: run validator
+        run: npx can-npm-publish
+      - name: run testing
+        run: npm t
+      - name: run publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
