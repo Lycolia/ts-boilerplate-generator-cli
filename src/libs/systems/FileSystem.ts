@@ -20,15 +20,7 @@ export const getCwdPath = () => {
  * @param distPath create destination path
  */
 export const availableDestination = (distPath: string) => {
-  return canAllocPath(distPath);
-};
-
-/**
- * is path not exists
- * @param path path
- */
-export const canAllocPath = (path: string) => {
-  return !fs.existsSync(path);
+  return !fs.existsSync(distPath);
 };
 
 /**
@@ -39,11 +31,11 @@ export const canAllocPath = (path: string) => {
 export const renameDirectory = (oldName: string, newName: string) => {
   try {
     if (process.platform === 'linux') {
-      execSync(`mv ${oldName}/ ${newName}/`);
+      execSync(`mv ${oldName}/ ${newName}`, { stdio: 'ignore' });
     } else if (process.platform === 'win32') {
-      execSync(`REN ${oldName} ${newName}`);
+      execSync(`REN ${oldName} ${newName}`, { stdio: 'ignore' });
     }
   } catch (error) {
-    throw new TsgException(ErrorReasons.unmanagedException, error);
+    throw new TsgException(ErrorReasons.mvCmdFail, error);
   }
 };
