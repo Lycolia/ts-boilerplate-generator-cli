@@ -1,0 +1,30 @@
+name: npm publish after passing testing
+on:
+  push:
+    branches:
+      - master
+# defined jobs
+jobs:
+  # job name
+  check-bats-version:
+    # runnner
+    runs-on: ubuntu-latest
+    # run commands
+    steps:
+      # clone repository
+      - uses: actions/checkout@v2
+      # setup nodejs
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: '14'
+          registry-url: 'https://registry.npmjs.org'
+      - name: npm continuous install
+        run: npm ci
+      - name: can npm publish?
+        run: npx can-npm-publish
+      - name: run testing
+        run: npm t
+      - name: run publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
