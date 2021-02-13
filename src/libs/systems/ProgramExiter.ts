@@ -6,7 +6,7 @@ import { errorLog } from '../Log';
  * exit this app
  * @param error this app Exception
  */
-export const exitApp = (error: unknown) => {
+export const exitApp = (error: TsgException | unknown) => {
   if (error instanceof TsgException) {
     exitProgram(error as TsgException);
   } else {
