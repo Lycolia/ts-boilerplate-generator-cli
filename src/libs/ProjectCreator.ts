@@ -137,11 +137,11 @@ export const replacePackageJson = (
   projectOpt: ProjectOption
 ) => {
   return pkgJson
-    .replace('"name": .+', `"name": ${projectOpt.projectName}`)
-    .replace('"description": .+', `"description": ${projectOpt.description}`)
-    .replace('"author": .+', `"author": ${projectOpt.author}`)
-    .replace('"license": .+', `"license": ${projectOpt.license}`)
-    .replace('"url": .+', '"url": ""');
+    .replace(/"name": .+/, `"name": "${projectOpt.projectName}",`)
+    .replace(/"description": .+/, `"description": "${projectOpt.description}",`)
+    .replace(/"author": .+/, `"author": "${projectOpt.author}",`)
+    .replace(/"license": .+/, `"license": "${projectOpt.license}",`)
+    .replace(/"url": .+/, '"url": ""');
 };
 
 /**
