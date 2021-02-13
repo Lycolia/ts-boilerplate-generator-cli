@@ -18,7 +18,7 @@ export const exitApp = (error: TsgException | unknown) => {
  * exit this program
  * @param tsgEx exception
  */
-const exitProgram = (tsgEx: TsgException) => {
+export const exitProgram = (tsgEx: TsgException) => {
   errorLog(tsgEx.reason.subject);
   if (tsgEx.reason.message !== undefined) {
     errorLog(tsgEx.reason.message);
