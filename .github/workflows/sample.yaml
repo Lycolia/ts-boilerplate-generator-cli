@@ -1,0 +1,20 @@
+# workflow name
+name: beforeTesting
+# on trigger
+on: [pull_request]
+# defined jobs
+jobs:
+  # job name
+  check-bats-version:
+    # runnner
+    runs-on: ubuntu-latest
+    # run commands
+    steps:
+      # clone repository
+      - uses: actions/checkout@v2
+      # install node
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: '14'
+      - run: npm i
+      - run: npm t
