@@ -55,14 +55,14 @@ describe('renameDirectory', () => {
 
   it('old dir exists', () => {
     mkdirSync(oldPath);
-    FileSystem.renameDirectory(oldPath, newPath);
+    FileSystem.renameDirectory(oldPath, 'new');
     expect(spyRenameDirectory).toReturn();
   });
 
   it('new dir exists', () => {
     mkdirSync(newPath);
     try {
-      FileSystem.renameDirectory(oldPath, newPath);
+      FileSystem.renameDirectory(oldPath, 'new');
     } catch (error) {
       expect((error as TsgException).reason).toEqual(ErrorReasons.mvCmdFail);
     }
@@ -70,7 +70,7 @@ describe('renameDirectory', () => {
 
   it('old, new dir not exists', () => {
     try {
-      FileSystem.renameDirectory(oldPath, newPath);
+      FileSystem.renameDirectory(oldPath, 'new');
     } catch (error) {
       expect((error as TsgException).reason).toEqual(ErrorReasons.mvCmdFail);
     }
