@@ -7,4 +7,5 @@ src/
 .prettierrc
 History.md
 jest.config.js
+LICENSE
 tsconfig.json
