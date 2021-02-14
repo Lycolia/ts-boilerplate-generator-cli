@@ -27,3 +27,19 @@ jobs:
         run: npx can-npm-publish
       - name: run testing
         run: npm t
+  win32-pr-testing:
+    # runnner
+    runs-on: windows-latest
+    # run commands
+    steps:
+      # clone repository
+      - uses: actions/checkout@v2
+      # setup nodejs
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: '12'
+          registry-url: 'https://registry.npmjs.org'
+      - name: npm continuous install
+        run: npm ci
+      - name: run testing
+        run: npm t
