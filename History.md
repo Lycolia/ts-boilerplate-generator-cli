@@ -1,5 +1,7 @@
 # History
 
+- 0.4.8-1
+  - add files in .npmignore
 - 0.4.8
   - fix wrong of package files
 - 0.4.7

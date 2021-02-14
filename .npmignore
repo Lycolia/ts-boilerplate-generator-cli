@@ -2,3 +2,9 @@
 .vscode/
 coverage/
 src/
+.eslintignore
+.eslintrc
+.prettierrc
+History.md
+jest.config.js
+tsconfig.json
