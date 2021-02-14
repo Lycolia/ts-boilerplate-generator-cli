@@ -8,7 +8,7 @@ on:
 # defined jobs
 jobs:
   # job name
-  ubuntu-testing-publish:
+  ubuntu-publish:
     # runnner
     runs-on: ubuntu-latest
     # run commands
