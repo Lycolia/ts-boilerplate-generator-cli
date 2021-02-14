@@ -1,5 +1,7 @@
 # History
 
+- 0.4.7
+  - fix wrong of package files
 - 0.4.6
   - add CI testing for win32
 - 0.4.5
