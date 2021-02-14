@@ -9,6 +9,7 @@ import { infoLog } from './Log';
 import {
   availableDestination,
   getCwdPath,
+  getDirNameFromProjectName,
   renameDirectory,
 } from './systems/FileSystem';
 import * as git from './systems/Git';
@@ -19,29 +20,26 @@ import * as git from './systems/Git';
  * @throws {TsgException}
  */
 export const createProject = (projectOpt: ProjectOption) => {
-  const distPath = validate(projectOpt);
+  const prj = validate(projectOpt.projectName);
   const repoUrl = Repositories[projectOpt.type];
   git.clone(repoUrl);
-  infoLog('Input project options...');
-  renameDirectory(
-    repoUrl.replace(/^.+\/(.+?)\.git$/, '$1'),
-    projectOpt.projectName.replace(/(\\|\/)/g, '-')
-  );
-  cleanup(distPath);
-  updateReadMe(projectOpt, distPath);
-  updatePackageJson(projectOpt, distPath);
-  installNpmModules(distPath);
-  git.init(distPath);
+  infoLog('Parsing project options...');
+  renameDirectory(repoUrl, prj.destDir);
+  cleanup(prj.destFullPath);
+  updateReadMe(projectOpt, prj.destFullPath);
+  updatePackageJson(projectOpt, prj.destFullPath);
+  installNpmModules(prj.destFullPath);
+  git.init(prj.destFullPath);
   infoLog('Project Created!!');
-  infoLog(`Press run: cd ${projectOpt.projectName.replace(/(\\|\/)/g, '-')}`);
+  infoLog(`Press run: cd ${prj.destDir}`);
 };
 
 /**
- * enviroments validation and return distPath or Exception
- * @param projectOpt
+ * enviroments validation and return new project path and directory name
+ * @param projectName
  * @throws {TsgException}
  */
-export const validate = (projectOpt: ProjectOption) => {
+export const validate = (projectName: string) => {
   infoLog('Checking enviroments...');
 
   // git validations
@@ -50,16 +48,17 @@ export const validate = (projectOpt: ProjectOption) => {
 
   // fs validations
   const cwdPath = getCwdPath();
-  const distPath = path.join(
-    cwdPath,
-    projectOpt.projectName.replace(/(\\|\/)/g, '-')
-  );
+  const destDir = getDirNameFromProjectName(projectName);
+  const destFullPath = path.join(cwdPath, destDir);
 
-  if (!availableDestination(distPath)) {
+  if (!availableDestination(destFullPath)) {
     throw new TsgException(ErrorReasons.existsDistPath);
   }
 
-  return distPath;
+  return {
+    destFullPath,
+    destDir,
+  };
 };
 
 /**
