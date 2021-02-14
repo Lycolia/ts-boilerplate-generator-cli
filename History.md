@@ -1,5 +1,7 @@
 # History
 
+- 0.4.8-2
+  - add licence file
 - 0.4.8-1
   - add files in .npmignore
 - 0.4.8
