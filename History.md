@@ -1,5 +1,7 @@
 # History
 
+- 0.4.5
+  - split CI `npm publish` and `npm t`
 - 0.4.4
   - fix bug for missing writing from package.json
   - downgrade node version from GitHub Actions
