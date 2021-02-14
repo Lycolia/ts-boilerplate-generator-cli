@@ -22,8 +22,8 @@ jobs:
         run: npm ci
       - name: can npm publish?
         run: npx can-npm-publish
-      - name: run testing
-        run: npm t
+      - name: run build
+        run: npm run build
       - name: run publish
         run: npm publish
         env:
