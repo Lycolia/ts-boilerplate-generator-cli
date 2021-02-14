@@ -1,5 +1,7 @@
 # History
 
+- 0.4.9
+  - change rules of create project directory pattern
 - 0.4.8-2
   - add License file
 - 0.4.8-1

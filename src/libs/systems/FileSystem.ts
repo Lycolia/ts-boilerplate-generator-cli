@@ -24,18 +24,40 @@ export const availableDestination = (distPath: string) => {
 };
 
 /**
- * rename directory
- * @param oldName
- * @param newName
+ * rename directory from repository url to project directory
+ * @param repositoryUrl
+ * @param projectDirectoryName
+ * @throws {TsgException}
  */
-export const renameDirectory = (oldName: string, newName: string) => {
+export const renameDirectory = (
+  repositoryUrl: string,
+  projectDirectoryName: string
+) => {
+  const fromPath = getPathFromClonedProject(repositoryUrl);
+  const toName = getDirNameFromProjectName(projectDirectoryName);
   try {
     if (process.platform === 'linux') {
-      execSync(`mv ${oldName}/ ${newName}`, { stdio: 'ignore' });
+      execSync(`mv ${fromPath}/ ${toName}`, { stdio: 'ignore' });
     } else if (process.platform === 'win32') {
-      execSync(`REN ${oldName} ${newName}`, { stdio: 'ignore' });
+      execSync(`REN ${fromPath} ${toName}`, { stdio: 'ignore' });
     }
   } catch (error) {
     throw new TsgException(ErrorReasons.mvCmdFail, error);
   }
+};
+
+/**
+ * rename directory source from
+ * @param repositoryUrl
+ */
+export const getPathFromClonedProject = (repositoryUrl: string) => {
+  return repositoryUrl.replace(/^.+\/(.+?)\.git$/, '$1');
+};
+
+/**
+ * rename directory source to
+ * @param projectName
+ */
+export const getDirNameFromProjectName = (projectName: string) => {
+  return projectName.replace(/^@.+?\//, '').replace(/\//g, '-');
 };

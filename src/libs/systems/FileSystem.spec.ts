@@ -76,3 +76,35 @@ describe('renameDirectory', () => {
     }
   });
 });
+
+describe('getPathFromClonedProject', () => {
+  it('get path', () => {
+    const gotPath = FileSystem.getPathFromClonedProject(
+      'https://github.com/Lycolia/ts-server-boilerplate.git'
+    );
+    expect(gotPath).toBe('ts-server-boilerplate');
+  });
+});
+
+describe('getDirNameFromProjectName', () => {
+  it('get name by namespased name', () => {
+    const gotName = FileSystem.getDirNameFromProjectName(
+      '@unknown/no-name-project'
+    );
+    expect(gotName).toBe('no-name-project');
+  });
+
+  it('get name by slashed name', () => {
+    const gotName = FileSystem.getDirNameFromProjectName(
+      'slash/slash/no-name-project'
+    );
+    expect(gotName).toBe('slash-slash-no-name-project');
+  });
+
+  it('get name by combined namespased and slashed name', () => {
+    const gotName = FileSystem.getDirNameFromProjectName(
+      '@unknown/slash/no-name-project'
+    );
+    expect(gotName).toBe('slash-no-name-project');
+  });
+});
