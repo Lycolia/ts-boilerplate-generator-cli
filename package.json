@@ -15,9 +15,6 @@
     "type": "git",
     "url": "https://github.com/Lycolia/ts-boilerplate-generator-cli"
   },
-  "files": [
-    "dist/**/*"
-  ],
   "bin": {
     "tsg": "./dist/src/index.js"
   },
