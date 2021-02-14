@@ -6,7 +6,7 @@ on:
 # defined jobs
 jobs:
   # job name
-  ubuntu-pr-testing:
+  ubuntu-publish:
     # runnner
     runs-on: ubuntu-latest
     # run commands
