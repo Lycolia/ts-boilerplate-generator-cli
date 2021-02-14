@@ -9,7 +9,7 @@ on:
 # defined jobs
 jobs:
   # job name
-  ubuntu-pr-testing:
+  ubuntu-testing:
     # runnner
     runs-on: ubuntu-latest
     # run commands
@@ -27,7 +27,7 @@ jobs:
         run: npx can-npm-publish
       - name: run testing
         run: npm t
-  win32-pr-testing:
+  windows-testing:
     # runnner
     runs-on: windows-latest
     # run commands
