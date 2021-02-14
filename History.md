@@ -1,5 +1,7 @@
 # History
 
+- 0.4.6
+  - add CI testing for win32
 - 0.4.5
   - split CI `npm publish` and `npm t`
 - 0.4.4
