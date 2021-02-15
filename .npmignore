@@ -8,3 +8,5 @@ src/
 History.md
 jest.config.js
 tsconfig.json
+*.spec.js
+*.js.map

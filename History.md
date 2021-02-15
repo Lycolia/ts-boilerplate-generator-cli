@@ -1,5 +1,8 @@
 # History
 
+- 0.5.0
+  - stable-release
+  - cleanup for publish resources
 - 0.4.9-4 ... 0.4.9-6
   - modified various
 - 0.4.9-3
