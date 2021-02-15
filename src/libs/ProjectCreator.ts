@@ -30,8 +30,8 @@ export const createProject = (projectOpt: ProjectOption) => {
   updatePackageJson(projectOpt, prj.destFullPath);
   installNpmModules(prj.destFullPath);
   git.init(prj.destFullPath);
-  infoLog('Project Created!!');
-  infoLog(`Press run: cd ${prj.destDir}`);
+  infoLog('Project created!!');
+  infoLog(`Starting project begin by typing: cd ${prj.destDir}`);
 };
 
 /**
