@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.4.9-3",
+  "version": "0.4.9-6",
   "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
@@ -24,8 +24,7 @@
     "dev": "node -r ts-node/register --inspect-brk ./src/index.ts",
     "lint": "npx tsc --noEmit && npx eslint \"**/*.{js,ts}\" --quiet --fix",
     "build": "npx tsc",
-    "test": "npx jest",
-    "postinstall": "npm run build"
+    "test": "npx jest"
   },
   "author": "Lycolia",
   "license": "MIT",

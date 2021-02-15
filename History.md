@@ -1,5 +1,7 @@
 # History
 
+- 0.4.9-4 ... 0.4.9-6
+  - modified various
 - 0.4.9-3
   - fix installation fails
 - 0.4.9-2
