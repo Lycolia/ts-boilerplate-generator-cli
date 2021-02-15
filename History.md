@@ -1,5 +1,7 @@
 # History
 
+- 0.4.9-2
+  - fix does not working git init for windows
 - 0.4.9-1
   - update log messages
 - 0.4.9

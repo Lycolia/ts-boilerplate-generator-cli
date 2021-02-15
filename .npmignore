@@ -1,6 +1,7 @@
 .github/
 .vscode/
 coverage/
+dist/
 src/
 .eslintignore
 .eslintrc
