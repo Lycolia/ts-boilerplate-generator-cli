@@ -1,4 +1,10 @@
 .github/
 .vscode/
 coverage/
-dist/
+src/
+.eslintignore
+.eslintrc
+.prettierrc
+History.md
+jest.config.js
+tsconfig.json
