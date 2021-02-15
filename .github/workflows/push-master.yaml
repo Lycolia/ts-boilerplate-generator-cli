@@ -18,8 +18,6 @@ jobs:
         with:
           node-version: '12'
           registry-url: 'https://registry.npmjs.org'
-      - name: npm continuous install
-        run: npm ci
       - name: can npm publish?
         run: npx can-npm-publish
       - name: run publish
