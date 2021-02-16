@@ -1,5 +1,7 @@
 # History
 
+- 0.5.0-2
+  - add `.gitattributes`
 - 0.5.0-1
   - change default branch, master to main
 - 0.5.0
