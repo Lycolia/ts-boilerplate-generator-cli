@@ -4,6 +4,7 @@ coverage/
 src/
 .eslintignore
 .eslintrc
+.gitattributes
 .prettierrc
 History.md
 jest.config.js
