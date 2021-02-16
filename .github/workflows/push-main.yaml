@@ -2,7 +2,7 @@ name: npm publish after passing testing
 on:
   push:
     branches:
-      - master
+      - main
 # defined jobs
 jobs:
   # job name
