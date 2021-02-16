@@ -1,11 +1,11 @@
-name: testing on opend PR to master
+name: testing on opend PR to main
 on:
   pull_request:
     types:
       - opened
       - reopened
     branches:
-      - master
+      - main
 # defined jobs
 jobs:
   # job name

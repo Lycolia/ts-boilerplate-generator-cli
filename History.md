@@ -1,5 +1,7 @@
 # History
 
+- 0.5.0-1
+  - change default branch, master to main
 - 0.5.0
   - stable-release
   - cleanup for publish resources
