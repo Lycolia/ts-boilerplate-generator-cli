@@ -2,24 +2,33 @@ import { infoLog, warnLog, errorLog } from '../Log';
 
 describe('infoLog', () => {
   it('function can work', () => {
-    console.info = jest.fn();
+    const spyedInfo = jest.spyOn(console, 'info');
     infoLog({ test: 'foo', hoge: 'bar' });
-    expect(console.info).toBeCalled();
+    expect(spyedInfo.mock.calls[0][2]).toEqual({
+      test: 'foo',
+      hoge: 'bar',
+    });
   });
 });
 
 describe('warnLog', () => {
   it('function can work', () => {
-    console.warn = jest.fn();
+    const spyedWarn = jest.spyOn(console, 'warn');
     warnLog({ test: 'foo', hoge: 'bar' });
-    expect(console.warn).toBeCalled();
+    expect(spyedWarn.mock.calls[0][2]).toEqual({
+      test: 'foo',
+      hoge: 'bar',
+    });
   });
 });
 
 describe('errorLog', () => {
   it('function can work', () => {
-    console.error = jest.fn();
+    const spyedError = jest.spyOn(console, 'error');
     errorLog({ test: 'foo', hoge: 'bar' });
-    expect(console.error).toBeCalled();
+    expect(spyedError.mock.calls[0][2]).toEqual({
+      test: 'foo',
+      hoge: 'bar',
+    });
   });
 });
