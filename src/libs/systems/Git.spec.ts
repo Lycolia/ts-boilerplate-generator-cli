@@ -1,23 +1,22 @@
-import { canCommiting, validateInstalled } from './Git';
+import * as git from './Git';
+
+jest.spyOn(git, 'validateInstalled');
+jest.spyOn(git, 'canCommiting');
 
 describe('validateInstalled', () => {
   it('function can work', () => {
-    const mockFn = jest.fn(() => {
-      validateInstalled();
-    });
-    mockFn();
+    git.validateInstalled();
 
-    expect(mockFn).toReturn();
+    expect(git.validateInstalled).toBeCalled();
+    expect(git.validateInstalled).toReturn();
   });
 });
 
 describe('canCommiting', () => {
   it('function can work', () => {
-    const mockFn = jest.fn(() => {
-      canCommiting();
-    });
-    mockFn();
+    git.canCommiting();
 
-    expect(mockFn).toReturn();
+    expect(git.canCommiting).toBeCalled();
+    expect(git.canCommiting).toReturn();
   });
 });
