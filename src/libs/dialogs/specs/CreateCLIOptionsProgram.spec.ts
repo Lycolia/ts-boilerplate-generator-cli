@@ -1,5 +1,5 @@
-import { ProjectOptionDef } from '../../models/ProjectOptions';
-import { createCLIOptionsProgram } from './CreateCLIOptionsProgram';
+import { ProjectOptionDef } from '../../../models/ProjectOptions';
+import { createCLIOptionsProgram } from '../CreateCLIOptionsProgram';
 
 /**
  * every time after it
