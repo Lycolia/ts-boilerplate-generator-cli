@@ -44,7 +44,9 @@ export const getDestDirWithValidate = (projectName: string) => {
 
   // git validations
   git.validateInstalled();
-  git.canCommiting();
+  if (!git.canCommiting()) {
+    throw new TsgException(ErrorReasons.existsDistPath);
+  }
 
   // fs validations
   const cwdPath = getCwdPath();
