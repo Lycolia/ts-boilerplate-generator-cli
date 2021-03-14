@@ -79,7 +79,7 @@ describe('renameDirectory', () => {
 
 describe('getPathFromClonedProject', () => {
   it('get path', () => {
-    const gotPath = FileSystem.getPathFromClonedProject(
+    const gotPath = FileSystem.getRepositoryNameFromUrl(
       'https://github.com/Lycolia/ts-server-boilerplate.git'
     );
     expect(gotPath).toBe('ts-server-boilerplate');
@@ -98,13 +98,13 @@ describe('getDirNameFromProjectName', () => {
     const gotName = FileSystem.getDirNameFromProjectName(
       'slash/slash/no-name-project'
     );
-    expect(gotName).toBe('slash-slash-no-name-project');
+    expect(gotName).toBe('slash/slash/no-name-project');
   });
 
   it('get name by combined namespased and slashed name', () => {
     const gotName = FileSystem.getDirNameFromProjectName(
       '@unknown/slash/no-name-project'
     );
-    expect(gotName).toBe('slash-no-name-project');
+    expect(gotName).toBe('slash/no-name-project');
   });
 });
