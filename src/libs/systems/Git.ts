@@ -25,8 +25,8 @@ export const canCommiting = () => {
   try {
     const configs = execSync('git config --list').toString();
     return (
-      configs.match(/user\.name=.+/) !== null &&
-      configs.match(/user\.email=.+/) !== null
+      (configs.match(/user\.name=.+/) !== null) === true &&
+      (configs.match(/user\.email=.+/) !== null) === true
     );
   } catch (error) {
     throw new TsgException(ErrorReasons.unmanagedException, error);

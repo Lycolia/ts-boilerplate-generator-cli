@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync, rmdirSync } from 'fs';
 import path from 'path';
-import { ErrorReasons } from '../../models/ExitReasons';
-import { TsgException } from '../../models/TsgException';
-import * as FileSystem from './FileSystem';
+import { ErrorReasons } from '../../../models/ExitReasons';
+import { TsgException } from '../../../models/TsgException';
+import * as FileSystem from '../FileSystem';
 
 /**
  * working base

@@ -1,4 +1,3 @@
-import { execSync } from 'child_process';
 import fs from 'fs';
 import { ErrorReasons } from '../../models/ExitReasons';
 import { TsgException } from '../../models/TsgException';
@@ -36,11 +35,7 @@ export const renameDirectory = (
   const fromPath = getPathFromClonedProject(repositoryUrl);
   const toName = getDirNameFromProjectName(projectDirectoryName);
   try {
-    if (process.platform === 'linux') {
-      execSync(`mv ${fromPath}/ ${toName}`, { stdio: 'ignore' });
-    } else if (process.platform === 'win32') {
-      execSync(`REN ${fromPath} ${toName}`, { stdio: 'ignore' });
-    }
+    fs.renameSync(fromPath, toName);
   } catch (error) {
     throw new TsgException(ErrorReasons.mvCmdFail, error);
   }
