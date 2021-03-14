@@ -1,4 +1,4 @@
-import * as git from './Git';
+import * as git from '../Git';
 
 jest.spyOn(git, 'validateInstalled');
 jest.spyOn(git, 'canCommiting');
