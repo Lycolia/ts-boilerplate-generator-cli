@@ -1,5 +1,11 @@
 import { execSync } from 'child_process';
-import fs from 'fs';
+import {
+  existsSync,
+  readFileSync,
+  rmdirSync,
+  unlinkSync,
+  writeFileSync,
+} from 'fs';
 import path from 'path';
 import { ErrorReasons } from '../models/ExitReasons';
 import { ProjectOption } from '../models/ProjectOptions';
@@ -77,11 +83,11 @@ export const cleanup = (projectDest: string) => {
 
   targets.map((item) => {
     const itemPath = path.join(projectDest, item.path);
-    if (fs.existsSync(itemPath)) {
+    if (existsSync(itemPath)) {
       if (item.isDir) {
-        fs.rmdirSync(itemPath, { recursive: true });
+        rmdirSync(itemPath, { recursive: true });
       } else {
-        fs.unlinkSync(itemPath);
+        unlinkSync(itemPath);
       }
     }
   });
@@ -97,8 +103,8 @@ export const updateReadMe = (
   projectDest: string
 ) => {
   const readmePath = path.join(projectDest, './README.md');
-  const readme = fs.readFileSync(readmePath).toString();
-  fs.writeFileSync(readmePath, replaceReadMe(readme, projectOpt));
+  const readme = readFileSync(readmePath).toString();
+  writeFileSync(readmePath, replaceReadMe(readme, projectOpt));
 };
 
 /**
@@ -124,8 +130,8 @@ export const updatePackageJson = (
   projectDest: string
 ) => {
   const pkgJsonPath = path.join(projectDest, './package.json');
-  const pkgJson = fs.readFileSync(pkgJsonPath).toString();
-  fs.writeFileSync(pkgJsonPath, replacePackageJson(pkgJson, projectOpt));
+  const pkgJson = readFileSync(pkgJsonPath).toString();
+  writeFileSync(pkgJsonPath, replacePackageJson(pkgJson, projectOpt));
 };
 
 /**
