@@ -1,6 +1,6 @@
-import { ErrorReasons } from '../../models/ExitReasons';
-import { TsgException } from '../../models/TsgException';
-import * as ProgramExiter from './ProgramExiter';
+import { ErrorReasons } from '../../../models/ExitReasons';
+import { TsgException } from '../../../models/TsgException';
+import * as ProgramExiter from './../ProgramExiter';
 
 describe('exitApp', () => {
   /**
