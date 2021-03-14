@@ -27,6 +27,12 @@ jobs:
         run: npx can-npm-publish
       - name: run testing
         run: npm t
+      - name: only-node testing
+        run: docker-compose run only-node 'npm' 't'
+      - name: node-git testing
+        run: docker-compose run node-git 'npm' 't'
+      - name: node-git-conf testing
+        run: docker-compose run node-git-conf 'npm' 't'
   windows-testing:
     # runnner
     runs-on: windows-latest
