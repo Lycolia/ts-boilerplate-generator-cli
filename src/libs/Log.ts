@@ -10,7 +10,9 @@ const logBanner = ' TS-gen ';
  * @param messages
  */
 export const infoLog = (...messages: unknown[]) => {
-  console.info(chalk.bgGreen.black(logBanner), chalk.white(' INFO '), messages);
+  messages.map((msg) => {
+    console.info(chalk.bgGreen.black(logBanner), chalk.white(' INFO '), msg);
+  });
 };
 
 /**
@@ -18,11 +20,9 @@ export const infoLog = (...messages: unknown[]) => {
  * @param messages
  */
 export const warnLog = (...messages: unknown[]) => {
-  console.warn(
-    chalk.bgGreen.black(logBanner),
-    chalk.yellow(' WARN '),
-    messages
-  );
+  messages.map((msg) => {
+    console.warn(chalk.bgGreen.black(logBanner), chalk.yellow(' WARN '), msg);
+  });
 };
 
 /**
@@ -30,9 +30,11 @@ export const warnLog = (...messages: unknown[]) => {
  * @param messages
  */
 export const errorLog = (...messages: unknown[]) => {
-  console.error(
-    chalk.bgGreen.black(logBanner),
-    chalk.bgRed.white(' ERROR '),
-    messages
-  );
+  messages.map((msg) => {
+    console.error(
+      chalk.bgGreen.black(logBanner),
+      chalk.bgRed.white(' ERROR '),
+      msg
+    );
+  });
 };
