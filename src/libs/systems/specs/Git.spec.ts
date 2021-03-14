@@ -18,7 +18,6 @@ describe('validateInstalled', () => {
       expect(() => {
         git.validateInstalled();
       }).toThrow();
-      expect(git.validateInstalled).toBeCalled();
     },
     node_git() {
       git.validateInstalled();
@@ -48,7 +47,6 @@ describe('canCommiting', () => {
       expect(() => {
         git.canCommiting();
       }).toThrow();
-      expect(git.canCommiting).toBeCalled();
     },
     node_git() {
       expect(git.canCommiting()).toBe(false);
