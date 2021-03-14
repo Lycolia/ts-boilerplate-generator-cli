@@ -9,7 +9,6 @@ const platform = getTestingPlatform();
 describe('validateInstalled', () => {
   const testCaseItems = {
     development: {
-      name: 'development',
       test() {
         git.validateInstalled();
 
@@ -18,7 +17,6 @@ describe('validateInstalled', () => {
       },
     },
     only_node: {
-      name: 'only-node',
       test() {
         expect(() => {
           git.validateInstalled();
@@ -27,7 +25,6 @@ describe('validateInstalled', () => {
       },
     },
     node_git: {
-      name: 'node-git',
       test() {
         git.validateInstalled();
 
@@ -36,7 +33,6 @@ describe('validateInstalled', () => {
       },
     },
     node_git_conf: {
-      name: 'node-git-conf',
       test() {
         git.validateInstalled();
 
@@ -54,13 +50,11 @@ describe('validateInstalled', () => {
 describe('canCommiting', () => {
   const testCaseItems = {
     development: {
-      name: 'development',
       test() {
         expect(git.canCommiting()).toBe(true);
       },
     },
     only_node: {
-      name: 'only-node',
       test() {
         expect(() => {
           git.canCommiting();
@@ -69,13 +63,11 @@ describe('canCommiting', () => {
       },
     },
     node_git: {
-      name: 'node-git',
       test() {
         expect(git.canCommiting()).toBe(false);
       },
     },
     node_git_conf: {
-      name: 'node-git-conf',
       test() {
         expect(git.canCommiting()).toBe(true);
       },
