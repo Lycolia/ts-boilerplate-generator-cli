@@ -6,7 +6,7 @@ services:
     build: ./docker/only-node/
     volumes:
       - .:/home/workdir
-    command: npm start
+    command: npm t
     environment:
       EXEC_PLATFORM: only-node
   # installed node, git
@@ -14,7 +14,7 @@ services:
     build: ./docker/node-git/
     volumes:
       - .:/home/workdir
-    command: npm start
+    command: npm t
     environment:
       EXEC_PLATFORM: node-git
   # installed node, with configured git
@@ -22,6 +22,6 @@ services:
     build: ./docker/node-git-conf/
     volumes:
       - .:/home/workdir
-    command: npm start
+    command: npm t
     environment:
       EXEC_PLATFORM: node-git-conf
