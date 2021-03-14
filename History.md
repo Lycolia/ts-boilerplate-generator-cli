@@ -1,5 +1,7 @@
 # History
 
+- 0.5.1
+  - increase compatibility for windows
 - 0.5.0-2
   - add `.gitattributes`
 - 0.5.0-1
