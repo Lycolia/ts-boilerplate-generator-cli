@@ -20,18 +20,18 @@ import * as git from './systems/Git';
  * @throws {TsgException}
  */
 export const createProject = (projectOpt: ProjectOption) => {
-  const prj = validate(projectOpt.projectName);
+  const dest = getDestDirWithValidate(projectOpt.projectName);
   const repoUrl = Repositories[projectOpt.type];
   git.clone(repoUrl);
   infoLog('Parsing project options...');
-  renameDirectory(repoUrl, prj.destDir);
-  cleanup(prj.destFullPath);
-  updateReadMe(projectOpt, prj.destFullPath);
-  updatePackageJson(projectOpt, prj.destFullPath);
-  installNpmModules(prj.destFullPath);
-  git.init(prj.destFullPath);
+  renameDirectory(repoUrl, dest.dirName);
+  cleanup(dest.fullPath);
+  updateReadMe(projectOpt, dest.fullPath);
+  updatePackageJson(projectOpt, dest.fullPath);
+  installNpmModules(dest.fullPath);
+  git.init(dest.fullPath);
   infoLog('Project created!!');
-  infoLog(`Starting project begin by typing: cd ${prj.destDir}`);
+  infoLog(`Starting project begin by typing: cd ${dest.dirName}`);
 };
 
 /**
@@ -39,7 +39,7 @@ export const createProject = (projectOpt: ProjectOption) => {
  * @param projectName
  * @throws {TsgException}
  */
-export const validate = (projectName: string) => {
+export const getDestDirWithValidate = (projectName: string) => {
   infoLog('Checking enviroments...');
 
   // git validations
@@ -48,16 +48,16 @@ export const validate = (projectName: string) => {
 
   // fs validations
   const cwdPath = getCwdPath();
-  const destDir = getDirNameFromProjectName(projectName);
-  const destFullPath = path.join(cwdPath, destDir);
+  const dirName = getDirNameFromProjectName(projectName);
+  const fullPath = path.join(cwdPath, dirName);
 
-  if (!availableDestination(destFullPath)) {
+  if (!availableDestination(fullPath)) {
     throw new TsgException(ErrorReasons.existsDistPath);
   }
 
   return {
-    destFullPath,
-    destDir,
+    fullPath,
+    dirName,
   };
 };
 
