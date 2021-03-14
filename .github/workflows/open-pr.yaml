@@ -1,5 +1,6 @@
 name: testing on opend PR to main
 on:
+  push:
   pull_request:
     types:
       - opened
