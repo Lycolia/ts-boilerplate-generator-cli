@@ -8,73 +8,57 @@ const platform = getTestingPlatform();
 
 describe('validateInstalled', () => {
   const testCaseItems = {
-    development: {
-      test() {
-        git.validateInstalled();
+    development() {
+      git.validateInstalled();
 
-        expect(git.validateInstalled).toBeCalled();
-        expect(git.validateInstalled).toReturn();
-      },
+      expect(git.validateInstalled).toBeCalled();
+      expect(git.validateInstalled).toReturn();
     },
-    only_node: {
-      test() {
-        expect(() => {
-          git.validateInstalled();
-        }).toThrow();
-        expect(git.validateInstalled).toBeCalled();
-      },
-    },
-    node_git: {
-      test() {
+    only_node() {
+      expect(() => {
         git.validateInstalled();
-
-        expect(git.validateInstalled).toBeCalled();
-        expect(git.validateInstalled).toReturn();
-      },
+      }).toThrow();
+      expect(git.validateInstalled).toBeCalled();
     },
-    node_git_conf: {
-      test() {
-        git.validateInstalled();
+    node_git() {
+      git.validateInstalled();
 
-        expect(git.validateInstalled).toBeCalled();
-        expect(git.validateInstalled).toReturn();
-      },
+      expect(git.validateInstalled).toBeCalled();
+      expect(git.validateInstalled).toReturn();
+    },
+    node_git_conf() {
+      git.validateInstalled();
+
+      expect(git.validateInstalled).toBeCalled();
+      expect(git.validateInstalled).toReturn();
     },
   };
 
   it('function can work', () => {
-    testCaseItems[platform].test();
+    testCaseItems[platform]();
   });
 });
 
 describe('canCommiting', () => {
   const testCaseItems = {
-    development: {
-      test() {
-        expect(git.canCommiting()).toBe(true);
-      },
+    development() {
+      expect(git.canCommiting()).toBe(true);
     },
-    only_node: {
-      test() {
-        expect(() => {
-          git.canCommiting();
-        }).toThrow();
-        expect(git.canCommiting).toBeCalled();
-      },
+    only_node() {
+      expect(() => {
+        git.canCommiting();
+      }).toThrow();
+      expect(git.canCommiting).toBeCalled();
     },
-    node_git: {
-      test() {
-        expect(git.canCommiting()).toBe(false);
-      },
+    node_git() {
+      expect(git.canCommiting()).toBe(false);
     },
-    node_git_conf: {
-      test() {
-        expect(git.canCommiting()).toBe(true);
-      },
+    node_git_conf() {
+      expect(git.canCommiting()).toBe(true);
     },
   };
 
   it('function can work', () => {
-    testCaseItems[platform].test();
+    testCaseItems[platform]();
   });
 });
