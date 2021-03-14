@@ -1,10 +1,16 @@
-import * as fs from 'fs';
+import { existsSync, rmdirSync, mkdirSync, appendFileSync } from 'fs';
 import path from 'path';
 import { cleanup, getDestDirWithValidate } from '../ProjectCreator';
 import { getTestingPlatform } from '../TestUtil';
 
 const platform = getTestingPlatform();
 const baseDir = 'test-project';
+
+afterEach(() => {
+  if (existsSync(baseDir)) {
+    rmdirSync(baseDir);
+  }
+});
 
 describe('getDestDirWithValidate', () => {
   const testCaseItems = {
@@ -35,27 +41,24 @@ describe('getDestDirWithValidate', () => {
   });
 
   it('invalid', () => {
-    fs.mkdirSync(baseDir);
+    mkdirSync(baseDir);
 
     expect(() => {
       getDestDirWithValidate(`@anonymous/${baseDir}`);
     }).toThrow();
-
-    fs.rmdirSync(baseDir);
   });
 });
 
 describe('cleanup', () => {
   it('function can work', () => {
-    fs.mkdirSync(baseDir);
-    fs.appendFileSync(`${baseDir}/LICENSE`, '-');
-    fs.appendFileSync(`${baseDir}/package-lock.json`, '-');
-    fs.mkdirSync(`${baseDir}/.git`);
+    mkdirSync(baseDir);
+    appendFileSync(`${baseDir}/LICENSE`, '-');
+    appendFileSync(`${baseDir}/package-lock.json`, '-');
+    mkdirSync(`${baseDir}/.git`);
     cleanup('test-project');
 
-    expect(fs.existsSync(`${baseDir}/LICENSE`)).toBe(false);
-    expect(fs.existsSync(`${baseDir}/package-lock.json`)).toBe(false);
-    expect(fs.existsSync(`${baseDir}/.git`)).toBe(false);
-    fs.rmdirSync(baseDir);
+    expect(existsSync(`${baseDir}/LICENSE`)).toBe(false);
+    expect(existsSync(`${baseDir}/package-lock.json`)).toBe(false);
+    expect(existsSync(`${baseDir}/.git`)).toBe(false);
   });
 });
