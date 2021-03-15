@@ -1,5 +1,7 @@
 # History
 
+- 0.5.2-1
+  - fixed event trigger for GitHub Actions Workflow
 - 0.5.2
   - increase compatibility for windows
   - create feature testings
