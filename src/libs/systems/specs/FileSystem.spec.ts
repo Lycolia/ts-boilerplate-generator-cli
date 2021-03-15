@@ -34,6 +34,7 @@ describe('availableDestination', () => {
 });
 
 describe('renameDirectory', () => {
+  const repoUrl = 'https://github.com/Lycolia/old.git';
   const oldPath = getPath('old');
   const newPath = getPath('new');
 
@@ -55,14 +56,14 @@ describe('renameDirectory', () => {
 
   it('old dir exists', () => {
     mkdirSync(oldPath);
-    FileSystem.renameDirectory(oldPath, 'new');
+    FileSystem.renameDirectory(repoUrl, 'new');
     expect(spyRenameDirectory).toReturn();
   });
 
   it('new dir exists', () => {
     mkdirSync(newPath);
     try {
-      FileSystem.renameDirectory(oldPath, 'new');
+      FileSystem.renameDirectory(repoUrl, 'new');
     } catch (error) {
       expect((error as TsgException).reason).toEqual(ErrorReasons.mvCmdFail);
     }
@@ -70,7 +71,7 @@ describe('renameDirectory', () => {
 
   it('old, new dir not exists', () => {
     try {
-      FileSystem.renameDirectory(oldPath, 'new');
+      FileSystem.renameDirectory(repoUrl, 'new');
     } catch (error) {
       expect((error as TsgException).reason).toEqual(ErrorReasons.mvCmdFail);
     }
