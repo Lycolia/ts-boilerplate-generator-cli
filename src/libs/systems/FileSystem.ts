@@ -34,7 +34,6 @@ export const renameDirectory = (
 ) => {
   const fromPath = getRepositoryNameFromUrl(repositoryUrl);
   try {
-    fs.mkdirSync(createDestDir, { recursive: true });
     fs.renameSync(fromPath, createDestDir);
   } catch (error) {
     throw new TsgException(ErrorReasons.mvCmdFail, error);
