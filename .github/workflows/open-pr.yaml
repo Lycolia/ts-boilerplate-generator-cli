@@ -1,5 +1,6 @@
 name: testing on opend PR to main
 on:
+  push:
   pull_request:
     types:
       - opened
@@ -25,8 +26,18 @@ jobs:
         run: npm ci
       - name: can npm publish?
         run: npx can-npm-publish
+      - name: git configure
+        run: |
+          git config --global user.email test@example.com
+          git config --global user.name test
       - name: run testing
         run: npm t
+      - name: only-node testing
+        run: docker-compose run only-node 'npm' 't'
+      - name: node-git testing
+        run: docker-compose run node-git 'npm' 't'
+      - name: node-git-conf testing
+        run: docker-compose run node-git-conf 'npm' 't'
   windows-testing:
     # runnner
     runs-on: windows-latest
@@ -41,5 +52,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
+      - name: git configure
+        run: |
+          git config --global user.email test@example.com
+          git config --global user.name test
       - name: run testing
         run: npm t

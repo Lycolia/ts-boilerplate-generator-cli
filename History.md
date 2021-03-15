@@ -1,5 +1,8 @@
 # History
 
+- 0.5.2
+  - increase compatibility for windows
+  - create feature testings
 - 0.5.1
   - increase compatibility for windows
 - 0.5.0-2

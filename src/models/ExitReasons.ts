@@ -15,6 +15,11 @@ export const ErrorReasons = {
     subject: 'Git not found',
     message: 'should install Git or export Git path',
   } as ErrorReason,
+  gitNotConfigure: {
+    code: 2,
+    subject: 'Git not configure',
+    message: 'should configure Git user.name and user.email',
+  } as ErrorReason,
   cdNotExists: {
     code: 100,
     subject: 'Current directory may does not exist',

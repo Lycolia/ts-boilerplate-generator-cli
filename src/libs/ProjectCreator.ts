@@ -1,5 +1,11 @@
 import { execSync } from 'child_process';
-import fs from 'fs';
+import {
+  existsSync,
+  readFileSync,
+  rmdirSync,
+  unlinkSync,
+  writeFileSync,
+} from 'fs';
 import path from 'path';
 import { ErrorReasons } from '../models/ExitReasons';
 import { ProjectOption } from '../models/ProjectOptions';
@@ -20,18 +26,18 @@ import * as git from './systems/Git';
  * @throws {TsgException}
  */
 export const createProject = (projectOpt: ProjectOption) => {
-  const prj = validate(projectOpt.projectName);
+  const dest = getDestDirWithValidate(projectOpt.projectName);
   const repoUrl = Repositories[projectOpt.type];
   git.clone(repoUrl);
   infoLog('Parsing project options...');
-  renameDirectory(repoUrl, prj.destDir);
-  cleanup(prj.destFullPath);
-  updateReadMe(projectOpt, prj.destFullPath);
-  updatePackageJson(projectOpt, prj.destFullPath);
-  installNpmModules(prj.destFullPath);
-  git.init(prj.destFullPath);
+  renameDirectory(repoUrl, dest.dirName);
+  cleanup(dest.fullPath);
+  updateReadMe(projectOpt, dest.fullPath);
+  updatePackageJson(projectOpt, dest.fullPath);
+  installNpmModules(dest.fullPath);
+  git.init(dest.fullPath);
   infoLog('Project created!!');
-  infoLog(`Starting project begin by typing: cd ${prj.destDir}`);
+  infoLog(`Starting project begin by typing: cd ${dest.dirName}`);
 };
 
 /**
@@ -39,25 +45,27 @@ export const createProject = (projectOpt: ProjectOption) => {
  * @param projectName
  * @throws {TsgException}
  */
-export const validate = (projectName: string) => {
+export const getDestDirWithValidate = (projectName: string) => {
   infoLog('Checking enviroments...');
 
   // git validations
   git.validateInstalled();
-  git.canCommiting();
+  if (!git.canCommiting()) {
+    throw new TsgException(ErrorReasons.existsDistPath);
+  }
 
   // fs validations
   const cwdPath = getCwdPath();
-  const destDir = getDirNameFromProjectName(projectName);
-  const destFullPath = path.join(cwdPath, destDir);
+  const dirName = getDirNameFromProjectName(projectName);
+  const fullPath = path.join(cwdPath, dirName);
 
-  if (!availableDestination(destFullPath)) {
+  if (!availableDestination(fullPath)) {
     throw new TsgException(ErrorReasons.existsDistPath);
   }
 
   return {
-    destFullPath,
-    destDir,
+    fullPath,
+    dirName,
   };
 };
 
@@ -75,11 +83,11 @@ export const cleanup = (projectDest: string) => {
 
   targets.map((item) => {
     const itemPath = path.join(projectDest, item.path);
-    if (fs.existsSync(itemPath)) {
+    if (existsSync(itemPath)) {
       if (item.isDir) {
-        fs.rmdirSync(itemPath, { recursive: true });
+        rmdirSync(itemPath, { recursive: true });
       } else {
-        fs.unlinkSync(itemPath);
+        unlinkSync(itemPath);
       }
     }
   });
@@ -95,8 +103,8 @@ export const updateReadMe = (
   projectDest: string
 ) => {
   const readmePath = path.join(projectDest, './README.md');
-  const readme = fs.readFileSync(readmePath).toString();
-  fs.writeFileSync(readmePath, replaceReadMe(readme, projectOpt));
+  const readme = readFileSync(readmePath).toString();
+  writeFileSync(readmePath, replaceReadMe(readme, projectOpt));
 };
 
 /**
@@ -122,8 +130,8 @@ export const updatePackageJson = (
   projectDest: string
 ) => {
   const pkgJsonPath = path.join(projectDest, './package.json');
-  const pkgJson = fs.readFileSync(pkgJsonPath).toString();
-  fs.writeFileSync(pkgJsonPath, replacePackageJson(pkgJson, projectOpt));
+  const pkgJson = readFileSync(pkgJsonPath).toString();
+  writeFileSync(pkgJsonPath, replacePackageJson(pkgJson, projectOpt));
 };
 
 /**
