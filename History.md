@@ -1,7 +1,6 @@
 # History
 
 - 0.5.2
-  - support recusive directory path
   - increase compatibility for windows
   - create feature testings
 - 0.5.1
