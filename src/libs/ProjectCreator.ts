@@ -152,7 +152,7 @@ export const replacePackageJson = (
 };
 
 /**
- * install nom modules
+ * install npm modules
  * @param projectDest
  * @throws {TsgException}
  */
