@@ -10,7 +10,7 @@ on:
 # defined jobs
 jobs:
   # job name
-  ubuntu-testing:
+  before-check:
     # runnner
     runs-on: ubuntu-latest
     # run commands
@@ -22,3 +22,10 @@ jobs:
         run: exit 1
       - name: success case
         run: echo "OK"
+  exec-test:
+    # runnner
+    runs-on: ubuntu-latest
+    # run commands
+    steps:
+      - name: TEST!
+        run: echo "RUN TEST
