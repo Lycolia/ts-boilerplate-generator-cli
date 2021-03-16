@@ -18,7 +18,7 @@ jobs:
       # clone repository
       - uses: actions/checkout@v2
       - name: fail case
-        if: startsWith(github.head_ref, 'refs/heads/test/') && github.base_ref == refs/heads/main'
+        if: startsWith(github.head_ref, 'refs/heads/test/') && github.base_ref == 'refs/heads/main'
         run: exit 1
       - name: success case
         run: echo "OK"
