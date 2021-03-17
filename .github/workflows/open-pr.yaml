@@ -7,17 +7,11 @@ on:
       - synchronize
     branches:
       - main
-# defined jobs
 jobs:
-  # job name
   ubuntu-testing:
-    # runnner
     runs-on: ubuntu-latest
-    # run commands
     steps:
-      # clone repository
       - uses: actions/checkout@v2
-      # setup nodejs
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'
@@ -39,13 +33,9 @@ jobs:
       - name: node-git-conf testing
         run: docker-compose run node-git-conf 'npm' 't'
   windows-testing:
-    # runnner
     runs-on: windows-latest
-    # run commands
     steps:
-      # clone repository
       - uses: actions/checkout@v2
-      # setup nodejs
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'
