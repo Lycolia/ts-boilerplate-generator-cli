@@ -1,4 +1,4 @@
-name: testing on opend PR to main
+name: opened PR from issue/*
 on:
   pull_request:
     types:
@@ -8,7 +8,7 @@ on:
     branches:
       - main
 jobs:
-  ubuntu-testing:
+  testing-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,21 +18,31 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
-      - name: can npm publish?
-        run: npx can-npm-publish
       - name: git configure
         run: |
           git config --global user.email test@example.com
           git config --global user.name test
       - name: run testing
         run: npm t
-      - name: only-node testing
+  testing-of-only-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run testing
         run: docker-compose run only-node 'npm' 't'
-      - name: node-git testing
+  testing-of-node-git:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run testing
         run: docker-compose run node-git 'npm' 't'
-      - name: node-git-conf testing
+  testing-of-node-git-conf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run testing
         run: docker-compose run node-git-conf 'npm' 't'
-  windows-testing:
+  testing-on-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
