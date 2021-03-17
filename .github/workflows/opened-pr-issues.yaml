@@ -28,18 +28,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: '14'
+          registry-url: 'https://registry.npmjs.org'
+      - name: npm continuous install
+        run: npm ci
       - name: run testing
         run: docker-compose run only-node 'npm' 't'
   testing-of-node-git:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: '14'
+          registry-url: 'https://registry.npmjs.org'
+      - name: npm continuous install
+        run: npm ci
       - name: run testing
         run: docker-compose run node-git 'npm' 't'
   testing-of-node-git-conf:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: '14'
+          registry-url: 'https://registry.npmjs.org'
+      - name: npm continuous install
+        run: npm ci
       - name: run testing
         run: docker-compose run node-git-conf 'npm' 't'
   testing-on-windows:
