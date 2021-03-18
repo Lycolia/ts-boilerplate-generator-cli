@@ -8,7 +8,7 @@ on:
     branches:
       - main
 jobs:
-  ubuntu-testing:
+  basics-testing-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,7 +32,7 @@ jobs:
         run: docker-compose run node-git 'npm' 't'
       - name: node-git-conf testing
         run: docker-compose run node-git-conf 'npm' 't'
-  windows-testing:
+  common-testing-on-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
