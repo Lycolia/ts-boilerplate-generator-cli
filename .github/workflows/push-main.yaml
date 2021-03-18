@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  npm-publish:
+  publish-to-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
