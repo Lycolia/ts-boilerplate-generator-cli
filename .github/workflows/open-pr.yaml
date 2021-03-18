@@ -6,8 +6,18 @@ on:
       - reopened
       - synchronize
     branches:
-      - main
+      - issue/main
 jobs:
+  validate-pr-base-ref:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: validate base_ref
+        if: >
+          github.head_ref != issue/main
+          startsWith(github.head_ref, 'issue/')
+          && github.base_ref == 'main'
+        run: exit 1
   basics-testing-on-ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -18,8 +28,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
-      - name: can npm publish?
-        run: npx can-npm-publish
       - name: git configure
         run: |
           git config --global user.email test@example.com
