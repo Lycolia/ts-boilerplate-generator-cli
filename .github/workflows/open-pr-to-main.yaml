@@ -8,7 +8,16 @@ on:
     branches:
       - issue/main
 jobs:
+  validate-pr-head-ref:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: validate base_ref
+        if: github.head_ref != issue/main
+        run: exit 1
   validate-npm-version:
+    needs:
+      - validate-pr-head-ref
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
