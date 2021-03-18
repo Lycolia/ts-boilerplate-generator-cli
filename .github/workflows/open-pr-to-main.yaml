@@ -6,7 +6,7 @@ on:
       - reopened
       - synchronize
     branches:
-      - issue/main
+      - main
 jobs:
   validate-pr-head-ref:
     runs-on: ubuntu-latest
