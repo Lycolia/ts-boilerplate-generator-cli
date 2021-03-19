@@ -6,8 +6,8 @@ on:
       - reopened
       - synchronize
     branches:
-      - issue/*
-      - issue/main
+      - 'issue/*'
+      - '!issue/main'
 jobs:
   validate-pr-ref-issues-to-issue-main:
     runs-on: ubuntu-latest
