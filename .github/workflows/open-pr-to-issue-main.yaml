@@ -20,7 +20,7 @@ jobs:
         run: exit 1
   basics-testing-on-ubuntu:
     needs:
-      - validate-pr-base-ref
+      - validate-pr-ref-issues-to-issue-main
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,7 +44,7 @@ jobs:
         run: docker-compose run node-git-conf 'npm' 't'
   common-testing-on-windows:
     needs:
-      - validate-pr-base-ref
+      - validate-pr-ref-issues-to-issue-main
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2

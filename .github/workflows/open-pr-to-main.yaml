@@ -17,7 +17,7 @@ jobs:
         run: exit 1
   validate-npm-version:
     needs:
-      - validate-pr-head-ref
+      - validate-pr-head-ref-from-issue-main
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
