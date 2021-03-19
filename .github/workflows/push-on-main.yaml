@@ -1,4 +1,4 @@
-name: npm publish after passing testing
+name: npm publish on push to main
 on:
   push:
     branches:
