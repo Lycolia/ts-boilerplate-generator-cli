@@ -1,4 +1,4 @@
-name: validate npm version on open PR to main
+name: testing on PR to main
 on:
   pull_request:
     branches:
