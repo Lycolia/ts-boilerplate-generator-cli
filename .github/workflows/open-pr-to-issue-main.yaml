@@ -16,7 +16,7 @@ jobs:
         if: >
           github.head_ref != 'issue/main'
           startsWith(github.head_ref, 'issue/')
-          && github.base_ref == 'main'
+          && github.base_ref != 'issue/main'
         run: exit 1
   basics-testing-on-ubuntu:
     needs:
