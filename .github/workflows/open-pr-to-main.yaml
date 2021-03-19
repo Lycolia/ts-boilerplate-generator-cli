@@ -8,7 +8,7 @@ on:
     branches:
       - main
 jobs:
-  validate-pr-head-ref:
+  validate-pr-head-ref-from-issue-main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
