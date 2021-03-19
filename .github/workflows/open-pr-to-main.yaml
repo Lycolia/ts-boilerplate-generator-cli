@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: validate base_ref
-        if: github.head_ref != issue/main
+        if: github.head_ref != 'issue/main'
         run: exit 1
   validate-npm-version:
     needs:
