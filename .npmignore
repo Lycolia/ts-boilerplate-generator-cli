@@ -6,7 +6,6 @@ src/
 .eslintrc
 .gitattributes
 .prettierrc
-History.md
 jest.config.js
 tsconfig.json
 *.spec.js
