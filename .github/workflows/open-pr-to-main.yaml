@@ -1,4 +1,4 @@
-name: open PR to main
+name: validate npm version on open PR to main
 on:
   pull_request:
     types:
