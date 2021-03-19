@@ -3,17 +3,11 @@ on:
   push:
     branches:
       - main
-# defined jobs
 jobs:
-  # job name
-  npm-publish:
-    # runnner
+  publish-to-npm:
     runs-on: ubuntu-latest
-    # run commands
     steps:
-      # clone repository
       - uses: actions/checkout@v2
-      # setup nodejs
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '12'
