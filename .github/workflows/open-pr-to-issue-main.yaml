@@ -1,4 +1,4 @@
-name: testing on opend PR to main
+name: testing on opend PR to issue/main
 on:
   pull_request:
     types:
