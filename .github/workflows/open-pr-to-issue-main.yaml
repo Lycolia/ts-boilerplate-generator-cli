@@ -1,12 +1,12 @@
-name: testing on opend PR to main
+name: testing on opend PR to issue/main
 on:
   pull_request:
+    branches:
+      - issue/main
     types:
       - opened
       - reopened
       - synchronize
-    branches:
-      - issue/main
 jobs:
   validate-pr-ref-issues-to-issue-main:
     runs-on: ubuntu-latest
