@@ -15,7 +15,7 @@ jobs:
       - name: validate base_ref
         if: >
           github.head_ref != 'issue/main'
-          startsWith(github.head_ref, 'issue/')
+          && startsWith(github.head_ref, 'issue/')
           && github.base_ref != 'issue/main'
         run: exit 1
   basics-testing-on-ubuntu:
