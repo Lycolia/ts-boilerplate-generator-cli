@@ -5,6 +5,8 @@ src/
 .eslintignore
 .eslintrc
 .gitattributes
+Dockerfile
+docker-compose.yaml
 .prettierrc
 jest.config.js
 tsconfig.json
