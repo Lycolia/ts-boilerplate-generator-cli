@@ -6,26 +6,30 @@ on:
       - reopened
       - synchronize
     branches:
-      - main
-# defined jobs
+      - issue/main
 jobs:
-  # job name
-  ubuntu-testing:
-    # runnner
+  validate-pr-ref-issues-to-issue-main:
     runs-on: ubuntu-latest
-    # run commands
     steps:
-      # clone repository
       - uses: actions/checkout@v2
-      # setup nodejs
+      - name: validate base_ref
+        if: >
+          github.head_ref != 'issue/main'
+          && startsWith(github.head_ref, 'issue/')
+          && github.base_ref != 'issue/main'
+        run: exit 1
+  basics-testing-on-ubuntu:
+    needs:
+      - validate-pr-ref-issues-to-issue-main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
-      - name: can npm publish?
-        run: npx can-npm-publish
       - name: git configure
         run: |
           git config --global user.email test@example.com
@@ -38,14 +42,12 @@ jobs:
         run: docker-compose run node-git 'npm' 't'
       - name: node-git-conf testing
         run: docker-compose run node-git-conf 'npm' 't'
-  windows-testing:
-    # runnner
+  common-testing-on-windows:
+    needs:
+      - validate-pr-ref-issues-to-issue-main
     runs-on: windows-latest
-    # run commands
     steps:
-      # clone repository
       - uses: actions/checkout@v2
-      # setup nodejs
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'

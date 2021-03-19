@@ -1,0 +1,29 @@
+name: open PR to main
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - main
+jobs:
+  validate-pr-ref-issue-main-to-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: validate base_ref
+        if: github.head_ref != 'issue/main'
+        run: exit 1
+  validate-npm-version:
+    needs:
+      - validate-pr-ref-issue-main-to-main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.4
+        with:
+          node-version: '14'
+          registry-url: 'https://registry.npmjs.org'
+      - name: can npm publish?
+        run: npx can-npm-publish
