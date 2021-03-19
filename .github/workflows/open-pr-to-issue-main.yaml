@@ -15,7 +15,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: validate base_ref
         if: >
-          github.head_ref != issue/main
           startsWith(github.head_ref, 'issue/')
           && github.base_ref == 'main'
         run: exit 1
