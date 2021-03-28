@@ -53,12 +53,10 @@ describe('cleanup', () => {
   it('function can work', () => {
     mkdirSync(baseDir);
     appendFileSync(`${baseDir}/LICENSE`, '-');
-    appendFileSync(`${baseDir}/package-lock.json`, '-');
     mkdirSync(`${baseDir}/.git`);
     cleanup('test-project');
 
     expect(existsSync(`${baseDir}/LICENSE`)).toBe(false);
-    expect(existsSync(`${baseDir}/package-lock.json`)).toBe(false);
     expect(existsSync(`${baseDir}/.git`)).toBe(false);
   });
 });

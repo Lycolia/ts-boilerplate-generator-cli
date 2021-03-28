@@ -77,7 +77,6 @@ export const getDestDirWithValidate = (projectName: string) => {
 export const cleanup = (projectDest: string) => {
   const targets = [
     { path: './LICENSE', isDir: false },
-    { path: './package-lock.json', isDir: false },
     { path: './.git', isDir: true },
   ];
 
@@ -159,12 +158,7 @@ export const replacePackageJson = (
 export const installNpmModules = (projectDest: string) => {
   try {
     infoLog('Installing npm modules...');
-    if (process.platform === 'win32') {
-      // TODO: [npm --prefix for windows bug issue](https://github.com/npm/cli/issues/1290)
-      execSync(`cd ${projectDest} && npm i`, { stdio: 'ignore' });
-    } else {
-      execSync(`npm i --prefix ${projectDest}`, { stdio: 'ignore' });
-    }
+    execSync(`cd ${projectDest} && npm ci`, { stdio: 'ignore' });
   } catch (error) {
     throw new TsgException(ErrorReasons.failNpmInst, error);
   }
