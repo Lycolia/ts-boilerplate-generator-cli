@@ -158,7 +158,9 @@ export const replacePackageJson = (
 export const installNpmModules = (projectDest: string) => {
   try {
     infoLog('Installing npm modules...');
-    execSync(`cd ${projectDest} && npm ci`, { stdio: 'ignore' });
+    execSync(`cd ${projectDest} && npm ci --legacy-peer-deps`, {
+      stdio: 'ignore',
+    });
   } catch (error) {
     throw new TsgException(ErrorReasons.failNpmInst, error);
   }
