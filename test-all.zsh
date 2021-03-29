@@ -29,11 +29,6 @@ ${fg_bold[blue]}run node-git-conf-npm7${reset_color}"
 docker-compose run node-git-conf-npm7
 resultNodeGitConfNpm7=`getResult`
 
-# echo All Testing Results
-# echo "${fg_bold[green]}only-node${reset_color}          ${resultOnlyNode}"
-# echo "${fg_bold[magenta]}node-git${reset_color}         ${resultNodeGit}"
-# echo "${fg_bold[cyan]}node-git-conf${reset_color}       ${resultNodeGitConf}"
-# echo "${fg_bold[blue]}node-git-conf-npm7${reset_color}  ${resultNodeGitConfNpm7}"
 cat <<EOF
 All Testing Results
 ${fg_bold[green]}only-node           $resultOnlyNode
