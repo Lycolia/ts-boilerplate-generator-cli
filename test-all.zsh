@@ -8,6 +8,8 @@ getResult() {
     fi
 }
 
+beginTime=`date +%s`
+
 echo "${fg_bold[green]}run only-node${reset_color}"
 docker-compose run only-node
 resultOnlyNode=`getResult`
@@ -39,3 +41,7 @@ ${fg_bold[magenta]}node-git            $resultNodeGit
 ${fg_bold[cyan]}node-git-conf       $resultNodeGitConf
 ${fg_bold[blue]}node-git-conf-npm7  $resultNodeGitConfNpm7
 EOF
+
+currentTime=`date +%s`
+elapsedTime=`expr $currentTime - $beginTime`
+echo "Time                $elapsedTime s"
