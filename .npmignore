@@ -12,4 +12,4 @@ jest.config.js
 tsconfig.json
 *.spec.js
 *.js.map
-*.sh
+*.zsh
