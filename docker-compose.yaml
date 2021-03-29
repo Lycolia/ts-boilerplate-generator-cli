@@ -25,3 +25,11 @@ services:
     command: npm t
     environment:
       EXEC_PLATFORM: node-git-conf
+  # installed node and npm7, with configured git
+  node-git-conf-npm7:
+    build: ./docker/node-git-conf-npm7/
+    volumes:
+      - .:/home/workdir
+    command: npm t
+    environment:
+      EXEC_PLATFORM: node-git-conf-npm7

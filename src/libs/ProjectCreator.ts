@@ -19,6 +19,7 @@ import {
   renameDirectory,
 } from './systems/FileSystem';
 import * as git from './systems/Git';
+import { getNpmMajorVersion, isNpmVersion7OrLater } from './systems/Npm';
 
 /**
  * create project
@@ -158,9 +159,16 @@ export const replacePackageJson = (
 export const installNpmModules = (projectDest: string) => {
   try {
     infoLog('Installing npm modules...');
-    execSync(`cd ${projectDest} && npm ci --legacy-peer-deps`, {
-      stdio: 'ignore',
-    });
+    const npmVer = getNpmMajorVersion();
+    if (isNpmVersion7OrLater(npmVer)) {
+      execSync(`cd ${projectDest} && npm ci --legacy-peer-deps`, {
+        stdio: 'ignore',
+      });
+    } else {
+      execSync(`cd ${projectDest} && npm ci`, {
+        stdio: 'ignore',
+      });
+    }
   } catch (error) {
     throw new TsgException(ErrorReasons.failNpmInst, error);
   }
