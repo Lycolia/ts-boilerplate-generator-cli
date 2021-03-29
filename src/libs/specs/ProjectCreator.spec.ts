@@ -34,6 +34,11 @@ describe('getDestDirWithValidate', () => {
       expect(dest.dirName).toBe(baseDir);
       expect(dest.fullPath).toBe(path.join(process.cwd(), baseDir));
     },
+    node_git_conf_npm7() {
+      const dest = getDestDirWithValidate(`@anonymous/${baseDir}`);
+      expect(dest.dirName).toBe(baseDir);
+      expect(dest.fullPath).toBe(path.join(process.cwd(), baseDir));
+    },
   };
 
   it('valid', () => {

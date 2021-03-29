@@ -31,6 +31,12 @@ describe('validateInstalled', () => {
       expect(git.validateInstalled).toBeCalled();
       expect(git.validateInstalled).toReturn();
     },
+    node_git_conf_npm7() {
+      git.validateInstalled();
+
+      expect(git.validateInstalled).toBeCalled();
+      expect(git.validateInstalled).toReturn();
+    },
   };
 
   it('function can work', () => {
@@ -52,6 +58,9 @@ describe('canCommiting', () => {
       expect(git.canCommiting()).toBe(false);
     },
     node_git_conf() {
+      expect(git.canCommiting()).toBe(true);
+    },
+    node_git_conf_npm7() {
       expect(git.canCommiting()).toBe(true);
     },
   };
