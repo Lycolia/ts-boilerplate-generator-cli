@@ -3,7 +3,7 @@ import chalk from 'chalk';
 /**
  * log banner
  */
-const logBanner = ' TS-gen ';
+const logBanner = ' TSG ';
 
 /**
  * put infomation log

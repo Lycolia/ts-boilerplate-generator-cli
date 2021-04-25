@@ -19,11 +19,7 @@ import {
   renameDirectory,
 } from './systems/FileSystem';
 import * as git from './systems/Git';
-import {
-  getNpmMajorVersion,
-  installNpmModules,
-  isNpmVersion7OrLater,
-} from './systems/Npm';
+import { installNpmModules } from './systems/Npm';
 
 /**
  * create project
