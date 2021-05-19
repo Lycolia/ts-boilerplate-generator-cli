@@ -4,7 +4,7 @@ import { createCLIOptionsProgram } from '../CreateCLIOptionsProgram';
 /**
  * every time after it
  */
-afterAll(() => {
+afterEach(() => {
   // cleanup argv
   process.argv.length = 2;
 });
