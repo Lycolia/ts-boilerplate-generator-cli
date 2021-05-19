@@ -1,5 +1,5 @@
 import { version } from '../../../package.json';
-import { program, Option } from 'commander';
+import { Option, Command } from 'commander';
 import { ProjectOption, ProjectTypes } from '../../models/ProjectOptions';
 import { ProjectOptionDef } from '../../models/ProjectOptions';
 
@@ -18,7 +18,8 @@ export const createCLIOptionsProgram = () => {
   const banner = `|| TypeScript project Generator ||
 `;
 
-  program
+  const cmd = new Command();
+  cmd
     .option(
       ProjectOptionDef.options.author,
       ProjectOptionDef.description.author,
@@ -52,8 +53,8 @@ export const createCLIOptionsProgram = () => {
     .parse(process.argv);
 
   const options = {
-    ...(program.opts() as ProjectOption),
-    useGenerator: hasNotDefinedOptions(program.args.length),
+    ...(cmd.opts() as ProjectOption),
+    useGenerator: hasNotDefinedOptions(cmd.args.length),
   };
 
   return options;
