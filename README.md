@@ -7,7 +7,7 @@ This is generator for TypeScript project boilerplate
 - Support following project
   - Anything server app
   - React v17 app
-  - Next.js v11 SSG app
+  - Next.js v11 app for SSG
   - Anything CLI app
 - And ESLint, Prettier and Jest are included!!
 - Support Yeoman style generator
