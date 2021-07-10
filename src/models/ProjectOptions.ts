@@ -1,7 +1,12 @@
 /**
  * generation project types
  */
-export const ProjectTypes = ['ts-server', 'ts-react', 'ts-cli'] as const;
+export const ProjectTypes = [
+  'ts-server',
+  'ts-react',
+  'ts-next',
+  'ts-cli',
+] as const;
 
 /**
  * generation project types
