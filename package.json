@@ -9,7 +9,10 @@
     "boilerplate",
     "project",
     "scaffolding",
-    "linux"
+    "linux",
+    "node.js",
+    "react",
+    "next.js"
   ],
   "repository": {
     "type": "git",
