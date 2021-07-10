@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'
+          cache: npm
           registry-url: 'https://registry.npmjs.org'
       - name: can npm publish?
         run: npx can-npm-publish
@@ -27,6 +28,7 @@ jobs:
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'
+          cache: npm
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
@@ -53,6 +55,7 @@ jobs:
       - uses: actions/setup-node@v2.1.4
         with:
           node-version: '14'
+          cache: npm
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci

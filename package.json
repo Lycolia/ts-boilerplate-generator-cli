@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.6.0",
+  "version": "0.6.0-1",
   "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
@@ -9,7 +9,10 @@
     "boilerplate",
     "project",
     "scaffolding",
-    "linux"
+    "linux",
+    "node.js",
+    "react",
+    "next.js"
   ],
   "repository": {
     "type": "git",
