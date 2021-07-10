@@ -39,6 +39,8 @@ When no option then launch yeoman style generator
       - create from [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
     - `ts-react`
       - create from [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
+    - `ts-next`
+      - create from [React v17 included SSG boilerplate for Next.js v11](https://github.com/Lycolia/ts-next-boilerplate)
     - `ts-cli`
       - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
   - `-V`, `--version` output the version number
