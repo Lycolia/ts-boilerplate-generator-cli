@@ -37,7 +37,7 @@ jobs:
           git config --global user.email test@example.com
           git config --global user.name test
       - name: run testing
-        run: npm t
+        run: npm run headless-test
       - name: only-node testing
         run: docker-compose run only-node
       - name: node-git testing
