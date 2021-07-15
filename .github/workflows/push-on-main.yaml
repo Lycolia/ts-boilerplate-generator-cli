@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.1.4
+      - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
+          cache: npm
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
