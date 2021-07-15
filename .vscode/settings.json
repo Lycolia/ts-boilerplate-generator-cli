@@ -26,6 +26,7 @@
   },
   "typescript.suggest.paths": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.referencesCodeLens.enabled": true,
   "typescript.validate.enable": true,
