@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, rmdirSync } from 'fs';
 import path from 'path';
-import { ErrorReasons } from '../../../models/ExitReasons';
-import { TsgException } from '../../../models/TsgException';
+import { AppError, ErrorReasons } from '../../../models/ExitReasons';
 import * as FileSystem from '../FileSystem';
 
 /**
@@ -65,7 +64,7 @@ describe('renameDirectory', () => {
     try {
       FileSystem.renameDirectory(repoUrl, 'new');
     } catch (error) {
-      expect((error as TsgException).reason).toEqual(ErrorReasons.mvCmdFail);
+      expect((error as AppError).reason).toEqual(ErrorReasons.mvCmdFail);
     }
   });
 
@@ -73,7 +72,7 @@ describe('renameDirectory', () => {
     try {
       FileSystem.renameDirectory(repoUrl, 'new');
     } catch (error) {
-      expect((error as TsgException).reason).toEqual(ErrorReasons.mvCmdFail);
+      expect((error as AppError).reason).toEqual(ErrorReasons.mvCmdFail);
     }
   });
 });

@@ -7,10 +7,9 @@ import {
   writeFileSync,
 } from 'fs';
 import path from 'path';
-import { ErrorReasons } from '../models/ExitReasons';
+import { ErrorReasons, reportError } from '../models/ExitReasons';
 import { ProjectOption } from '../models/ProjectOptions';
 import { Repositories } from '../models/Repositories';
-import { TsgException } from '../models/TsgException';
 import { infoLog } from './Log';
 import {
   availableDestination,
@@ -20,11 +19,12 @@ import {
 } from './systems/FileSystem';
 import * as git from './systems/Git';
 import { installNpmModules } from './systems/Npm';
+import { replacePackageJson } from './systems/PackageJsonReplacer';
 
 /**
  * create project
  * @param projectOpt
- * @throws {TsgException}
+ * @throws {AppError}
  */
 export const createProject = (projectOpt: ProjectOption) => {
   const dest = getDestDirWithValidate(projectOpt.projectName);
@@ -44,7 +44,7 @@ export const createProject = (projectOpt: ProjectOption) => {
 /**
  * enviroments validation and return new project path and directory name
  * @param projectName
- * @throws {TsgException}
+ * @throws {AppError}
  */
 export const getDestDirWithValidate = (projectName: string) => {
   infoLog('Checking enviroments...');
@@ -52,7 +52,7 @@ export const getDestDirWithValidate = (projectName: string) => {
   // git validations
   git.validateInstalled();
   if (!git.canCommiting()) {
-    throw new TsgException(ErrorReasons.existsDistPath);
+    throw reportError(ErrorReasons.existsDistPath);
   }
 
   // fs validations
@@ -61,7 +61,7 @@ export const getDestDirWithValidate = (projectName: string) => {
   const fullPath = path.join(cwdPath, dirName);
 
   if (!availableDestination(fullPath)) {
-    throw new TsgException(ErrorReasons.existsDistPath);
+    throw reportError(ErrorReasons.existsDistPath);
   }
 
   return {
@@ -130,23 +130,7 @@ export const updatePackageJson = (
   projectDest: string
 ) => {
   const pkgJsonPath = path.join(projectDest, './package.json');
-  const pkgJson = readFileSync(pkgJsonPath).toString();
-  writeFileSync(pkgJsonPath, replacePackageJson(pkgJson, projectOpt));
-};
-
-/**
- * replace ProjectOption
- * @param pkgJson
- * @param projectOpt
- */
-export const replacePackageJson = (
-  pkgJson: string,
-  projectOpt: ProjectOption
-) => {
-  return pkgJson
-    .replace(/"name": .+/, `"name": "${projectOpt.projectName}",`)
-    .replace(/"description": .+/, `"description": "${projectOpt.description}",`)
-    .replace(/"author": .+/, `"author": "${projectOpt.author}",`)
-    .replace(/"license": .+/, `"license": "${projectOpt.license}",`)
-    .replace(/"url": .+/, '"url": ""');
+  const pkgJson = JSON.parse(readFileSync(pkgJsonPath).toString());
+  const replaced = replacePackageJson(pkgJson, projectOpt).toString();
+  writeFileSync(pkgJsonPath, replaced);
 };

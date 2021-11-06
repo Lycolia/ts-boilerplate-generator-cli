@@ -1,13 +1,18 @@
-// app error reson
+export type AppError = {
+  reason: ErrorReason;
+  error?: unknown;
+};
+
 export type ErrorReason = {
   code: number;
   subject: string;
   message?: string;
 };
 
-/**
- * app error resons
- */
+export const reportError = (reason: ErrorReason, error?: unknown): AppError => {
+  return { reason, error };
+};
+
 export const ErrorReasons = {
   ok: { code: 0, subject: 'OK', message: 'OK' } as ErrorReason,
   gitNotFound: {
