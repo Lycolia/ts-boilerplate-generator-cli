@@ -4,6 +4,7 @@ import { createCLIOptionsProgram } from './libs/dialogs/CreateCLIOptionsProgram'
 import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
 import { createProject } from './libs/ProjectCreator';
 import { exitApp } from './libs/systems/ProgramExiter';
+import { ErrorReasons, reportError } from './models/ExitReasons';
 import { ProjectOption } from './models/ProjectOptions';
 
 /**
@@ -28,5 +29,5 @@ getProjectOptions()
     createProject(options);
   })
   .catch((error) => {
-    exitApp(error);
+    exitApp(reportError(ErrorReasons.unmanagedException, error));
   });

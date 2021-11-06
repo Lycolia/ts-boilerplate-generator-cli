@@ -1,25 +1,24 @@
 import { execSync } from 'child_process';
-import { ErrorReasons } from '../../models/ExitReasons';
-import { TsgException } from '../../models/TsgException';
+import { ErrorReasons, reportError } from '../../models/ExitReasons';
 import { infoLog } from '../Log';
 
 /**
  * validate installed git
  *
- * @throws {TsgException} if not installed then exit program
+ * @throws {AppError} if not installed then exit program
  */
 export const validateInstalled = () => {
   try {
     execSync('git --help');
   } catch (error) {
-    throw new TsgException(ErrorReasons.gitNotFound, error);
+    throw reportError(ErrorReasons.gitNotFound, error);
   }
 };
 
 /**
  * can exec git commit
  *
- * @throws {TsgException} if occured exception then exit program
+ * @throws {AppError} if occured exception then exit program
  */
 export const canCommiting = () => {
   try {
@@ -29,13 +28,13 @@ export const canCommiting = () => {
       (configs.match(/user\.email=.+/) !== null) === true
     );
   } catch (error) {
-    throw new TsgException(ErrorReasons.unmanagedException, error);
+    throw reportError(ErrorReasons.unmanagedException, error);
   }
 };
 
 /**
  * git clone
- * @throws {TsgException} if failed pull then exit program
+ * @throws {AppError} if failed pull then exit program
  *
  * @param repositoryUrl git clone url
  */
@@ -46,7 +45,7 @@ export const clone = (repositoryUrl: string) => {
       stdio: 'ignore',
     });
   } catch (error) {
-    throw new TsgException(ErrorReasons.failPull, error);
+    throw reportError(ErrorReasons.failPull, error);
   }
 };
 

@@ -1,16 +1,15 @@
 import prompts from 'prompts';
 import { ProjectOption } from '../../models/ProjectOptions';
 import { DialogInputOptions } from '../../models/DialogInputOptions';
-import { ErrorReasons } from '../../models/ExitReasons';
-import { TsgException } from '../../models/TsgException';
+import { ErrorReasons, reportError } from '../../models/ExitReasons';
 
 /**
- * propmpt project generator dialog
+ * @throws {AppError}
  */
 export const promptProjectGeneratorDialog = async () => {
   return (await prompts(DialogInputOptions, {
     onCancel: () => {
-      throw new TsgException(ErrorReasons.cancelledCreatePj);
+      throw reportError(ErrorReasons.cancelledCreatePj);
     },
   })) as Promise<ProjectOption>;
 };

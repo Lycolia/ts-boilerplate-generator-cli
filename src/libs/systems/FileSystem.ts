@@ -1,16 +1,15 @@
 import fs from 'fs';
-import { ErrorReasons } from '../../models/ExitReasons';
-import { TsgException } from '../../models/TsgException';
+import { ErrorReasons, reportError } from '../../models/ExitReasons';
 
 /**
  * get current working directory path,
- * @throws TsgException
+ * @throws {AppError}
  */
 export const getCwdPath = () => {
   try {
     return process.cwd();
   } catch {
-    throw new TsgException(ErrorReasons.cdNotExists);
+    throw reportError(ErrorReasons.cdNotExists);
   }
 };
 
@@ -26,7 +25,7 @@ export const availableDestination = (distPath: string) => {
  * rename directory from repository url to project directory
  * @param repositoryUrl from repository url
  * @param createDestDir create destination directory name
- * @throws {TsgException}
+ * @throws {AppError}
  */
 export const renameDirectory = (
   repositoryUrl: string,
@@ -36,7 +35,7 @@ export const renameDirectory = (
   try {
     fs.renameSync(fromPath, createDestDir);
   } catch (error) {
-    throw new TsgException(ErrorReasons.mvCmdFail, error);
+    throw reportError(ErrorReasons.mvCmdFail, error);
   }
 };
 

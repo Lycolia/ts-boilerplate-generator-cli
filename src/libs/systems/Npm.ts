@@ -1,12 +1,11 @@
 import { execSync } from 'child_process';
-import { ErrorReasons } from '../../models/ExitReasons';
-import { TsgException } from '../../models/TsgException';
+import { ErrorReasons, reportError } from '../../models/ExitReasons';
 import { infoLog } from '../Log';
 
 /**
  * install npm modules
  * @param projectDest
- * @throws {TsgException}
+ * @throws {AppError}
  */
 export const installNpmModules = (projectDest: string) => {
   try {
@@ -15,6 +14,6 @@ export const installNpmModules = (projectDest: string) => {
       stdio: 'ignore',
     });
   } catch (error) {
-    throw new TsgException(ErrorReasons.failNpmInst, error);
+    throw reportError(ErrorReasons.failNpmInst, error);
   }
 };
