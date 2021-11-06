@@ -19,6 +19,7 @@ import {
 } from './systems/FileSystem';
 import * as git from './systems/Git';
 import { installNpmModules } from './systems/Npm';
+import { replacePackageJson } from './systems/PackageJsonReplacer';
 
 /**
  * create project
@@ -130,22 +131,6 @@ export const updatePackageJson = (
 ) => {
   const pkgJsonPath = path.join(projectDest, './package.json');
   const pkgJson = JSON.parse(readFileSync(pkgJsonPath).toString());
-  writeFileSync(pkgJsonPath, replacePackageJson(pkgJson, projectOpt));
-};
-
-/**
- * replace ProjectOption
- * @param pkgJson
- * @param projectOpt
- */
-export const replacePackageJson = (
-  pkgJson: string,
-  projectOpt: ProjectOption
-) => {
-  return pkgJson
-    .replace(/"name": .+/, `"name": "${projectOpt.projectName}",`)
-    .replace(/"description": .+/, `"description": "${projectOpt.description}",`)
-    .replace(/"author": .+/, `"author": "${projectOpt.author}",`)
-    .replace(/"license": .+/, `"license": "${projectOpt.license}",`)
-    .replace(/"url": .+/, '"url": ""');
+  const replaced = replacePackageJson(pkgJson, projectOpt).toString();
+  writeFileSync(pkgJsonPath, replaced);
 };
