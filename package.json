@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
@@ -55,7 +55,6 @@
     "jest": "^27.3.1",
     "jest-watch-typeahead": "^1.0.0",
     "prettier": "^2.4.1",
-    "regenerator-runtime": "^0.13.9",
     "typescript": "^4.4.4"
   }
 }
