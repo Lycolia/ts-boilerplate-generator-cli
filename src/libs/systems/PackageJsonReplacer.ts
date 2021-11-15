@@ -20,6 +20,11 @@ export const replacePackageJson = (
   pkgJson.url = '';
   return {
     ...pkgJson,
-    ...projectOpt,
+    name: projectOpt.projectName,
+    version: '0.1.0',
+    description: projectOpt.description,
+    author: projectOpt.author,
+    license: projectOpt.license,
+    url: '',
   };
 };
