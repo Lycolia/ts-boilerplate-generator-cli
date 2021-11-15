@@ -1,35 +1,44 @@
 # following containers for testing this project
 version: '3'
+volumes:
+  only-node_testdir:
+  node-git_testdir:
+  node-git-conf_testdir:
+  node-git-conf-npm7_testdir:
 services:
   # installed node, without git
   only-node:
     build: ./docker/only-node/
     volumes:
-      - .:/home/workdir
-    command: npm run headless-test
+      - .:/work
+      - only-node_testdir:/test
+    command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
     environment:
       EXEC_PLATFORM: only-node
   # installed node, git
   node-git:
     build: ./docker/node-git/
     volumes:
-      - .:/home/workdir
-    command: npm run headless-test
+      - .:/work
+      - node-git_testdir:/test
+    command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
     environment:
       EXEC_PLATFORM: node-git
   # installed node, with configured git
   node-git-conf:
     build: ./docker/node-git-conf/
     volumes:
-      - .:/home/workdir
-    command: npm run headless-test
+      - .:/work
+      - node-git-conf_testdir:/test
+    command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
     environment:
       EXEC_PLATFORM: node-git-conf
   # installed node and npm7, with configured git
   node-git-conf-npm7:
     build: ./docker/node-git-conf-npm7/
     volumes:
-      - .:/home/workdir
-    command: npm run headless-test
+      - .:/work
+      - node-git-conf-npm7_testdir:/test
+    command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
     environment:
       EXEC_PLATFORM: node-git-conf-npm7

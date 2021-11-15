@@ -5,11 +5,15 @@
 This is generator for TypeScript project boilerplate
 
 - Support following project
-  - Anything server app
-  - React v17 app
-  - Next.js v11 app for SSG
   - Anything CLI app
-- And ESLint, Prettier and Jest are included!!
+    - ✅ Support [SWC](https://swc.rs/)
+  - Anything server app
+    - ✅ Support [SWC](https://swc.rs/)
+  - React v17 app
+    - ⚠️ [SWC](https://swc.rs/) not support
+  - Next.js v12 app for SSG
+    - ✅ Support [SWC](https://swc.rs/)
+- And [ESLint](https://eslint.org/), [Prettier](https://prettier.io/) and [Jest](https://jestjs.io/) are included!!
 - Support Yeoman style generator
 
 ## Install
@@ -20,8 +24,8 @@ This is generator for TypeScript project boilerplate
 
 - Git
   - and configured git user
-- Node.js 14+
-- npm 6+
+- Node.js 16+
+- npm 8+
 
 ## Usage
 
