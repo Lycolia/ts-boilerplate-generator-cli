@@ -1,4 +1,4 @@
-import { existsSync, rmdirSync, mkdirSync, appendFileSync } from 'fs';
+import { existsSync, rmSync, mkdirSync, appendFileSync } from 'fs';
 import path from 'path';
 import { cleanup, getDestDirWithValidate } from '../ProjectCreator';
 import { getTestingPlatform } from '../TestUtil';
@@ -8,7 +8,7 @@ const baseDir = 'test-project';
 
 afterEach(() => {
   if (existsSync(baseDir)) {
-    rmdirSync(baseDir);
+    rmSync(baseDir, { force: true, recursive: true });
   }
 });
 

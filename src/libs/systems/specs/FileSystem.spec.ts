@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, rmdirSync } from 'fs';
+import { existsSync, mkdirSync, rmSync } from 'fs';
 import path from 'path';
 import { AppError, ErrorReasons } from '../../../models/ExitReasons';
 import * as FileSystem from '../FileSystem';
@@ -39,10 +39,10 @@ describe('renameDirectory', () => {
 
   afterEach(() => {
     if (existsSync(oldPath)) {
-      rmdirSync(oldPath);
+      rmSync(oldPath, { force: true, recursive: true });
     }
     if (existsSync(newPath)) {
-      rmdirSync(newPath);
+      rmSync(newPath, { force: true, recursive: true });
     }
   });
 
