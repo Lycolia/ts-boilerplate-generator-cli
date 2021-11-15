@@ -133,4 +133,5 @@ export const updatePackageJson = (
   const pkgJson = JSON.parse(readFileSync(pkgJsonPath).toString());
   const replaced = replacePackageJson(pkgJson, projectOpt).toString();
   writeFileSync(pkgJsonPath, replaced);
+  execSync('npx prettier -w package.json');
 };
