@@ -131,6 +131,6 @@ export const updatePackageJson = (
 ) => {
   const pkgJsonPath = path.join(projectDest, './package.json');
   const pkgJson = JSON.parse(readFileSync(pkgJsonPath).toString());
-  const replaced = replacePackageJson(pkgJson, projectOpt).toString();
+  const replaced = JSON.stringify(replacePackageJson(pkgJson, projectOpt));
   writeFileSync(pkgJsonPath, replaced);
 };
