@@ -26,7 +26,7 @@
     "start": "npm run build && node dist/index.js",
     "dev": "npm run build && node --inspect-brk dist/index.js",
     "type-check": "tsc --noEmit && eslint \"**/*.{js,ts}\" .",
-    "build": "rm -Rf dist/ && swc src/ -d dist/",
+    "build": "rm -Rf dist/ && swc src/ --config-file .swcrc_build -d dist/",
     "test": "jest --watch",
     "headless-test": "jest",
     "test-all": "./test-all.zsh",
