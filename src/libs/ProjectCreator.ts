@@ -30,7 +30,6 @@ export const createProject = (projectOpt: ProjectOption) => {
   updateReadMe(projectOpt, dest.fullPath);
   updatePackageJson(projectOpt, dest.fullPath);
   installNpmModules(dest.fullPath);
-  execSync('npx prettier -w package.json');
   git.init(dest.fullPath);
   infoLog('Project created!!');
   infoLog(`Starting project begin by typing: cd ${dest.dirName}`);

@@ -9,8 +9,11 @@ describe('installNpmModules', () => {
 
   it('check npm version', () => {
     installNpmModules('test');
-    expect(mockExecSync).toHaveBeenCalledWith('cd test && npm ci', {
-      stdio: 'ignore',
-    });
+    expect(mockExecSync).toHaveBeenCalledWith(
+      'cd test && npm ci && npx prettier -w package.json',
+      {
+        stdio: 'ignore',
+      }
+    );
   });
 });
