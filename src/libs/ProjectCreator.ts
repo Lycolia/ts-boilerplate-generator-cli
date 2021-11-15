@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 import {
   existsSync,
   readFileSync,
-  rmdirSync,
+  rmSync,
   unlinkSync,
   writeFileSync,
 } from 'fs';
@@ -85,7 +85,7 @@ export const cleanup = (projectDest: string) => {
     const itemPath = path.join(projectDest, item.path);
     if (existsSync(itemPath)) {
       if (item.isDir) {
-        rmdirSync(itemPath, { recursive: true });
+        rmSync(itemPath, { recursive: true });
       } else {
         unlinkSync(itemPath);
       }
