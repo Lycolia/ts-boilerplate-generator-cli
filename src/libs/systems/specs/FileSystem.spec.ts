@@ -39,10 +39,10 @@ describe('renameDirectory', () => {
 
   afterEach(() => {
     if (existsSync(oldPath)) {
-      rmSync(oldPath);
+      rmSync(oldPath, { force: true, recursive: true });
     }
     if (existsSync(newPath)) {
-      rmSync(newPath);
+      rmSync(newPath, { force: true, recursive: true });
     }
   });
 

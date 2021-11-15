@@ -8,7 +8,7 @@ const baseDir = 'test-project';
 
 afterEach(() => {
   if (existsSync(baseDir)) {
-    rmSync(baseDir);
+    rmSync(baseDir, { force: true, recursive: true });
   }
 });
 

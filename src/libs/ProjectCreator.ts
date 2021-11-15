@@ -1,11 +1,5 @@
 import { execSync } from 'child_process';
-import {
-  existsSync,
-  readFileSync,
-  rmSync,
-  unlinkSync,
-  writeFileSync,
-} from 'fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import path from 'path';
 import { ErrorReasons, reportError } from '../models/ExitReasons';
 import { ProjectOption } from '../models/ProjectOptions';
@@ -85,9 +79,9 @@ export const cleanup = (projectDest: string) => {
     const itemPath = path.join(projectDest, item.path);
     if (existsSync(itemPath)) {
       if (item.isDir) {
-        rmSync(itemPath, { recursive: true });
+        rmSync(itemPath, { force: true, recursive: true });
       } else {
-        unlinkSync(itemPath);
+        rmSync(itemPath);
       }
     }
   });
