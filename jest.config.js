@@ -8,7 +8,24 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.{ts,js}'],
   testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|dist)[/\\\\]'],
   transform: {
-    '^.+\\.ts$': ['@swc/jest'],
+    '^.+\\.ts$': [
+      '@swc/jest',
+      {
+        sourceMaps: true,
+        module: {
+          type: 'commonjs',
+        },
+        jsc: {
+          target: 'es2020',
+          parser: {
+            syntax: 'typescript',
+            tsx: false,
+            decorators: false,
+            dynamicImport: false,
+          },
+        },
+      },
+    ],
   },
   watchPlugins: [
     'jest-watch-typeahead/filename',
