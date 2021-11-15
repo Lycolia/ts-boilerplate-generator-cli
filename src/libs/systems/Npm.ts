@@ -10,7 +10,7 @@ import { infoLog } from '../Log';
 export const installNpmModules = (projectDest: string) => {
   try {
     infoLog('Installing npm modules...');
-    execSync(`cd ${projectDest} && npm ci`, {
+    execSync(`cd ${projectDest} && npm ci && npx prettier -w package.json`, {
       stdio: 'ignore',
     });
   } catch (error) {
