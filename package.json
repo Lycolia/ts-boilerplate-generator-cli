@@ -23,10 +23,10 @@
   },
   "main": "./dist/src/index.js",
   "scripts": {
-    "start": "ts-node ./src/index.ts",
-    "dev": "node -r ts-node/register --inspect-brk ./src/index.ts",
+    "start": "npm run build-ts && node dist/index.js",
+    "dev": "npm run build-ts && node --inspect-brk dist/index.js",
     "type-check": "tsc --noEmit && eslint \"**/*.{js,ts}\" .",
-    "build": "tsc",
+    "build-ts": "rm -Rf dist/ && swc src/ -d dist/",
     "test": "jest --watch",
     "headless-test": "jest",
     "test-all": "./test-all.zsh",
