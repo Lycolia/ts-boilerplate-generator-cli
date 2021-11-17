@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
@@ -21,7 +21,6 @@
   "bin": {
     "tsg": "dist/index.js"
   },
-  "main": "./dist/index.js",
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "dev": "npm run build && node --inspect-brk dist/index.js",

@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: '14'
           cache: npm
+          cache-dependency-path: package-lock.json
           registry-url: 'https://registry.npmjs.org'
       - name: can npm publish?
         run: npx can-npm-publish
@@ -27,8 +28,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
           cache: npm
+          cache-dependency-path: package-lock.json
           registry-url: 'https://registry.npmjs.org'
       - name: npm continuous install
         run: npm ci
@@ -44,8 +46,10 @@ jobs:
         run: docker-compose run node-git
       - name: node-git-conf testing
         run: docker-compose run node-git-conf
-      - name: node-git-conf-npm7 testing
-        run: docker-compose run node-git-conf-npm7
+      - name: node16-git-conf-npm8 testing
+        run: docker-compose run node16-git-conf-npm8
+      - name: node14-git-conf-npm6 testing
+        run: docker-compose run node14-git-conf-npm6
   common-testing-on-windows:
     needs:
       - validate-npm-version

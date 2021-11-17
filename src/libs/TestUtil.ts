@@ -7,7 +7,7 @@ type TestingPlatform =
   | 'only_node'
   | 'node_git'
   | 'node_git_conf'
-  | 'node_git_conf_npm7';
+  | 'node_git_conf_npm';
 
 /**
  * get execute platform for testing
@@ -21,8 +21,8 @@ export const getTestingPlatform = (): TestingPlatform => {
       return 'node_git';
     case 'node-git-conf':
       return 'node_git_conf';
-    case 'node-git-conf-npm7':
-      return 'node_git_conf_npm7';
+    case 'node-git-conf-npm':
+      return 'node_git_conf_npm';
     default:
       return 'development';
   }
