@@ -41,7 +41,7 @@ jobs:
       - name: run testing
         run: npm run headless-test
       - name: run testing in docker-compose
-        run: sh -c ./test-all.zsh
+        run: ls -la
   common-testing-on-windows:
     needs:
       - validate-npm-version
