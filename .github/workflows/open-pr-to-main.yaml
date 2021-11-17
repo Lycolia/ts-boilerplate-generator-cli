@@ -44,8 +44,8 @@ jobs:
         run: docker-compose run node-git
       - name: node-git-conf testing
         run: docker-compose run node-git-conf
-      - name: node-git-conf-npm7 testing
-        run: docker-compose run node-git-conf-npm7
+      - name: node-git-conf-npm testing
+        run: docker-compose run node-git-conf-npm
   common-testing-on-windows:
     needs:
       - validate-npm-version

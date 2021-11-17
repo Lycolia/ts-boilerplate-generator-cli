@@ -25,16 +25,16 @@ docker-compose run --rm node-git-conf
 resultNodeGitConf=`getResult`
 
 echo "
-${fg_bold[blue]}run node-git-conf-npm7${reset_color}"
-docker-compose run --rm node-git-conf-npm7
-resultNodeGitConfNpm7=`getResult`
+${fg_bold[blue]}run node-git-conf-npm${reset_color}"
+docker-compose run --rm node-git-conf-npm
+resultNodeGitConfNpm=`getResult`
 
 cat <<EOF
 All Testing Results
 ${fg_bold[green]}only-node           $resultOnlyNode
 ${fg_bold[magenta]}node-git            $resultNodeGit
 ${fg_bold[cyan]}node-git-conf       $resultNodeGitConf
-${fg_bold[blue]}node-git-conf-npm7  $resultNodeGitConfNpm7
+${fg_bold[blue]}node-git-conf-npm   $resultNodeGitConfNpm
 EOF
 
 currentTime=`date +%s`

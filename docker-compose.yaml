@@ -4,7 +4,7 @@ volumes:
   only-node_testdir:
   node-git_testdir:
   node-git-conf_testdir:
-  node-git-conf-npm7_testdir:
+  node-git-conf-npm_testdir:
 services:
   # installed node, without git
   only-node:
@@ -33,12 +33,12 @@ services:
     command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
     environment:
       EXEC_PLATFORM: node-git-conf
-  # installed node and npm7, with configured git
-  node-git-conf-npm7:
-    build: ./docker/node-git-conf-npm7/
+  # installed node and npm, with configured git
+  node-git-conf-npm:
+    build: ./docker/node-git-conf-npm/
     volumes:
       - .:/work
-      - node-git-conf-npm7_testdir:/test
+      - node-git-conf-npm_testdir:/test
     command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
     environment:
-      EXEC_PLATFORM: node-git-conf-npm7
+      EXEC_PLATFORM: node-git-conf-npm
