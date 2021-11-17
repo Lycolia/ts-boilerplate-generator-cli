@@ -21,7 +21,6 @@
   "bin": {
     "tsg": "dist/index.js"
   },
-  "main": "./dist/index.js",
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "dev": "npm run build && node --inspect-brk dist/index.js",
