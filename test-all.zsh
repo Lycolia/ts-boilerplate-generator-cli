@@ -8,33 +8,37 @@ getResult() {
     fi
 }
 
+runner() {
+    image_name=$1
+    echo "
+${fg_bold[green]}run $image_name${reset_color}"
+    docker-compose run --rm $image_name
+}
+
 beginTime=`date +%s`
 
-echo "${fg_bold[green]}run only-node${reset_color}"
-docker-compose run --rm only-node
+runner only-node
 resultOnlyNode=`getResult`
 
-echo "
-${fg_bold[magenta]}run node-git${reset_color}"
-docker-compose run --rm node-git
+runner node-git
 resultNodeGit=`getResult`
 
-echo "
-${fg_bold[cyan]}run node-git-conf${reset_color}"
-docker-compose run --rm node-git-conf
+runner node-git-conf
 resultNodeGitConf=`getResult`
 
-echo "
-${fg_bold[blue]}run node-git-conf-npm${reset_color}"
-docker-compose run --rm node-git-conf-npm
+runner node16-git-conf-npm8
 resultNodeGitConfNpm=`getResult`
+
+runner node14-git-conf-npm6
+resultNode14GitConfNpm6=`getResult`
 
 cat <<EOF
 All Testing Results
-${fg_bold[green]}only-node           $resultOnlyNode
-${fg_bold[magenta]}node-git            $resultNodeGit
-${fg_bold[cyan]}node-git-conf       $resultNodeGitConf
-${fg_bold[blue]}node-git-conf-npm   $resultNodeGitConfNpm
+${fg_bold[green]}only-node            $resultOnlyNode
+${fg_bold[magenta]}node-git             $resultNodeGit
+${fg_bold[cyan]}node-git-conf        $resultNodeGitConf
+${fg_bold[blue]}node16-git-conf-npm8 $resultNodeGitConfNpm
+${fg_bold[blue]}node14-git-conf-npm6 $resultNode14GitConfNpm6
 EOF
 
 currentTime=`date +%s`
