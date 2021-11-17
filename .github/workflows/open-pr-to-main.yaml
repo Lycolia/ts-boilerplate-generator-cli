@@ -40,7 +40,7 @@ jobs:
           git config --global user.name test
       - name: run testing
         run: npm run headless-test
-      - name: run docker-compose testing
+      - name: only-node testing
         run: docker-compose run only-node
       - name: node-git testing
         run: docker-compose run node-git
