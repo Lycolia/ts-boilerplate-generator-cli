@@ -40,8 +40,16 @@ jobs:
           git config --global user.name test
       - name: run testing
         run: npm run headless-test
-      - name: run testing in docker-compose
-        run: zsh -c test-all.zsh
+      - name: run docker-compose testing
+        run: docker-compose run only-node
+      - name: node-git testing
+        run: docker-compose run node-git
+      - name: node-git-conf testing
+        run: docker-compose run node-git-conf
+      - name: node16-git-conf-npm8 testing
+        run: docker-compose run node16-git-conf-npm8
+      - name: node14-git-conf-npm6 testing
+        run: docker-compose run node14-git-conf-npm6
   common-testing-on-windows:
     needs:
       - validate-npm-version
