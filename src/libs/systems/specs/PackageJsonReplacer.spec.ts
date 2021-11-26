@@ -8,7 +8,11 @@ describe('replacePackageJson', () => {
     description: 'pkg-desc',
     author: 'pkg-author',
     license: 'pkg-lic',
-    url: 'pkg-url',
+    repository: {
+      type: 'aaa',
+      url: 'bbb',
+    },
+    keywords: ['aaa', 'bbb', 'ccc'],
     dependencies: {
       foo: '^0.0.3',
       bar: '^0.2.3',
@@ -28,7 +32,11 @@ describe('replacePackageJson', () => {
     description: prjOpt.description,
     author: prjOpt.author,
     license: prjOpt.license,
-    url: '',
+    repository: {
+      type: '',
+      url: '',
+    },
+    keywords: [],
     dependencies: {
       foo: '^0.0.3',
       bar: '^0.2.3',

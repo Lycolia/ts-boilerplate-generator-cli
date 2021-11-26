@@ -2,10 +2,11 @@
  * generation project types
  */
 export const ProjectTypes = [
-  'ts-server',
-  'ts-react',
-  'ts-next',
   'ts-cli',
+  'ts-next',
+  'ts-react',
+  'ts-vite-vanilla',
+  'ts-server',
 ] as const;
 
 /**
@@ -48,6 +49,6 @@ export const ProjectOptionDef = {
     description: 'no description',
     license: 'MIT',
     projectName: '@unknown/no-name-project',
-    type: 'ts-server',
+    type: 'ts-cli',
   } as ProjectOption,
 };

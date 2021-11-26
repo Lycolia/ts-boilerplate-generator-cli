@@ -7,11 +7,14 @@ This is generator for TypeScript project boilerplate
 - Support following project
   - Anything CLI app
     - ✅ Support [SWC](https://swc.rs/)
-  - Anything server app
+  - Next.js v12 app for SSG
     - ✅ Support [SWC](https://swc.rs/)
   - React v17 app
     - ⚠️ [SWC](https://swc.rs/) not support
-  - Next.js v12 app for SSG
+  - Vite vanilla-ts app
+    - ⚠️ [SWC](https://swc.rs/) only support in jest
+    - ⚠️ buiding and develop is [Vite](https://vitejs.dev/)
+  - Anything server app
     - ✅ Support [SWC](https://swc.rs/)
 - And [ESLint](https://eslint.org/), [Prettier](https://prettier.io/) and [Jest](https://jestjs.io/) are included!!
 - Support Yeoman style generator
@@ -39,15 +42,17 @@ When no option then launch yeoman style generator
   - `-d`, `--description` <description> project description (default: `no description`)
   - `-l`, `--license` <license> project license (default: `MIT`)
   - `-p`, `--project-name` <projectName> project name (default: `@unknown/no-name-project`)
-  - `-t`, `--type` <type> project type (choices: `ts-server`, `ts-react`, `ts-cli`, default: `ts-server`)
-    - `ts-server`
-      - create from [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
-    - `ts-react`
-      - create from [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
-    - `ts-next`
-      - create from [React v17 included SSG boilerplate for Next.js v11](https://github.com/Lycolia/ts-next-boilerplate)
+  - `-t`, `--type` <type> project type (choices: `ts-cli`, `ts-next`, `ts-react`, `ts-vite-vanilla` , `ts-server`, default: `ts-cli`)
     - `ts-cli`
       - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
+    - `ts-next`
+      - create from [React v17 included SSG boilerplate for Next.js v11](https://github.com/Lycolia/ts-next-boilerplate)
+    - `ts-react`
+      - create from [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
+    - `ts-vite-vanilla`
+      - create from [boilerplate for Vite vannila-ts](https://github.com/Lycolia/ts-react-boilerplate)
+    - `ts-server`
+      - create from [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
   - `-V`, `--version` output the version number
   - `-h`, `--help` display help for command
 - Example
