@@ -12,7 +12,7 @@ This is generator for TypeScript project boilerplate
   - React v17 app
     - ⚠️ [SWC](https://swc.rs/) not support
   - Vite vanilla-ts app
-    - ⚠️ [SWC](https://swc.rs/) only support in jest
+    - ⚠️ [SWC](https://swc.rs/) only support in Jest
     - ⚠️ buiding and develop is [Vite](https://vitejs.dev/)
   - Anything server app
     - ✅ Support [SWC](https://swc.rs/)
