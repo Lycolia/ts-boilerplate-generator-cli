@@ -8,6 +8,6 @@ export const Repositories: { [key in ProjectType]: string } = {
   'ts-next': 'https://github.com/Lycolia/ts-next-boilerplate.git',
   'ts-react': 'https://github.com/Lycolia/ts-react-boilerplate.git',
   'ts-vite-vanilla':
-    'https://github.com/Lycolia/vanilla-ts-vite-boilerplate.git',
+    'https://github.com/Lycolia/vite-vanilla-ts-boilerplate.git',
   'ts-server': 'https://github.com/Lycolia/ts-server-boilerplate.git',
 };
