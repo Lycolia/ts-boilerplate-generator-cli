@@ -50,7 +50,7 @@ When no option then launch yeoman style generator
     - `ts-react`
       - create from [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
     - `ts-vite-vanilla`
-      - create from [boilerplate for Vite vannila-ts](https://github.com/Lycolia/ts-react-boilerplate)
+      - create from [boilerplate for Vite vannila-ts](https://github.com/Lycolia/vite-vanilla-ts-boilerplate)
     - `ts-server`
       - create from [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
   - `-V`, `--version` output the version number
