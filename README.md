@@ -4,20 +4,15 @@
 
 This is generator for TypeScript project boilerplate
 
-- Support following project
-  - Anything CLI app
-    - ✅ Support [SWC](https://swc.rs/)
-  - Next.js v12 app for SSG
-    - ✅ Support [SWC](https://swc.rs/)
-  - React v17 app
-    - ⚠️ [SWC](https://swc.rs/) not support
-  - Vite vanilla-ts app
-    - ⚠️ [SWC](https://swc.rs/) only support in Jest
-    - ⚠️ buiding and develop is [Vite](https://vitejs.dev/)
-  - Anything server app
-    - ✅ Support [SWC](https://swc.rs/)
-- And [ESLint](https://eslint.org/), [Prettier](https://prettier.io/) and [Jest](https://jestjs.io/) are included!!
-- Support Yeoman style generator
+## Support projects
+
+| Target          | [SWC](https://swc.rs/) | [Vite](https://ja.vitejs.dev/) | [Jest](https://jestjs.io/) | [Storybook](https://storybook.js.org/) |
+| --------------- | ---------------------- | ------------------------------ | -------------------------- | -------------------------------------- |
+| Node CLI        | ✅                     | ❌                             | ✅                         | ❌                                     |
+| Next.js v12     | ✅                     | ❌                             | ✅                         | ✅                                     |
+| React v17       | ❌                     | ❌                             | ✅                         | ❌                                     |
+| Vite vanilla-ts | ❌                     | ✅                             | ✅                         | ❌                                     |
+| Node server     | ✅                     | ❌                             | ✅                         | ❌                                     |
 
 ## Install
 
