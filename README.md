@@ -6,13 +6,13 @@ This is generator for TypeScript project boilerplate
 
 ## Support projects
 
-| Target          | [SWC](https://swc.rs/) | [Vite](https://ja.vitejs.dev/) | [Jest](https://jestjs.io/) | [Storybook](https://storybook.js.org/) |
-| --------------- | ---------------------- | ------------------------------ | -------------------------- | -------------------------------------- |
-| Node CLI        | ✅                     | ❌                             | ✅                         | ❌                                     |
-| Next.js v12     | ✅                     | ❌                             | ✅                         | ✅                                     |
-| React v17       | ❌                     | ❌                             | ✅                         | ❌                                     |
-| Vite vanilla-ts | ❌                     | ✅                             | ✅                         | ❌                                     |
-| Node server     | ✅                     | ❌                             | ✅                         | ❌                                     |
+| Target          | [SWC](https://swc.rs/) | [Vite](https://ja.vitejs.dev/) | [Jest](https://jestjs.io/) | [ESLint](https://eslint.org/) | [Prettier](https://prettier.io/) | [Storybook](https://storybook.js.org/) |
+| --------------- | ---------------------- | ------------------------------ | -------------------------- | ----------------------------- | -------------------------------- | -------------------------------------- |
+| Node CLI        | ✅                     | ❌                             | ✅                         | ✅                            | ✅                               | ❌                                     |
+| Next.js v12     | ✅                     | ❌                             | ✅                         | ✅                            | ✅                               | ✅                                     |
+| React v17       | ❌                     | ❌                             | ✅                         | ✅                            | ✅                               | ❌                                     |
+| Vite vanilla-ts | ❌                     | ✅                             | ✅                         | ✅                            | ✅                               | ❌                                     |
+| Node server     | ✅                     | ❌                             | ✅                         | ✅                            | ✅                               | ❌                                     |
 
 ## Install
 
