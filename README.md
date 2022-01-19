@@ -41,7 +41,7 @@ When no option then launch yeoman style generator
     - `ts-cli`
       - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
     - `ts-next`
-      - create from [React v17 included SSG boilerplate for Next.js v11](https://github.com/Lycolia/ts-next-boilerplate)
+      - create from [React v17 included SSG boilerplate for Next.js v12](https://github.com/Lycolia/ts-next-boilerplate)
     - `ts-react`
       - create from [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
     - `ts-vite-vanilla`
