@@ -4,7 +4,7 @@ import { createCLIOptionsProgram } from './libs/dialogs/CreateCLIOptionsProgram'
 import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
 import { createProject } from './libs/ProjectCreator';
 import { exitApp } from './libs/systems/ProgramExiter';
-import { ErrorReasons, reportError } from './models/ExitReasons';
+import { ErrorReasons, reportError } from './models/ErrorReasons';
 import { ProjectOption } from './models/ProjectOptions';
 
 /**

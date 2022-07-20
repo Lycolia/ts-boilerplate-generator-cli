@@ -1,4 +1,4 @@
-import { ErrorReasons, reportError } from '../../../models/ExitReasons';
+import { ErrorReasons, reportError } from '../../../models/ErrorReasons';
 import * as ProgramExiter from './../ProgramExiter';
 
 describe('exitApp', () => {

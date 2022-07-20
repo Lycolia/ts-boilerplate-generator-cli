@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import path from 'path';
-import { ErrorReasons, reportError } from '../models/ExitReasons';
+import { ErrorReasons, reportError } from '../models/ErrorReasons';
 import { ProjectOption } from '../models/ProjectOptions';
 import { Repositories } from '../models/Repositories';
 import { infoLog } from './Log';

@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { ErrorReasons, reportError } from '../../models/ExitReasons';
+import { ErrorReasons, reportError } from '../../models/ErrorReasons';
 import { infoLog } from '../Log';
 
 /**
