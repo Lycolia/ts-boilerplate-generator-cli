@@ -46,7 +46,7 @@ export const getDestDirWithValidate = (projectName: string) => {
   // git validations
   git.validateInstalled();
   if (!git.canCommiting()) {
-    throw reportError(ErrorReasons.existsDistPath);
+    throw reportError(ErrorReasons.gitNotConfigure);
   }
 
   // fs validations
