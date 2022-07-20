@@ -40,6 +40,7 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
+    "@lycolia/eslint-config": "^0.1.1",
     "@swc/cli": "^0.1.51",
     "@swc/core": "^1.2.108",
     "@swc/jest": "^0.2.5",
