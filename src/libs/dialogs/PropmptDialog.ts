@@ -1,7 +1,7 @@
 import prompts from 'prompts';
 import { ProjectOption } from '../../models/ProjectOptions';
 import { DialogInputOptions } from '../../models/DialogInputOptions';
-import { ErrorReasons, reportError } from '../../models/ErrorReasons';
+import { ErrorReasons, createError } from '../../models/ErrorReasons';
 
 /**
  * @throws {AppError}
@@ -9,7 +9,7 @@ import { ErrorReasons, reportError } from '../../models/ErrorReasons';
 export const promptProjectGeneratorDialog = async () => {
   return (await prompts(DialogInputOptions, {
     onCancel: () => {
-      throw reportError(ErrorReasons.cancelledCreatePj);
+      throw createError(ErrorReasons.cancelledCreatePj);
     },
   })) as Promise<ProjectOption>;
 };

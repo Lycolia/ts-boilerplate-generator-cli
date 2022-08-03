@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { ErrorReasons, reportError } from '../../models/ErrorReasons';
+import { ErrorReasons, createError } from '../../models/ErrorReasons';
 
 /**
  * get current working directory path,
@@ -9,7 +9,7 @@ export const getCwdPath = () => {
   try {
     return process.cwd();
   } catch {
-    throw reportError(ErrorReasons.cdNotExists);
+    throw createError(ErrorReasons.cdNotExists);
   }
 };
 
@@ -35,7 +35,7 @@ export const renameDirectory = (
   try {
     fs.renameSync(fromPath, createDestDir);
   } catch (error) {
-    throw reportError(ErrorReasons.mvCmdFail, error);
+    throw createError(ErrorReasons.mvCmdFail, error);
   }
 };
 

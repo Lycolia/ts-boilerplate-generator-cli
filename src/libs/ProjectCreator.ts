@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import path from 'path';
-import { ErrorReasons, reportError } from '../models/ErrorReasons';
+import { ErrorReasons, createError } from '../models/ErrorReasons';
 import { ProjectOption } from '../models/ProjectOptions';
 import { Repositories } from '../models/Repositories';
 import { infoLog } from './Log';
@@ -46,7 +46,7 @@ export const getDestDirWithValidate = (projectName: string) => {
   // git validations
   git.validateInstalled();
   if (!git.canCommiting()) {
-    throw reportError(ErrorReasons.gitNotConfigure);
+    throw createError(ErrorReasons.gitNotConfigure);
   }
 
   // fs validations
@@ -55,7 +55,7 @@ export const getDestDirWithValidate = (projectName: string) => {
   const fullPath = path.join(cwdPath, dirName);
 
   if (!availableDestination(fullPath)) {
-    throw reportError(ErrorReasons.existsDistPath);
+    throw createError(ErrorReasons.existsDistPath);
   }
 
   return {

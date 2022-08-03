@@ -1,4 +1,4 @@
-import { AppError, ErrorReasons, reportError } from '../../models/ErrorReasons';
+import { AppError } from '../../models/ErrorReasons';
 import { errorLog } from '../Log';
 
 /**

@@ -1,4 +1,4 @@
-import { ErrorReasons, reportError } from '../../../models/ErrorReasons';
+import { ErrorReasons, createError } from '../../../models/ErrorReasons';
 import * as ProgramExiter from './../ProgramExiter';
 
 describe('exitApp', () => {
@@ -12,7 +12,7 @@ describe('exitApp', () => {
     const mockExitApp = jest.fn((ex) => {
       ProgramExiter.exitApp(ex);
     });
-    mockExitApp(reportError(ErrorReasons.unmanagedException));
+    mockExitApp(createError(ErrorReasons.unmanagedException));
 
     expect(mockExitApp).toReturn();
   });

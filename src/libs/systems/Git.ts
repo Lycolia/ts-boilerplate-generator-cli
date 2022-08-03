@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { ErrorReasons, reportError } from '../../models/ErrorReasons';
+import { ErrorReasons, createError } from '../../models/ErrorReasons';
 import { infoLog } from '../Log';
 
 /**
@@ -11,7 +11,7 @@ export const validateInstalled = () => {
   try {
     execSync('git --help');
   } catch (error) {
-    throw reportError(ErrorReasons.gitNotFound, error);
+    throw createError(ErrorReasons.gitNotFound, error);
   }
 };
 
@@ -28,7 +28,7 @@ export const canCommiting = () => {
       (configs.match(/user\.email=.+/) !== null) === true
     );
   } catch (error) {
-    throw reportError(ErrorReasons.unmanagedException, error);
+    throw createError(ErrorReasons.unmanagedException, error);
   }
 };
 
@@ -45,7 +45,7 @@ export const clone = (repositoryUrl: string) => {
       stdio: 'ignore',
     });
   } catch (error) {
-    throw reportError(ErrorReasons.failPull, error);
+    throw createError(ErrorReasons.failPull, error);
   }
 };
 

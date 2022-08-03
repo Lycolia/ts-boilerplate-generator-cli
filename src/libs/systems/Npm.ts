@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { ErrorReasons, reportError } from '../../models/ErrorReasons';
+import { ErrorReasons, createError } from '../../models/ErrorReasons';
 import { infoLog } from '../Log';
 
 /**
@@ -14,6 +14,6 @@ export const installNpmModules = (projectDest: string) => {
       stdio: 'ignore',
     });
   } catch (error) {
-    throw reportError(ErrorReasons.failNpmInst, error);
+    throw createError(ErrorReasons.failNpmInst, error);
   }
 };

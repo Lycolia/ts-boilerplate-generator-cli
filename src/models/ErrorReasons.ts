@@ -3,13 +3,13 @@ export type AppError = {
   error?: unknown;
 };
 
-export type ErrorReason = {
+type ErrorReason = {
   code: number;
   subject: string;
   message?: string;
 };
 
-export const reportError = (reason: ErrorReason, error?: unknown): AppError => {
+export const createError = (reason: ErrorReason, error?: unknown): AppError => {
   return { reason, error };
 };
 
