@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { createCLIOptionsProgram } from './libs/dialogs/CreateCLIOptionsProgram';
-import { promptProjectGeneratorDialog } from './libs/dialogs/PropmptDialog';
-import { createProject } from './libs/ProjectCreator';
-import { exitApp } from './libs/systems/ProgramExiter';
-import { ErrorReasons, createError } from './models/ErrorReasons';
-import { ProjectOption } from './models/ProjectOptions';
+import { createCLIOptionsProgram } from 'src/libs/dialogs/CreateCLIOptionsProgram';
+import { promptProjectGeneratorDialog } from 'src/libs/dialogs/PropmptDialog';
+import { createProject } from 'src/libs/core/ProjectCreator';
+import { exitApp } from 'src/libs/systems/ProgramExiter';
+import { ErrorReasons, createError } from 'src/models/ErrorReasons';
+import { ProjectOption } from 'src/models/ProjectOptions';
 
 /**
  * get project options (argument | dialog)

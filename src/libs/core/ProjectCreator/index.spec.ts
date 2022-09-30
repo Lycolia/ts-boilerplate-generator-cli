@@ -1,7 +1,7 @@
 import { existsSync, rmSync, mkdirSync, appendFileSync } from 'fs';
 import path from 'path';
-import { cleanup, getDestDirWithValidate } from '../ProjectCreator';
-import { getTestingPlatform } from '../TestUtil';
+import { cleanup, getDestDirWithValidate } from '.';
+import { getTestingPlatform } from 'src/libs/core/TestUtil';
 
 const platform = getTestingPlatform();
 const baseDir = 'test-project';

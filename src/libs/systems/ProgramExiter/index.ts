@@ -1,5 +1,4 @@
-import { AppError } from '../../models/ErrorReasons';
-import { errorLog } from '../Log';
+import { errorLog } from '../../core/Log';
 
 /**
  * exit this app

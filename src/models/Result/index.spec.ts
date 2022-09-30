@@ -1,4 +1,4 @@
-import { CommonResult } from './Result';
+import { CommonResult } from '.';
 
 describe('createResult', () => {
   it('Expect has error object by got has error object', () => {

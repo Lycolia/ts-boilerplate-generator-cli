@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, rmSync } from 'fs';
 import path from 'path';
-import { AppError, ErrorReasons } from '../../../models/ErrorReasons';
-import * as FileSystem from '../FileSystem';
+import { ErrorReasons } from 'src/models/ErrorReasons';
+import * as FileSystem from '.';
 
 /**
  * working base

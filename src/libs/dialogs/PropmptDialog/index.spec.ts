@@ -1,9 +1,6 @@
 import prompts from 'prompts';
-import { promptProjectGeneratorDialog } from '../PropmptDialog';
-import {
-  ProjectOption,
-  ProjectOptionDef,
-} from '../../../models/ProjectOptions';
+import { promptProjectGeneratorDialog } from '.';
+import { ProjectOption, ProjectOptionDef } from 'src/models/ProjectOptions';
 
 const testCtx: ProjectOption = {
   author: 'qaz',

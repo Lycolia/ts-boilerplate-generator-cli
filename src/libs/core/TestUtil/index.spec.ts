@@ -1,4 +1,4 @@
-import { getTestingPlatform } from '../TestUtil';
+import { getTestingPlatform } from '.';
 
 describe('getTestingPlatform', () => {
   it('is equality getTestingPlatform to EXEC_PLATFORM', () => {

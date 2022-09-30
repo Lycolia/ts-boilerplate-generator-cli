@@ -1,7 +1,7 @@
-import { version } from '../../../package.json';
+import { version } from 'package.json';
 import { Option, Command } from 'commander';
-import { ProjectOption, ProjectTypes } from '../../models/ProjectOptions';
-import { ProjectOptionDef } from '../../models/ProjectOptions';
+import { ProjectOption, ProjectTypes } from 'src/models/ProjectOptions';
+import { ProjectOptionDef } from 'src/models/ProjectOptions';
 
 /**
  * create CLI options and helps

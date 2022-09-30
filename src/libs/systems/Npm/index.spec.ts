@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { installNpmModules } from '../Npm';
+import { installNpmModules } from '.';
 
 jest.mock('child_process');
 const mockExecSync = execSync as jest.MockedFunction<typeof execSync>;

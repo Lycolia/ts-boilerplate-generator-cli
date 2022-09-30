@@ -1,6 +1,6 @@
 import { PromptObject } from 'prompts';
 import validateNpmPackageName from 'validate-npm-package-name';
-import { ProjectTypes, ProjectOptionDef } from './ProjectOptions';
+import { ProjectTypes, ProjectOptionDef } from '../ProjectOptions';
 
 /**
  * project types choice
@@ -33,7 +33,9 @@ export const DialogInputOptions: PromptObject<string>[] = [
       if (ctx.validForNewPackages) {
         return true;
       } else {
-        return (ctx.errors || []).concat(ctx.warnings || []).join(' and ');
+        return (ctx.errors != null || [])
+          .concat(ctx.warnings != null || [])
+          .join(' and ');
       }
     },
   },

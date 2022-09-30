@@ -1,5 +1,5 @@
-import { ErrorReasons, createError } from '../../../models/ErrorReasons';
-import * as ProgramExiter from './../ProgramExiter';
+import { ErrorReasons, createError } from 'src/models/ErrorReasons';
+import * as ProgramExiter from '.';
 
 describe('exitApp', () => {
   jest.spyOn(process, 'exit').mockImplementation();

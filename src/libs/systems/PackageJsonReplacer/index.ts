@@ -1,4 +1,4 @@
-import { ProjectOption } from '../../models/ProjectOptions';
+import { ProjectOption } from 'src/models/ProjectOptions';
 
 type PackageJson = {
   name: string;

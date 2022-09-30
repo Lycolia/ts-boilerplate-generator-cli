@@ -1,4 +1,4 @@
-import { infoLog, warnLog, errorLog } from '../Log';
+import { infoLog, warnLog, errorLog } from '.';
 
 describe('infoLog', () => {
   it('function can work', () => {

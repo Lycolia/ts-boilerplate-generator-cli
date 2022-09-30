@@ -1,5 +1,5 @@
-import { getTestingPlatform } from '../../TestUtil';
-import * as git from '../Git';
+import { getTestingPlatform } from '../../core/TestUtil';
+import * as git from '.';
 
 jest.spyOn(git, 'validateInstalled');
 jest.spyOn(git, 'canCommiting');

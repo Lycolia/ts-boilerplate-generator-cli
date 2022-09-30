@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { ErrorReasons, createError } from '../../models/ErrorReasons';
+import { ErrorReasons, createError } from '../../../models/ErrorReasons';
 
 /**
  * get current working directory path,

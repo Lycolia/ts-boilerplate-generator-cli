@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
-import { ErrorReasons, createError } from '../../models/ErrorReasons';
-import { infoLog } from '../Log';
+import { ErrorReasons, createError } from '../../../models/ErrorReasons';
+import { infoLog } from '../../core/Log';
 
 /**
  * validate installed git

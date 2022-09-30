@@ -1,4 +1,4 @@
-import { AppError, ErrorReason } from '../libs/types/Error';
+import { AppError, ErrorReason } from '../../libs/types/Error';
 
 export const createError = (reason: ErrorReason, error?: unknown): AppError => {
   return { reason, error };
