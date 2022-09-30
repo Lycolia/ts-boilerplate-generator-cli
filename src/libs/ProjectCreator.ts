@@ -1,4 +1,3 @@
-import { execSync } from 'child_process';
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import path from 'path';
 import { ErrorReasons, createError } from '../models/ErrorReasons';
@@ -75,7 +74,7 @@ export const cleanup = (projectDest: string) => {
     { path: './.git', isDir: true },
   ];
 
-  targets.map((item) => {
+  targets.forEach((item) => {
     const itemPath = path.join(projectDest, item.path);
     if (existsSync(itemPath)) {
       if (item.isDir) {
