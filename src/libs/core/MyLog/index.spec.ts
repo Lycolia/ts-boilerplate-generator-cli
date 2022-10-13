@@ -1,9 +1,9 @@
-import { infoLog, warnLog, errorLog } from '.';
+import { MyLog } from '.';
 
-describe('infoLog', () => {
+describe('info', () => {
   it('function can work', () => {
     const spyedInfo = jest.spyOn(console, 'info');
-    infoLog({ test: 'foo', hoge: 'bar' });
+    MyLog.info({ test: 'foo', hoge: 'bar' });
     expect(spyedInfo.mock.calls[0][2]).toEqual({
       test: 'foo',
       hoge: 'bar',
@@ -11,10 +11,10 @@ describe('infoLog', () => {
   });
 });
 
-describe('warnLog', () => {
+describe('warn', () => {
   it('function can work', () => {
     const spyedWarn = jest.spyOn(console, 'warn');
-    warnLog({ test: 'foo', hoge: 'bar' });
+    MyLog.warn({ test: 'foo', hoge: 'bar' });
     expect(spyedWarn.mock.calls[0][2]).toEqual({
       test: 'foo',
       hoge: 'bar',
@@ -22,10 +22,10 @@ describe('warnLog', () => {
   });
 });
 
-describe('errorLog', () => {
+describe('error', () => {
   it('function can work', () => {
     const spyedError = jest.spyOn(console, 'error');
-    errorLog({ test: 'foo', hoge: 'bar' });
+    MyLog.error({ test: 'foo', hoge: 'bar' });
     expect(spyedError.mock.calls[0][2]).toEqual({
       test: 'foo',
       hoge: 'bar',

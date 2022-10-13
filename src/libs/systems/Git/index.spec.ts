@@ -1,41 +1,41 @@
-import { getTestingPlatform } from '../../core/TestUtil';
-import * as git from '.';
+import { TestUtil } from 'src/libs/core/TestUtil';
+import { Git } from '.';
 
-jest.spyOn(git, 'validateInstalled');
-jest.spyOn(git, 'canCommiting');
+jest.spyOn(Git, 'validateInstalled');
+jest.spyOn(Git, 'canCommiting');
 
-const platform = getTestingPlatform();
+const platform = TestUtil.getTestingPlatform();
 
 describe('validateInstalled', () => {
   const testCaseItems = {
     development() {
-      git.validateInstalled();
+      Git.validateInstalled();
 
-      expect(git.validateInstalled).toBeCalled();
-      expect(git.validateInstalled).toReturn();
+      expect(Git.validateInstalled).toBeCalled();
+      expect(Git.validateInstalled).toReturn();
     },
     only_node() {
       expect(() => {
-        git.validateInstalled();
+        Git.validateInstalled();
       }).toThrow();
     },
     node_git() {
-      git.validateInstalled();
+      Git.validateInstalled();
 
-      expect(git.validateInstalled).toBeCalled();
-      expect(git.validateInstalled).toReturn();
+      expect(Git.validateInstalled).toBeCalled();
+      expect(Git.validateInstalled).toReturn();
     },
     node_git_conf() {
-      git.validateInstalled();
+      Git.validateInstalled();
 
-      expect(git.validateInstalled).toBeCalled();
-      expect(git.validateInstalled).toReturn();
+      expect(Git.validateInstalled).toBeCalled();
+      expect(Git.validateInstalled).toReturn();
     },
     node_git_conf_npm() {
-      git.validateInstalled();
+      Git.validateInstalled();
 
-      expect(git.validateInstalled).toBeCalled();
-      expect(git.validateInstalled).toReturn();
+      expect(Git.validateInstalled).toBeCalled();
+      expect(Git.validateInstalled).toReturn();
     },
   };
 
@@ -47,21 +47,21 @@ describe('validateInstalled', () => {
 describe('canCommiting', () => {
   const testCaseItems = {
     development() {
-      expect(git.canCommiting()).toBe(true);
+      expect(Git.canCommiting()).toBe(true);
     },
     only_node() {
       expect(() => {
-        git.canCommiting();
+        Git.canCommiting();
       }).toThrow();
     },
     node_git() {
-      expect(git.canCommiting()).toBe(false);
+      expect(Git.canCommiting()).toBe(false);
     },
     node_git_conf() {
-      expect(git.canCommiting()).toBe(true);
+      expect(Git.canCommiting()).toBe(true);
     },
     node_git_conf_npm() {
-      expect(git.canCommiting()).toBe(true);
+      expect(Git.canCommiting()).toBe(true);
     },
   };
 

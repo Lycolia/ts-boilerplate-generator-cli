@@ -9,7 +9,7 @@ const logBanner = ' TSG ';
  * put infomation log
  * @param messages
  */
-export const infoLog = (...messages: unknown[]) => {
+const info = (...messages: unknown[]) => {
   messages.forEach((msg) => {
     console.info(chalk.bgGreen.black(logBanner), chalk.white(' INFO '), msg);
   });
@@ -19,7 +19,7 @@ export const infoLog = (...messages: unknown[]) => {
  * put warning log
  * @param messages
  */
-export const warnLog = (...messages: unknown[]) => {
+const warn = (...messages: unknown[]) => {
   messages.forEach((msg) => {
     console.warn(chalk.bgGreen.black(logBanner), chalk.yellow(' WARN '), msg);
   });
@@ -29,7 +29,7 @@ export const warnLog = (...messages: unknown[]) => {
  * put error log
  * @param messages
  */
-export const errorLog = (...messages: unknown[]) => {
+const error = (...messages: unknown[]) => {
   messages.forEach((msg) => {
     console.error(
       chalk.bgGreen.black(logBanner),
@@ -37,4 +37,10 @@ export const errorLog = (...messages: unknown[]) => {
       msg
     );
   });
+};
+
+export const MyLog = {
+  info,
+  warn,
+  error,
 };

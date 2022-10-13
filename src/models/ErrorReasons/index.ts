@@ -1,8 +1,4 @@
-import { AppError, ErrorReason } from '../../libs/types/Error';
-
-export const createError = (reason: ErrorReason, error?: unknown): AppError => {
-  return { reason, error };
-};
+import { ErrorReason } from './type';
 
 export const ErrorReasons = {
   ok: { code: 0, subject: 'OK', message: 'OK' } as ErrorReason,
@@ -21,7 +17,7 @@ export const ErrorReasons = {
     subject: 'Current directory may does not exist',
     message: 'be retry in existing directory',
   } as ErrorReason,
-  existsDistPath: {
+  existsDestPath: {
     code: 101,
     subject: 'Project directory already exists',
     message: 'please specify another project name',

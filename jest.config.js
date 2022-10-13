@@ -23,6 +23,10 @@ module.exports = {
             decorators: false,
             dynamicImport: false,
           },
+          baseUrl: '.',
+          paths: {
+            'src/*': ['./src/*'],
+          },
         },
       },
     ],
@@ -32,4 +36,7 @@ module.exports = {
     'jest-watch-typeahead/testname',
   ],
   silent: false,
+  moduleNameMapper: {
+    'package.json': '<rootDir>/package.json',
+  },
 };

@@ -1,60 +1,68 @@
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import path from 'path';
-import { ErrorReasons, createError } from 'src/models/ErrorReasons';
 import { ProjectOption } from 'src/models/ProjectOptions';
 import { Repositories } from 'src/models/Repositories';
-import { infoLog } from '../Log';
-import {
-  availableDestination,
-  getCwdPath,
-  getDirNameFromProjectName,
-  renameDirectory,
-} from 'src/libs/systems/File';
-import * as git from 'src/libs/systems/Git';
+import { MyLog } from '../MyLog';
+import { File } from 'src/libs/systems/File';
+import { Git } from 'src/libs/systems/Git';
 import { installNpmModules } from 'src/libs/systems/Npm';
 import { replacePackageJson } from 'src/libs/systems/PackageJsonReplacer';
+import { MyError } from 'src/libs/core/MyError';
 
 /**
  * create project
  * @param projectOpt
- * @throws {AppError}
  */
-export const createProject = (projectOpt: ProjectOption) => {
+const createProject = (projectOpt: ProjectOption) => {
   const dest = getDestDirWithValidate(projectOpt.projectName);
+
+  if (MyError.hasError(dest)) {
+    return dest;
+  }
+
   const repoUrl = Repositories[projectOpt.type];
-  git.clone(repoUrl);
-  infoLog('Parsing project options...');
-  renameDirectory(repoUrl, dest.dirName);
+  const gitError = Git.clone(repoUrl);
+  if (MyError.hasError(gitError)) {
+    return gitError;
+  }
+
+  MyLog.info('Parsing project options...');
+  const renameError = File.renameDirectory(repoUrl, dest.dirName);
+  if (MyError.hasError(renameError)) {
+    return renameError;
+  }
+
   cleanup(dest.fullPath);
   updateReadMe(projectOpt, dest.fullPath);
   updatePackageJson(projectOpt, dest.fullPath);
   installNpmModules(dest.fullPath);
-  git.init(dest.fullPath);
-  infoLog('Project created!!');
-  infoLog(`Starting project begin by typing: cd ${dest.dirName}`);
+  Git.init(dest.fullPath);
+  MyLog.info('Project created!!');
+  MyLog.info(`Starting project begin by typing: cd ${dest.dirName}`);
 };
 
 /**
  * enviroments validation and return new project path and directory name
  * @param projectName
- * @throws {AppError}
  */
-export const getDestDirWithValidate = (projectName: string) => {
-  infoLog('Checking enviroments...');
+const getDestDirWithValidate = (projectName: string) => {
+  MyLog.info('Checking enviroments...');
 
-  // git validations
-  git.validateInstalled();
-  if (!git.canCommiting()) {
-    throw createError(ErrorReasons.gitNotConfigure);
+  Git.validateInstalled();
+  const canCommiting = Git.canCommiting();
+  if (MyError.hasError(canCommiting)) {
+    return canCommiting;
   }
 
-  // fs validations
-  const cwdPath = getCwdPath();
-  const dirName = getDirNameFromProjectName(projectName);
+  const cwdPath = File.getCwdPath();
+  if (MyError.hasError(cwdPath)) {
+    return cwdPath;
+  }
+  const dirName = File.getDirNameFromProjectName(projectName);
   const fullPath = path.join(cwdPath, dirName);
-
-  if (!availableDestination(fullPath)) {
-    throw createError(ErrorReasons.existsDistPath);
+  const availabled = File.availableDestination(fullPath);
+  if (MyError.hasError(availabled)) {
+    return availabled;
   }
 
   return {
@@ -68,7 +76,7 @@ export const getDestDirWithValidate = (projectName: string) => {
  *
  * @param projectDest
  */
-export const cleanup = (projectDest: string) => {
+const cleanup = (projectDest: string) => {
   const targets = [
     { path: './LICENSE', isDir: false },
     { path: './.git', isDir: true },
@@ -91,10 +99,7 @@ export const cleanup = (projectDest: string) => {
  * @param projectOpt
  * @param projectDest
  */
-export const updateReadMe = (
-  projectOpt: ProjectOption,
-  projectDest: string
-) => {
+const updateReadMe = (projectOpt: ProjectOption, projectDest: string) => {
   const readmePath = path.join(projectDest, './README.md');
   const readme = readFileSync(readmePath).toString();
   writeFileSync(readmePath, replaceReadMe(readme, projectOpt));
@@ -105,7 +110,7 @@ export const updateReadMe = (
  * @param readme
  * @param projectOpt
  */
-export const replaceReadMe = (readme: string, projectOpt: ProjectOption) => {
+const replaceReadMe = (readme: string, projectOpt: ProjectOption) => {
   return readme
     .replace('{author}', projectOpt.author)
     .replace('{description}', projectOpt.description)
@@ -118,12 +123,18 @@ export const replaceReadMe = (readme: string, projectOpt: ProjectOption) => {
  * @param projectOpt
  * @param projectDest
  */
-export const updatePackageJson = (
-  projectOpt: ProjectOption,
-  projectDest: string
-) => {
+const updatePackageJson = (projectOpt: ProjectOption, projectDest: string) => {
   const pkgJsonPath = path.join(projectDest, './package.json');
   const pkgJson = JSON.parse(readFileSync(pkgJsonPath).toString());
   const replaced = JSON.stringify(replacePackageJson(pkgJson, projectOpt));
   writeFileSync(pkgJsonPath, replaced);
+};
+
+export const ProjectCreator = {
+  createProject,
+  getDestDirWithValidate,
+  cleanup,
+  updateReadMe,
+  replaceReadMe,
+  updatePackageJson,
 };

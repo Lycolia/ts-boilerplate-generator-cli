@@ -14,7 +14,7 @@ import { ProjectOptionDef } from 'src/models/ProjectOptions';
  *
  * @returns parsed CLI options
  */
-export const createCLIOptionsProgram = () => {
+const create = () => {
   const banner = `|| TypeScript project Generator ||
 `;
 
@@ -65,6 +65,11 @@ export const createCLIOptionsProgram = () => {
  *
  * @param programArgsLength
  */
-export const hasNotDefinedOptions = (programArgsLength: number) => {
+const hasNotDefinedOptions = (programArgsLength: number) => {
   return process.argv.length - 2 - programArgsLength === 0;
+};
+
+export const CLIOptionsProgram = {
+  create,
+  hasNotDefinedOptions,
 };

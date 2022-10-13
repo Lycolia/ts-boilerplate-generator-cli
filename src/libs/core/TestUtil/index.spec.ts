@@ -1,9 +1,9 @@
-import { getTestingPlatform } from '.';
+import { TestUtil } from '.';
 
 describe('getTestingPlatform', () => {
   it('is equality getTestingPlatform to EXEC_PLATFORM', () => {
     const env = process.env.EXEC_PLATFORM;
-    const platform = getTestingPlatform();
+    const platform = TestUtil.getTestingPlatform();
 
     if (env === undefined) {
       expect(platform).toBe('development');

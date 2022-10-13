@@ -1,26 +1,17 @@
 import { execSync } from 'child_process';
-import { ErrorReasons, createError } from '../../../models/ErrorReasons';
-import { infoLog } from '../../core/Log';
+import { MyError } from 'src/libs/core/MyError';
+import { ErrorReasons } from '../../../models/ErrorReasons';
+import { MyLog } from '../../core/MyLog';
 
-/**
- * validate installed git
- *
- * @throws {AppError} if not installed then exit program
- */
-export const validateInstalled = () => {
+const validateInstalled = () => {
   try {
     execSync('git --help');
   } catch (error) {
-    throw createError(ErrorReasons.gitNotFound, error);
+    return MyError.create(ErrorReasons.gitNotFound, error);
   }
 };
 
-/**
- * can exec git commit
- *
- * @throws {AppError} if occured exception then exit program
- */
-export const canCommiting = () => {
+const canCommiting = () => {
   try {
     const configs = execSync('git config --list').toString();
     return (
@@ -28,34 +19,34 @@ export const canCommiting = () => {
       (configs.match(/user\.email=.+/) !== null) === true
     );
   } catch (error) {
-    throw createError(ErrorReasons.unmanagedException, error);
+    return MyError.create(ErrorReasons.unmanagedException, error);
   }
 };
 
 /**
- * git clone
- * @throws {AppError} if failed pull then exit program
- *
- * @param repositoryUrl git clone url
+ * @param cloneUrl git clone url
  */
-export const clone = (repositoryUrl: string) => {
+const clone = (cloneUrl: string) => {
   try {
-    infoLog('Cloning Project...');
-    execSync(`git clone ${repositoryUrl}`, {
+    MyLog.info('Cloning Project...');
+    execSync(`git clone ${cloneUrl}`, {
       stdio: 'ignore',
     });
   } catch (error) {
-    throw createError(ErrorReasons.failPull, error);
+    return MyError.create(ErrorReasons.failPull, error);
   }
 };
 
-/**
- * git init and inital commit
- * @param projectDest
- */
-export const init = (projectDest: string) => {
-  infoLog('Initialize Git...');
+const init = (projectDest: string) => {
+  MyLog.info('Initialize Git...');
   execSync(`git -C ${projectDest} init`);
   execSync(`git -C ${projectDest} add -A`);
   execSync(`git -C ${projectDest} commit -m "inital commit"`);
+};
+
+export const Git = {
+  validateInstalled,
+  canCommiting,
+  clone,
+  init,
 };

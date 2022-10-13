@@ -1,9 +1,11 @@
 import { existsSync, rmSync, mkdirSync, appendFileSync } from 'fs';
 import path from 'path';
-import { cleanup, getDestDirWithValidate } from '.';
-import { getTestingPlatform } from 'src/libs/core/TestUtil';
+import { ProjectCreator } from '.';
+import { TestUtil } from 'src/libs/core/TestUtil';
+import { MyError } from 'src/libs/core/MyError';
+import { ErrorReasons } from 'src/models/ErrorReasons';
 
-const platform = getTestingPlatform();
+const platform = TestUtil.getTestingPlatform();
 const baseDir = 'test-project';
 
 afterEach(() => {
@@ -15,29 +17,56 @@ afterEach(() => {
 describe('getDestDirWithValidate', () => {
   const testCaseItems = {
     development() {
-      const dest = getDestDirWithValidate(`@anonymous/${baseDir}`);
-      expect(dest.dirName).toBe(baseDir);
-      expect(dest.fullPath).toBe(path.join(process.cwd(), baseDir));
+      const actual = ProjectCreator.getDestDirWithValidate(
+        `@anonymous/${baseDir}`
+      );
+
+      if (MyError.hasError(actual)) {
+        throw new Error('Failure');
+      }
+      expect(actual.dirName).toBe(baseDir);
+      expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
     },
     only_node() {
-      expect(() => {
-        getDestDirWithValidate(`@anonymous/${baseDir}`);
-      }).toThrow();
+      const actual = ProjectCreator.getDestDirWithValidate(
+        `@anonymous/${baseDir}`
+      );
+      if (MyError.hasError(actual)) {
+        expect(actual.reason).toBe(ErrorReasons.gitNotFound);
+      } else {
+        throw new Error('Failure');
+      }
     },
     node_git() {
-      expect(() => {
-        getDestDirWithValidate(`@anonymous/${baseDir}`);
-      }).toThrow();
+      const actual = ProjectCreator.getDestDirWithValidate(
+        `@anonymous/${baseDir}`
+      );
+      if (MyError.hasError(actual)) {
+        expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
+      } else {
+        throw new Error('Failure');
+      }
     },
     node_git_conf() {
-      const dest = getDestDirWithValidate(`@anonymous/${baseDir}`);
-      expect(dest.dirName).toBe(baseDir);
-      expect(dest.fullPath).toBe(path.join(process.cwd(), baseDir));
+      const actual = ProjectCreator.getDestDirWithValidate(
+        `@anonymous/${baseDir}`
+      );
+      if (MyError.hasError(actual)) {
+        throw new Error('Failure');
+      }
+      expect(actual.dirName).toBe(baseDir);
+      expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
     },
     node_git_conf_npm() {
-      const dest = getDestDirWithValidate(`@anonymous/${baseDir}`);
-      expect(dest.dirName).toBe(baseDir);
-      expect(dest.fullPath).toBe(path.join(process.cwd(), baseDir));
+      const actual = ProjectCreator.getDestDirWithValidate(
+        `@anonymous/${baseDir}`
+      );
+
+      if (MyError.hasError(actual)) {
+        throw new Error('Failure');
+      }
+      expect(actual.dirName).toBe(baseDir);
+      expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
     },
   };
 
@@ -48,9 +77,15 @@ describe('getDestDirWithValidate', () => {
   it('invalid', () => {
     mkdirSync(baseDir);
 
-    expect(() => {
-      getDestDirWithValidate(`@anonymous/${baseDir}`);
-    }).toThrow();
+    const actual = ProjectCreator.getDestDirWithValidate(
+      `@anonymous/${baseDir}`
+    );
+
+    if (MyError.hasError(actual)) {
+      expect(actual.reason).toStrictEqual(ErrorReasons.existsDestPath);
+    } else {
+      throw new Error('Failure');
+    }
   });
 });
 
@@ -59,7 +94,7 @@ describe('cleanup', () => {
     mkdirSync(baseDir);
     appendFileSync(`${baseDir}/LICENSE`, '-');
     mkdirSync(`${baseDir}/.git`);
-    cleanup('test-project');
+    ProjectCreator.cleanup('test-project');
 
     expect(existsSync(`${baseDir}/LICENSE`)).toBe(false);
     expect(existsSync(`${baseDir}/.git`)).toBe(false);

@@ -33,8 +33,16 @@ export const DialogInputOptions: PromptObject<string>[] = [
       if (ctx.validForNewPackages) {
         return true;
       } else {
-        return (ctx.errors != null || [])
-          .concat(ctx.warnings != null || [])
+        const getItems = (arr: string[] | undefined) => {
+          if (arr === undefined) {
+            return new Array<string>();
+          } else {
+            return arr;
+          }
+        };
+
+        return getItems(ctx.errors)
+          .concat(getItems(ctx.warnings))
           .join(' and ');
       }
     },

@@ -1,7 +1,8 @@
 import { existsSync, mkdirSync, rmSync } from 'fs';
 import path from 'path';
+import { MyError } from 'src/libs/core/MyError';
 import { ErrorReasons } from 'src/models/ErrorReasons';
-import * as FileSystem from '.';
+import { File } from '.';
 
 /**
  * working base
@@ -16,19 +17,22 @@ const getPath = (destPath: string) => {
   return path.join(basePath, destPath);
 };
 
-describe('getdistPath', () => {
+describe('getdestPath', () => {
   it('function can work', () => {
-    expect(FileSystem.getCwdPath()).toBe(process.cwd());
+    expect(File.getCwdPath()).toBe(process.cwd());
   });
 });
 
 describe('availableDestination', () => {
-  it('available (dont exists)', () => {
+  it('available (does not exists)', () => {
     const destPath = getPath('/foo');
-    expect(FileSystem.availableDestination(destPath)).toBe(true);
+    expect(File.availableDestination(destPath)).toBe(true);
   });
   it('unavailable (exists)', () => {
-    expect(FileSystem.availableDestination(basePath)).toBe(false);
+    const actual = File.availableDestination(basePath);
+    if (MyError.hasError(actual)) {
+      expect(actual.reason).toBe(ErrorReasons.existsDestPath);
+    }
   });
 });
 
@@ -50,36 +54,31 @@ describe('renameDirectory', () => {
     jest.clearAllMocks();
   });
 
-  // spyon
-  const spyRenameDirectory = jest.spyOn(FileSystem, 'renameDirectory');
-
   it('old dir exists', () => {
     mkdirSync(oldPath);
-    FileSystem.renameDirectory(repoUrl, 'new');
-    expect(spyRenameDirectory).toReturn();
+    const actual = File.renameDirectory(repoUrl, 'new');
+    expect(actual).toBeUndefined();
   });
 
   it('new dir exists', () => {
     mkdirSync(newPath);
-    try {
-      FileSystem.renameDirectory(repoUrl, 'new');
-    } catch (error) {
-      expect((error as AppError).reason).toEqual(ErrorReasons.mvCmdFail);
+    const actual = File.renameDirectory(repoUrl, 'new');
+    if (MyError.hasError(actual)) {
+      expect(actual.reason).toStrictEqual(ErrorReasons.mvCmdFail);
     }
   });
 
   it('old, new dir not exists', () => {
-    try {
-      FileSystem.renameDirectory(repoUrl, 'new');
-    } catch (error) {
-      expect((error as AppError).reason).toEqual(ErrorReasons.mvCmdFail);
+    const actual = File.renameDirectory(repoUrl, 'new');
+    if (MyError.hasError(actual)) {
+      expect(actual.reason).toStrictEqual(ErrorReasons.mvCmdFail);
     }
   });
 });
 
 describe('getPathFromClonedProject', () => {
   it('get path', () => {
-    const gotPath = FileSystem.getRepositoryNameFromUrl(
+    const gotPath = File.getRepositoryNameFromUrl(
       'https://github.com/Lycolia/ts-server-boilerplate.git'
     );
     expect(gotPath).toBe('ts-server-boilerplate');
@@ -88,21 +87,19 @@ describe('getPathFromClonedProject', () => {
 
 describe('getDirNameFromProjectName', () => {
   it('get name by namespased name', () => {
-    const gotName = FileSystem.getDirNameFromProjectName(
-      '@unknown/no-name-project'
-    );
+    const gotName = File.getDirNameFromProjectName('@unknown/no-name-project');
     expect(gotName).toBe('no-name-project');
   });
 
   it('get name by slashed name', () => {
-    const gotName = FileSystem.getDirNameFromProjectName(
+    const gotName = File.getDirNameFromProjectName(
       'slash/slash/no-name-project'
     );
     expect(gotName).toBe('slash/slash/no-name-project');
   });
 
   it('get name by combined namespased and slashed name', () => {
-    const gotName = FileSystem.getDirNameFromProjectName(
+    const gotName = File.getDirNameFromProjectName(
       '@unknown/slash/no-name-project'
     );
     expect(gotName).toBe('slash/no-name-project');

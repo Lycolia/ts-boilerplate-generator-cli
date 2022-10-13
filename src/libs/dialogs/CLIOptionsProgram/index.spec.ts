@@ -1,5 +1,5 @@
 import { ProjectOptionDef } from 'src/models/ProjectOptions';
-import { createCLIOptionsProgram } from '.';
+import { CLIOptionsProgram as CCOP } from '.';
 
 /**
  * every time after it
@@ -9,10 +9,10 @@ afterEach(() => {
   process.argv.length = 2;
 });
 
-describe('createCLIOptionsProgram', () => {
+describe('create', () => {
   it('no options', () => {
     // testing
-    const argv = createCLIOptionsProgram();
+    const argv = CCOP.create();
     expect(argv.author).toBe(ProjectOptionDef.default.author);
     expect(argv.description).toBe(ProjectOptionDef.default.description);
     expect(argv.license).toBe(ProjectOptionDef.default.license);
@@ -24,7 +24,7 @@ describe('createCLIOptionsProgram', () => {
     // setup
     process.argv.push('foo');
     // testing
-    const argv = createCLIOptionsProgram();
+    const argv = CCOP.create();
     expect(argv.author).toBe(ProjectOptionDef.default.author);
     expect(argv.description).toBe(ProjectOptionDef.default.description);
     expect(argv.license).toBe(ProjectOptionDef.default.license);
@@ -37,7 +37,7 @@ describe('createCLIOptionsProgram', () => {
     process.argv.push('-d');
     process.argv.push('foo');
     // testing
-    const argv = createCLIOptionsProgram();
+    const argv = CCOP.create();
     expect(argv.author).toBe(ProjectOptionDef.default.author);
     expect(argv.description).toBe('foo');
     expect(argv.license).toBe(ProjectOptionDef.default.license);
@@ -51,7 +51,7 @@ describe('createCLIOptionsProgram', () => {
     process.argv.push('-d');
     process.argv.push('foo');
     // testing
-    const argv = createCLIOptionsProgram();
+    const argv = CCOP.create();
     expect(argv.author).toBe(ProjectOptionDef.default.author);
     expect(argv.description).toBe('foo');
     expect(argv.license).toBe(ProjectOptionDef.default.license);
@@ -70,7 +70,7 @@ describe('createCLIOptionsProgram', () => {
     process.argv.push('-t');
     process.argv.push('ts-react');
     // testing
-    const argv = createCLIOptionsProgram();
+    const argv = CCOP.create();
     expect(argv.author).toBe('foo');
     expect(argv.description).toBe('sample desc');
     expect(argv.license).toBe('gpl-3.0');

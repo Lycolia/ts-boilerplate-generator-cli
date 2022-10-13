@@ -13,7 +13,7 @@ type TestingPlatform =
  * get execute platform for testing
  * @returns
  */
-export const getTestingPlatform = (): TestingPlatform => {
+const getTestingPlatform = (): TestingPlatform => {
   switch (process.env.EXEC_PLATFORM) {
     case 'only-node':
       return 'only_node';
@@ -26,4 +26,8 @@ export const getTestingPlatform = (): TestingPlatform => {
     default:
       return 'development';
   }
+};
+
+export const TestUtil = {
+  getTestingPlatform,
 };

@@ -1,41 +1,39 @@
 import fs from 'fs';
-import { ErrorReasons, createError } from '../../../models/ErrorReasons';
+import { MyError } from 'src/libs/core/MyError';
+import { ErrorReasons } from 'src/models/ErrorReasons';
 
 /**
  * get current working directory path,
- * @throws {AppError}
  */
-export const getCwdPath = () => {
+const getCwdPath = () => {
   try {
     return process.cwd();
   } catch {
-    throw createError(ErrorReasons.cdNotExists);
+    return MyError.create(ErrorReasons.cdNotExists);
   }
 };
 
 /**
  * available create project of destination
- * @param distPath create destination path
+ * @param destPath create destination path
  */
-export const availableDestination = (distPath: string) => {
-  return !fs.existsSync(distPath);
+const availableDestination = (destPath: string) => {
+  return fs.existsSync(destPath)
+    ? MyError.create(ErrorReasons.existsDestPath)
+    : true;
 };
 
 /**
  * rename directory from repository url to project directory
  * @param repositoryUrl from repository url
  * @param createDestDir create destination directory name
- * @throws {AppError}
  */
-export const renameDirectory = (
-  repositoryUrl: string,
-  createDestDir: string
-) => {
+const renameDirectory = (repositoryUrl: string, createDestDir: string) => {
   const fromPath = getRepositoryNameFromUrl(repositoryUrl);
   try {
     fs.renameSync(fromPath, createDestDir);
   } catch (error) {
-    throw createError(ErrorReasons.mvCmdFail, error);
+    return MyError.create(ErrorReasons.mvCmdFail, error);
   }
 };
 
@@ -43,7 +41,7 @@ export const renameDirectory = (
  * get repository name from repository url
  * @param repositoryUrl
  */
-export const getRepositoryNameFromUrl = (repositoryUrl: string) => {
+const getRepositoryNameFromUrl = (repositoryUrl: string) => {
   return repositoryUrl.replace(/^.+\/(.+?)\.git$/, '$1');
 };
 
@@ -51,6 +49,14 @@ export const getRepositoryNameFromUrl = (repositoryUrl: string) => {
  * rename directory source to
  * @param projectName
  */
-export const getDirNameFromProjectName = (projectName: string) => {
+const getDirNameFromProjectName = (projectName: string) => {
   return projectName.replace(/^@.+?\//, '');
+};
+
+export const File = {
+  getCwdPath,
+  availableDestination,
+  renameDirectory,
+  getRepositoryNameFromUrl,
+  getDirNameFromProjectName,
 };

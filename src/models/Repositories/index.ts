@@ -1,4 +1,4 @@
-import { ProjectType } from '../ProjectOptions';
+import { ProjectType } from 'src/models/ProjectOptions';
 
 /**
  * boilerplate repositories
