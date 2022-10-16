@@ -34,7 +34,7 @@ When no option then launch yeoman style generator
   - `-d`, `--description` <description> project description (default: `no description`)
   - `-l`, `--license` <license> project license (default: `MIT`)
   - `-p`, `--project-name` <projectName> project name (default: `@unknown/no-name-project`)
-  - `-t`, `--type` <type> project type (choices: `ts-cli`, `ts-next`, `ts-react`, `ts-vite-vanilla` , `ts-server`, default: `ts-cli`)
+  - `-t`, `--type` <type> project type (choices: `ts-cli`, `ts-next` default: `ts-cli`)
     - `ts-cli`
       - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
     - `ts-next`
