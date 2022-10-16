@@ -42,4 +42,4 @@ When no option then launch yeoman style generator
   - `-V`, `--version` output the version number
   - `-h`, `--help` display help for command
 - Example
-  - `tsg -a your-own-name -d YourProjectDescription -l AGPL-3.0-or-later -p @your-own-name/your-project-name -t ts-react`
+  - `tsg -a your-own-name -d YourProjectDescription -l AGPL-3.0-or-later -p @your-own-name/your-project-name -t ts-cli`
