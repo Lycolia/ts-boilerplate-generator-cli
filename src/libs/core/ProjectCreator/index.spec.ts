@@ -15,77 +15,125 @@ afterEach(() => {
 });
 
 describe('getDestDirWithValidate', () => {
-  const testCaseItems = {
-    development() {
-      const actual = ProjectCreator.getDestDirWithValidate(
-        `@anonymous/${baseDir}`
-      );
+  it('destination path is not exists', () => {
+    const testCaseItems = {
+      development() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
 
-      if (MyError.hasError(actual)) {
-        throw new Error('Failure');
-      }
-      expect(actual.dirName).toBe(baseDir);
-      expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-    },
-    only_node() {
-      const actual = ProjectCreator.getDestDirWithValidate(
-        `@anonymous/${baseDir}`
-      );
-      if (MyError.hasError(actual)) {
-        expect(actual.reason).toBe(ErrorReasons.gitNotFound);
-      } else {
-        throw new Error('Failure');
-      }
-    },
-    node_git() {
-      const actual = ProjectCreator.getDestDirWithValidate(
-        `@anonymous/${baseDir}`
-      );
-      if (MyError.hasError(actual)) {
-        expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
-      } else {
-        throw new Error('Failure');
-      }
-    },
-    node_git_conf() {
-      const actual = ProjectCreator.getDestDirWithValidate(
-        `@anonymous/${baseDir}`
-      );
-      if (MyError.hasError(actual)) {
-        throw new Error('Failure');
-      }
-      expect(actual.dirName).toBe(baseDir);
-      expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-    },
-    node_git_conf_npm() {
-      const actual = ProjectCreator.getDestDirWithValidate(
-        `@anonymous/${baseDir}`
-      );
+        if (MyError.hasError(actual)) {
+          throw new Error('Failure');
+        }
+        expect(actual.dirName).toBe(baseDir);
+        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
+      },
+      only_node() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
+        if (MyError.hasError(actual)) {
+          expect(actual.reason).toBe(ErrorReasons.gitNotFound);
+        } else {
+          throw new Error('Failure');
+        }
+      },
+      node_git() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
+        if (MyError.hasError(actual)) {
+          expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
+        } else {
+          throw new Error('Failure');
+        }
+      },
+      node_git_conf() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
 
-      if (MyError.hasError(actual)) {
-        throw new Error('Failure');
-      }
-      expect(actual.dirName).toBe(baseDir);
-      expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-    },
-  };
+        if (MyError.hasError(actual)) {
+          throw new Error('Failure');
+        }
+        expect(actual.dirName).toBe(baseDir);
+        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
+      },
+      node_git_conf_npm() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
 
-  it('valid', () => {
+        if (MyError.hasError(actual)) {
+          throw new Error('Failure');
+        }
+        expect(actual.dirName).toBe(baseDir);
+        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
+      },
+    };
+
     testCaseItems[platform]();
   });
 
-  it('invalid', () => {
-    mkdirSync(baseDir);
+  it('destination path is exists', () => {
+    const testCaseItems = {
+      development() {
+        mkdirSync(baseDir);
 
-    const actual = ProjectCreator.getDestDirWithValidate(
-      `@anonymous/${baseDir}`
-    );
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
 
-    if (MyError.hasError(actual)) {
-      expect(actual.reason).toStrictEqual(ErrorReasons.existsDestPath);
-    } else {
-      throw new Error('Failure');
-    }
+        if (MyError.hasError(actual)) {
+          expect(actual.reason).toStrictEqual(ErrorReasons.existsDestPath);
+        } else {
+          throw new Error('Failure');
+        }
+      },
+      only_node() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
+        if (MyError.hasError(actual)) {
+          expect(actual.reason).toBe(ErrorReasons.gitNotFound);
+        } else {
+          throw new Error('Failure');
+        }
+      },
+      node_git() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
+        if (MyError.hasError(actual)) {
+          expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
+        } else {
+          throw new Error('Failure');
+        }
+      },
+      node_git_conf() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
+        if (MyError.hasError(actual)) {
+          throw new Error('Failure');
+        }
+        expect(actual.dirName).toBe(baseDir);
+        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
+      },
+      node_git_conf_npm() {
+        const actual = ProjectCreator.getDestDirWithValidate(
+          `@anonymous/${baseDir}`
+        );
+
+        if (MyError.hasError(actual)) {
+          throw new Error('Failure');
+        }
+        expect(actual.dirName).toBe(baseDir);
+        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
+      },
+    };
+
+    testCaseItems[platform]();
   });
 });
 

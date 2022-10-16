@@ -48,8 +48,11 @@ const createProject = (projectOpt: ProjectOption) => {
 const getDestDirWithValidate = (projectName: string) => {
   MyLog.info('Checking enviroments...');
 
-  Git.validateInstalled();
-  const canCommiting = Git.canCommiting();
+  const validateInstalled = Git.validateInstalled();
+  if (MyError.hasError(validateInstalled)) {
+    return validateInstalled;
+  }
+  const canCommiting = Git.validateCommiting();
   if (MyError.hasError(canCommiting)) {
     return canCommiting;
   }

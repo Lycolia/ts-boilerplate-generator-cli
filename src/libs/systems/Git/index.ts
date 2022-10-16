@@ -11,13 +11,16 @@ const validateInstalled = () => {
   }
 };
 
-const canCommiting = () => {
+const validateCommiting = () => {
   try {
     const configs = execSync('git config --list').toString();
-    return (
-      (configs.match(/user\.name=.+/) !== null) === true &&
-      (configs.match(/user\.email=.+/) !== null) === true
-    );
+
+    if (
+      (configs.match(/user\.name=.+/) !== null) === false ||
+      (configs.match(/user\.email=.+/) !== null) === false
+    ) {
+      return MyError.create(ErrorReasons.gitNotConfigure);
+    }
   } catch (error) {
     return MyError.create(ErrorReasons.unmanagedException, error);
   }
@@ -46,7 +49,7 @@ const init = (projectDest: string) => {
 
 export const Git = {
   validateInstalled,
-  canCommiting,
+  validateCommiting,
   clone,
   init,
 };

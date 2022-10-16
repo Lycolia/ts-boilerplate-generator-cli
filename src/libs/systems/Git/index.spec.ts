@@ -1,41 +1,55 @@
+import { MyError } from 'src/libs/core/MyError';
 import { TestUtil } from 'src/libs/core/TestUtil';
+import { ErrorReasons } from 'src/models/ErrorReasons';
 import { Git } from '.';
-
-jest.spyOn(Git, 'validateInstalled');
-jest.spyOn(Git, 'canCommiting');
 
 const platform = TestUtil.getTestingPlatform();
 
 describe('validateInstalled', () => {
   const testCaseItems = {
     development() {
-      Git.validateInstalled();
+      const actual = Git.validateInstalled();
 
-      expect(Git.validateInstalled).toBeCalled();
-      expect(Git.validateInstalled).toReturn();
+      if (MyError.hasError(actual)) {
+        throw new Error('Failure');
+      } else {
+        expect(actual).toBeUndefined();
+      }
     },
     only_node() {
-      expect(() => {
-        Git.validateInstalled();
-      }).toThrow();
+      const actual = Git.validateInstalled();
+      if (MyError.hasError(actual)) {
+        expect(actual.reason).toStrictEqual(ErrorReasons.gitNotFound);
+      } else {
+        throw new Error('Failure');
+      }
     },
     node_git() {
-      Git.validateInstalled();
+      const actual = Git.validateInstalled();
 
-      expect(Git.validateInstalled).toBeCalled();
-      expect(Git.validateInstalled).toReturn();
+      if (MyError.hasError(actual)) {
+        throw new Error('Failure');
+      } else {
+        expect(actual).toBeUndefined();
+      }
     },
     node_git_conf() {
-      Git.validateInstalled();
+      const actual = Git.validateInstalled();
 
-      expect(Git.validateInstalled).toBeCalled();
-      expect(Git.validateInstalled).toReturn();
+      if (MyError.hasError(actual)) {
+        throw new Error('Failure');
+      } else {
+        expect(actual).toBeUndefined();
+      }
     },
     node_git_conf_npm() {
-      Git.validateInstalled();
+      const actual = Git.validateInstalled();
 
-      expect(Git.validateInstalled).toBeCalled();
-      expect(Git.validateInstalled).toReturn();
+      if (MyError.hasError(actual)) {
+        throw new Error('Failure');
+      } else {
+        expect(actual).toBeUndefined();
+      }
     },
   };
 
@@ -44,24 +58,37 @@ describe('validateInstalled', () => {
   });
 });
 
-describe('canCommiting', () => {
+describe('validateCommiting', () => {
   const testCaseItems = {
     development() {
-      expect(Git.canCommiting()).toBe(true);
+      const actual = Git.validateCommiting();
+      expect(actual).toBeUndefined();
     },
     only_node() {
-      expect(() => {
-        Git.canCommiting();
-      }).toThrow();
+      const actual = Git.validateCommiting();
+
+      if (MyError.hasError(actual)) {
+        expect(actual.reason).toStrictEqual(ErrorReasons.unmanagedException);
+      } else {
+        throw new Error('Failure');
+      }
     },
     node_git() {
-      expect(Git.canCommiting()).toBe(false);
+      const actual = Git.validateCommiting();
+
+      if (MyError.hasError(actual)) {
+        expect(actual.reason).toStrictEqual(ErrorReasons.gitNotConfigure);
+      } else {
+        throw new Error('Failure');
+      }
     },
     node_git_conf() {
-      expect(Git.canCommiting()).toBe(true);
+      const actual = Git.validateCommiting();
+      expect(actual).toBeUndefined();
     },
     node_git_conf_npm() {
-      expect(Git.canCommiting()).toBe(true);
+      const actual = Git.validateCommiting();
+      expect(actual).toBeUndefined();
     },
   };
 
