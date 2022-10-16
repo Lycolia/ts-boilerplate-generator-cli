@@ -27,7 +27,7 @@ export const getProjectOptions = async (): Promise<ProjectOption> => {
 
 getProjectOptions()
   .then((options) => {
-    const err = MyError.hasError(ProjectCreator.createProject(options);
+    const err = MyError.hasError(ProjectCreator.createProject(options));
 
     if (MyError.hasError(err)) {
       exitApp(err);
