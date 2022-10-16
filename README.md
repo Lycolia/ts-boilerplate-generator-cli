@@ -6,13 +6,10 @@ This is generator for TypeScript project boilerplate
 
 ## Support projects
 
-| Target          | [SWC](https://swc.rs/) | [Vite](https://ja.vitejs.dev/) | [Jest](https://jestjs.io/) | [ESLint](https://eslint.org/) | [Prettier](https://prettier.io/) | [Storybook](https://storybook.js.org/) |
-| --------------- | ---------------------- | ------------------------------ | -------------------------- | ----------------------------- | -------------------------------- | -------------------------------------- |
-| Node CLI        | ✅                     | ❌                             | ✅                         | ✅                            | ✅                               | ❌                                     |
-| Next.js v12     | ✅                     | ❌                             | ✅                         | ✅                            | ✅                               | ✅                                     |
-| React v17       | ❌                     | ❌                             | ✅                         | ✅                            | ✅                               | ❌                                     |
-| Vite vanilla-ts | ❌                     | ✅                             | ✅                         | ✅                            | ✅                               | ❌                                     |
-| Node server     | ✅                     | ❌                             | ✅                         | ✅                            | ✅                               | ❌                                     |
+| Target      | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [ESLint](https://eslint.org/) | [Prettier](https://prettier.io/) | [Storybook](https://storybook.js.org/) |
+| ----------- | ---------------------- | -------------------------- | ----------------------------- | -------------------------------- | -------------------------------------- |
+| Node CLI    | ✅                     | ✅                         | ✅                            | ✅                               | ❌                                     |
+| Next.js v12 | ✅                     | ✅                         | ✅                            | ✅                               | ✅                                     |
 
 ## Install
 
@@ -42,12 +39,6 @@ When no option then launch yeoman style generator
       - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
     - `ts-next`
       - create from [React v17 included SSG boilerplate for Next.js v12](https://github.com/Lycolia/ts-next-boilerplate)
-    - `ts-react`
-      - create from [react-router included boilerplate for React v17](https://github.com/Lycolia/ts-react-boilerplate)
-    - `ts-vite-vanilla`
-      - create from [boilerplate for Vite vannila-ts](https://github.com/Lycolia/vite-vanilla-ts-boilerplate)
-    - `ts-server`
-      - create from [blank boilerplate for server app](https://github.com/Lycolia/ts-server-boilerplate)
   - `-V`, `--version` output the version number
   - `-h`, `--help` display help for command
 - Example

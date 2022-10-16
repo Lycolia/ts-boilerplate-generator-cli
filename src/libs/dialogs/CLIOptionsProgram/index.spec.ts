@@ -68,13 +68,13 @@ describe('create', () => {
     process.argv.push('-l');
     process.argv.push('gpl-3.0');
     process.argv.push('-t');
-    process.argv.push('ts-react');
+    process.argv.push('ts-cli');
     // testing
     const argv = CCOP.create();
     expect(argv.author).toBe('foo');
     expect(argv.description).toBe('sample desc');
     expect(argv.license).toBe('gpl-3.0');
-    expect(argv.type).toBe('ts-react');
+    expect(argv.type).toBe('ts-cli');
     expect(argv.useGenerator).toBe(false);
   });
 });
