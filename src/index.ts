@@ -3,7 +3,7 @@
 import { CLIOptionsProgram } from 'src/libs/dialogs/CLIOptionsProgram';
 import { PropmptDialog } from 'src/libs/dialogs/PropmptDialog';
 import { ProjectCreator } from 'src/libs/core/ProjectCreator';
-import { exitApp } from 'src/libs/systems/ProgramExiter';
+import { ProgramExiter } from 'src/libs/systems/ProgramExiter';
 import { ErrorReasons } from 'src/models/ErrorReasons';
 import { ProjectOption } from 'src/models/ProjectOptions';
 import { MyError } from 'src/libs/core/MyError';
@@ -30,9 +30,9 @@ getProjectOptions()
     const err = MyError.hasError(ProjectCreator.createProject(options));
 
     if (MyError.hasError(err)) {
-      exitApp(err);
+      ProgramExiter.exit(err);
     }
   })
   .catch((error) => {
-    exitApp(MyError.create(ErrorReasons.unmanagedException, error));
+    ProgramExiter.exit(MyError.create(ErrorReasons.unmanagedException, error));
   });

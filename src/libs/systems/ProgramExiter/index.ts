@@ -4,7 +4,7 @@ import { AppError } from 'src/models/ErrorReasons/type';
 /**
  * exit this app
  */
-export const exitApp = (err: AppError) => {
+const exit = (err: AppError) => {
   const { reason, error } = err;
   MyLog.error(reason.subject);
   if (reason.message !== undefined) {
@@ -15,4 +15,8 @@ export const exitApp = (err: AppError) => {
   }
 
   process.exit(reason.code);
+};
+
+export const ProgramExiter = {
+  exit,
 };
