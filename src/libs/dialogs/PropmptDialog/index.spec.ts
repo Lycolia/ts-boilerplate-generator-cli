@@ -7,7 +7,7 @@ const testCtx: ProjectOption = {
   description: '2wsxc',
   license: 'AGPL-3.0-or-later',
   projectName: '3edc4rfv',
-  type: 'ts-react',
+  type: 'ts-cli',
 };
 
 describe('prompt', () => {
