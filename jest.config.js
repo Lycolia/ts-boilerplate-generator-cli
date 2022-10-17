@@ -25,7 +25,8 @@ module.exports = {
           },
           baseUrl: '.',
           paths: {
-            'src/*': ['./src/*'],
+            'src/*': ['src/*'],
+            'package.json': ['package.json'],
           },
         },
       },
