@@ -25,7 +25,8 @@ module.exports = {
           },
           baseUrl: '.',
           paths: {
-            'src/*': ['./src/*'],
+            'src/*': ['src/*'],
+            'package.json': ['package.json'],
           },
         },
       },
@@ -36,7 +37,4 @@ module.exports = {
     'jest-watch-typeahead/testname',
   ],
   silent: false,
-  moduleNameMapper: {
-    'package.json': '<rootDir>/package.json',
-  },
 };

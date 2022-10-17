@@ -17,10 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "src/*": [
-        "./src/*"
+        "src/*"
       ],
       "package.json": [
-        "./package.json"
+        "package.json"
       ]
     }
   }
