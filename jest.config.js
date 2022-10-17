@@ -37,7 +37,4 @@ module.exports = {
     'jest-watch-typeahead/testname',
   ],
   silent: false,
-  moduleNameMapper: {
-    'package.json': '<rootDir>/package.json',
-  },
 };
