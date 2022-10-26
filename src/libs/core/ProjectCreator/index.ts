@@ -14,12 +14,13 @@ import { MyError } from 'src/libs/core/MyError';
  * @param projectOpt
  */
 const createProject = (projectOpt: ProjectOption) => {
+  MyLog.info('Checking enviroments...');
   const dest = getDestDirWithValidate(projectOpt.projectName);
-
   if (MyError.hasError(dest)) {
     return dest;
   }
 
+  MyLog.info('Cloning Project...');
   const repoUrl = Repositories[projectOpt.type];
   const gitError = Git.clone(repoUrl);
   if (MyError.hasError(gitError)) {
@@ -35,8 +36,11 @@ const createProject = (projectOpt: ProjectOption) => {
   cleanup(dest.fullPath);
   updateReadMe(projectOpt, dest.fullPath);
   updatePackageJson(projectOpt, dest.fullPath);
+
+  MyLog.info('Installing npm modules...');
   installNpmModules(dest.fullPath);
   Git.init(dest.fullPath);
+
   MyLog.info('Project created!!');
   MyLog.info(`Starting project begin by typing: cd ${dest.dirName}`);
 };
@@ -46,8 +50,6 @@ const createProject = (projectOpt: ProjectOption) => {
  * @param projectName
  */
 const getDestDirWithValidate = (projectName: string) => {
-  MyLog.info('Checking enviroments...');
-
   const validateInstalled = Git.validateInstalled();
   if (MyError.hasError(validateInstalled)) {
     return validateInstalled;

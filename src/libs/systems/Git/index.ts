@@ -31,7 +31,6 @@ const validateCommiting = () => {
  */
 const clone = (cloneUrl: string) => {
   try {
-    MyLog.info('Cloning Project...');
     execSync(`git clone ${cloneUrl}`, {
       stdio: 'ignore',
     });

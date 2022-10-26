@@ -1,6 +1,5 @@
 import { execSync } from 'child_process';
 import { ErrorReasons } from 'src/models/ErrorReasons';
-import { MyLog } from 'src/libs/core/MyLog';
 import { MyError } from 'src/libs/core/MyError';
 
 /**
@@ -9,7 +8,6 @@ import { MyError } from 'src/libs/core/MyError';
  */
 export const installNpmModules = (projectDest: string) => {
   try {
-    MyLog.info('Installing npm modules...');
     execSync(`cd ${projectDest} && npm ci && npx prettier -w package.json`, {
       stdio: 'ignore',
     });
