@@ -9,7 +9,7 @@ This is generator for TypeScript project boilerplate
 | Target      | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [ESLint](https://eslint.org/) | [Prettier](https://prettier.io/) | [Storybook](https://storybook.js.org/) |
 | ----------- | ---------------------- | -------------------------- | ----------------------------- | -------------------------------- | -------------------------------------- |
 | Node CLI    | ✅                     | ✅                         | ✅                            | ✅                               | ❌                                     |
-| Next.js v12 | ✅                     | ✅                         | ✅                            | ✅                               | ✅                                     |
+| Next.js v13 | ✅                     | ✅                         | ✅                            | ✅                               | ✅                                     |
 
 ## Install
 
@@ -38,7 +38,7 @@ When no option then launch yeoman style generator
     - `ts-cli`
       - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
     - `ts-next`
-      - create from [React v18 included SSG boilerplate for Next.js v12](https://github.com/Lycolia/ts-next-boilerplate)
+      - create from [React v18 included SSG boilerplate for Next.js v13](https://github.com/Lycolia/ts-next-boilerplate)
   - `-V`, `--version` output the version number
   - `-h`, `--help` display help for command
 - Example
