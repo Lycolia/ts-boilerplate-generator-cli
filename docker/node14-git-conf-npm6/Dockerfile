@@ -1,4 +1,4 @@
-FROM node:14-alpine3.12
+FROM node:17-alpine3.12
 RUN apk add git
 RUN git config --system user.name foo
 RUN git config --system user.email bar@example.com
