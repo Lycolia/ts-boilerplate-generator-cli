@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.15.4",
+  "version": "0.18.0",
   "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
@@ -37,7 +37,7 @@
     "chalk": "^4.1.1",
     "commander": "^8.0.0",
     "prompts": "^2.4.1",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
     "@lycolia/eslint-config": "^0.2.0",
