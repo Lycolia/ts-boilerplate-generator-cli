@@ -13,7 +13,7 @@
   ],
   "postUpgradeTasks": {
     "commands": ["npm version minor"],
-    "fileFilters": ["yarn.lock", "**/*.js"],
+    "fileFilters": ["package.json", "package-lock.json"],
     "executionMode": "update"
   }
 }
