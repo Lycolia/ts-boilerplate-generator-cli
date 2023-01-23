@@ -8,11 +8,5 @@
       "matchDatasources": ["npm"],
       "stabilityDays": 7
     }
-  ],
-  "postUpgradeTasks": {
-    "commands": ["npm version minor"],
-    "fileFilters": ["package.json", "package-lock.json"],
-    "executionMode": "update"
-  },
-  "allowedPostUpgradeCommands": ["^npm version minor$"]
+  ]
 }
