@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "bumpVersion": "minor",
+  "lockFileMaintenance": { "enabled": true },
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "stabilityDays": 7
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": ["npm version minor"],
+    "fileFilters": ["yarn.lock", "**/*.js"],
+    "executionMode": "update"
+  }
+}
