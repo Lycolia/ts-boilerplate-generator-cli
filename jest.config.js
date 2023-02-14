@@ -1,5 +1,5 @@
 module.exports = {
-  clearMocks: true,
+  resetMocks: true,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   testEnvironment: 'node',

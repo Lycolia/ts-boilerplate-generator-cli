@@ -50,10 +50,6 @@ describe('renameDirectory', () => {
     }
   });
 
-  afterAll(() => {
-    jest.clearAllMocks();
-  });
-
   it('old dir exists', () => {
     mkdirSync(oldPath);
     const actual = File.renameDirectory(repoUrl, 'new');

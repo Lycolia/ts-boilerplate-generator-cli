@@ -5,10 +5,6 @@ import { ProgramExiter } from '.';
 describe('exit', () => {
   const spiedExit = jest.spyOn(process, 'exit').mockImplementation();
 
-  afterAll(() => {
-    jest.clearAllMocks();
-  });
-
   it('call exit', () => {
     ProgramExiter.exit(MyError.create(ErrorReasons.unmanagedException));
 
