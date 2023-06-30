@@ -3,12 +3,12 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "@lycolia/eslint-config"
+    "plugin:jest/style",
+    "plugin:jest/recommended",
+    "@lycolia/eslint-config",
+    "prettier"
   ],
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "parserOptions": {
     "project": "./tsconfig.json"
   }
