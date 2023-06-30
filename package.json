@@ -1,6 +1,6 @@
 {
   "name": "@lycolia/ts-boilerplate-generator-cli",
-  "version": "0.20.10",
+  "version": "0.20.11",
   "description": "ts-server-boilerplate project Generator CLI",
   "keywords": [
     "typescript",
@@ -27,7 +27,7 @@
     "type-check": "tsc --noEmit && eslint \"**/*.{js,ts}\" .",
     "build": "rm -Rf dist/ && swc src/ --config-file .swcrc_build -d dist/",
     "test": "jest --watch",
-    "headless-test": "jest",
+    "headless-test": "jest --colors",
     "test-all": "./test-all.zsh",
     "coverage": "jest --coverage"
   },

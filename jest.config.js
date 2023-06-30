@@ -7,6 +7,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'js'],
   collectCoverageFrom: ['src/**/*.{ts,js}'],
   testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|dist)[/\\\\]'],
+  globalSetup: '<rootDir>/jest.setup.js',
   transform: {
     '^.+\\.ts$': [
       '@swc/jest',
