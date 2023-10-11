@@ -28,7 +28,7 @@
     "build": "node build.js",
     "test": "./test.sh --watch",
     "headless-test": "./test.sh",
-    "test-all": "./test-all.zsh",
+    "test-all": "./test-all.sh",
     "coverage": "jest --coverage"
   },
   "author": "Lycolia",
