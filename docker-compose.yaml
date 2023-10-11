@@ -34,20 +34,3 @@ services:
     command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
     environment:
       EXEC_PLATFORM: node-git-conf
-  # installed node and npm, with configured git
-  node16-git-conf-npm8:
-    build: ./docker/node16-git-conf-npm8/
-    volumes:
-      - .:/work
-      - node16-git-conf-npm8_testdir:/test
-    command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
-    environment:
-      EXEC_PLATFORM: node-git-conf-npm
-  node14-git-conf-npm6:
-    build: ./docker/node14-git-conf-npm6/
-    volumes:
-      - .:/work
-      - node14-git-conf-npm6_testdir:/test
-    command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
-    environment:
-      EXEC_PLATFORM: node-git-conf-npm
