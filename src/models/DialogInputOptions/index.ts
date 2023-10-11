@@ -1,6 +1,6 @@
 import { PromptObject } from 'prompts';
 import validateNpmPackageName from 'validate-npm-package-name';
-import { ProjectTypes, ProjectOptionDef } from '../ProjectOptions';
+import { ProjectTypes } from '../ProjectOptions';
 
 /**
  * project types choice
