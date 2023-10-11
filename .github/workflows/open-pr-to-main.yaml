@@ -68,4 +68,5 @@ jobs:
           git config --global user.email test@example.com
           git config --global user.name test
       - name: run testing
+        shell: bash
         run: npm run headless-test
