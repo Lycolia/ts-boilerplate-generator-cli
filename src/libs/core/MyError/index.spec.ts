@@ -1,3 +1,5 @@
+import { deepStrictEqual, strictEqual } from 'node:assert';
+import { describe, it } from 'node:test';
 import { MyError } from 'src/libs/core/MyError';
 
 describe('create', () => {
@@ -8,7 +10,7 @@ describe('create', () => {
       message: 'bar',
     };
     const actual = MyError.create(param);
-    expect(actual).toStrictEqual({
+    deepStrictEqual(actual, {
       reason: {
         ...param,
       },
@@ -24,7 +26,7 @@ describe('create', () => {
     };
     const err = new Error('foo');
     const actual = MyError.create(param, err);
-    expect(actual).toStrictEqual({
+    deepStrictEqual(actual, {
       reason: {
         ...param,
       },
@@ -41,7 +43,7 @@ describe('hasError', () => {
       message: 'bar',
     };
     const actual = MyError.hasError(MyError.create(param));
-    expect(actual).toBe(true);
+    strictEqual(actual, true);
   });
 
   it('has not error', () => {
@@ -51,6 +53,6 @@ describe('hasError', () => {
       message: 'bar',
     };
     const actual = MyError.hasError(param);
-    expect(actual).toBe(false);
+    strictEqual(actual, false);
   });
 });
