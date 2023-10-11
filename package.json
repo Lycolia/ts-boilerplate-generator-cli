@@ -26,8 +26,8 @@
     "dev": "npm run build && node --inspect-brk dist/index.js",
     "type-check": "tsc --noEmit && eslint \"**/*.{js,ts}\" .",
     "build": "node build.js",
-    "test": "jest --watch",
-    "headless-test": "jest --colors",
+    "test": "./test.sh --watch",
+    "headless-test": "./test.sh",
     "test-all": "./test-all.zsh",
     "coverage": "jest --coverage"
   },
