@@ -25,5 +25,5 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.referencesCodeLens.enabled": true,
   "typescript.validate.enable": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "relative"
 }

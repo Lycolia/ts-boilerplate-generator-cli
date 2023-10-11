@@ -1,14 +1,12 @@
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import path from 'path';
-import { ProjectOption } from 'src/models/ProjectOptions';
-import { Repositories } from 'src/models/Repositories';
+import { ProjectOption } from '../../../models/ProjectOptions';
+import { Repositories } from '../../../models/Repositories';
+import { Git } from '../../systems/Git';
+import { installNpmModules } from '../../systems/Npm';
+import { replacePackageJson } from '../../systems/PackageJsonReplacer';
+import { MyError } from '../MyError';
 import { MyLog } from '../MyLog';
-import { File } from 'src/libs/systems/File';
-import { Git } from 'src/libs/systems/Git';
-import { installNpmModules } from 'src/libs/systems/Npm';
-import { replacePackageJson } from 'src/libs/systems/PackageJsonReplacer';
-import { MyError } from 'src/libs/core/MyError';
-
 /**
  * create project
  * @param projectOpt

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import { CLIOptionsProgram } from 'src/libs/dialogs/CLIOptionsProgram';
-import { PropmptDialog } from 'src/libs/dialogs/PropmptDialog';
-import { ProjectCreator } from 'src/libs/core/ProjectCreator';
-import { ProgramExiter } from 'src/libs/systems/ProgramExiter';
-import { ErrorReasons } from 'src/models/ErrorReasons';
-import { ProjectOption } from 'src/models/ProjectOptions';
-import { MyError } from 'src/libs/core/MyError';
+import { MyError } from './libs/core/MyError';
+import { ProjectCreator } from './libs/core/ProjectCreator';
+import { CLIOptionsProgram } from './libs/dialogs/CLIOptionsProgram';
+import { PropmptDialog } from './libs/dialogs/PropmptDialog';
+import { ProgramExiter } from './libs/systems/ProgramExiter';
+import { ErrorReasons } from './models/ErrorReasons';
+import { ProjectOption } from './models/ProjectOptions';
 
 /**
  * get project options (argument | dialog)

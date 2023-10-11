@@ -1,4 +1,4 @@
-import { AppError, ErrorReason } from 'src/models/ErrorReasons/type';
+import { ErrorReason, AppError } from '../../../models/ErrorReasons/type';
 
 const create = (reason: ErrorReason, error?: unknown): AppError => {
   return { reason, error };

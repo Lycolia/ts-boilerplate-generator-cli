@@ -1,4 +1,4 @@
-import { MyError } from 'src/libs/core/MyError';
+import { MyError } from '.';
 
 describe('create', () => {
   it('only reason', () => {
