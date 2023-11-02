@@ -3,52 +3,47 @@ import { ErrorReasons } from '../../../models/ErrorReasons';
 import { MyError } from '../../core/MyError';
 import { MyLog } from '../../core/MyLog';
 
-const validateInstalled = () => {
-  try {
-    execSync('git --help');
-  } catch (error) {
-    return MyError.create(ErrorReasons.gitNotFound, error);
-  }
-};
-
-const validateCommiting = () => {
-  try {
-    const configs = execSync('git config --list').toString();
-
-    if (
-      (configs.match(/user\.name=.+/) !== null) === false ||
-      (configs.match(/user\.email=.+/) !== null) === false
-    ) {
-      return MyError.create(ErrorReasons.gitNotConfigure);
+export namespace Git {
+  export const validateInstalled = () => {
+    try {
+      execSync('git --help');
+    } catch (error) {
+      return MyError.create(ErrorReasons.gitNotFound, error);
     }
-  } catch (error) {
-    return MyError.create(ErrorReasons.unmanagedException, error);
-  }
-};
+  };
 
-/**
- * @param cloneUrl git clone url
- */
-const clone = (cloneUrl: string) => {
-  try {
-    execSync(`git clone ${cloneUrl}`, {
-      stdio: 'ignore',
-    });
-  } catch (error) {
-    return MyError.create(ErrorReasons.failPull, error);
-  }
-};
+  export const validateCommiting = () => {
+    try {
+      const configs = execSync('git config --list').toString();
 
-const init = (projectDest: string) => {
-  MyLog.info('Initialize Git...');
-  execSync(`git -C ${projectDest} init`);
-  execSync(`git -C ${projectDest} add -A`);
-  execSync(`git -C ${projectDest} commit -m "inital commit"`);
-};
+      if (
+        (configs.match(/user\.name=.+/) !== null) === false ||
+        (configs.match(/user\.email=.+/) !== null) === false
+      ) {
+        return MyError.create(ErrorReasons.gitNotConfigure);
+      }
+    } catch (error) {
+      return MyError.create(ErrorReasons.unmanagedException, error);
+    }
+  };
 
-export const Git = {
-  validateInstalled,
-  validateCommiting,
-  clone,
-  init,
-};
+  /**
+   * @param cloneUrl git clone url
+   */
+  export const clone = (cloneUrl: string) => {
+    try {
+      execSync(`git clone ${cloneUrl}`, {
+        stdio: 'ignore',
+      });
+    } catch (error) {
+      return MyError.create(ErrorReasons.failPull, error);
+    }
+  };
+
+  export const init = (projectDest: string) => {
+    MyLog.info('Initialize Git...');
+    execSync(`git -C ${projectDest} init`);
+    execSync(`git -C ${projectDest} add -A`);
+    execSync(`git -C ${projectDest} commit -m "inital commit"`);
+  };
+}

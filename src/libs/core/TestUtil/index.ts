@@ -9,25 +9,23 @@ type TestingPlatform =
   | 'node_git_conf'
   | 'node_git_conf_npm';
 
-/**
- * get execute platform for testing
- * @returns
- */
-const getTestingPlatform = (): TestingPlatform => {
-  switch (process.env.EXEC_PLATFORM) {
-    case 'only-node':
-      return 'only_node';
-    case 'node-git':
-      return 'node_git';
-    case 'node-git-conf':
-      return 'node_git_conf';
-    case 'node-git-conf-npm':
-      return 'node_git_conf_npm';
-    default:
-      return 'development';
-  }
-};
-
-export const TestUtil = {
-  getTestingPlatform,
-};
+export namespace TestUtil {
+  /**
+   * get execute platform for testing
+   * @returns
+   */
+  export const getTestingPlatform = (): TestingPlatform => {
+    switch (process.env.EXEC_PLATFORM) {
+      case 'only-node':
+        return 'only_node';
+      case 'node-git':
+        return 'node_git';
+      case 'node-git-conf':
+        return 'node_git_conf';
+      case 'node-git-conf-npm':
+        return 'node_git_conf_npm';
+      default:
+        return 'development';
+    }
+  };
+}

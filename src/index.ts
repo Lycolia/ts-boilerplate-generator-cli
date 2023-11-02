@@ -4,7 +4,7 @@ import { MyError } from './libs/core/MyError';
 import { ProjectCreator } from './libs/core/ProjectCreator';
 import { CLIOptionsProgram } from './libs/dialogs/CLIOptionsProgram';
 import { PropmptDialog } from './libs/dialogs/PropmptDialog';
-import { ProgramExiter } from './libs/systems/ProgramExiter';
+import { MyProgram } from './libs/systems/MyProgram';
 import { ErrorReasons } from './models/ErrorReasons';
 import { ProjectOption } from './models/ProjectOptions';
 
@@ -30,9 +30,9 @@ getProjectOptions()
     const err = ProjectCreator.createProject(options);
 
     if (MyError.hasError(err)) {
-      ProgramExiter.exit(err);
+      MyProgram.exit(err);
     }
   })
   .catch((error) => {
-    ProgramExiter.exit(MyError.create(ErrorReasons.unmanagedException, error));
+    MyProgram.exit(MyError.create(ErrorReasons.unmanagedException, error));
   });
