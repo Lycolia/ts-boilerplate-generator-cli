@@ -1,17 +1,8 @@
-import { ErrorReason, AppError } from '../../../models/ErrorReasons/type';
+export class MyError extends Error {
+  public error: unknown;
 
-const create = (reason: ErrorReason, error?: unknown): AppError => {
-  return { reason, error };
-};
-
-const hasError = <T>(value: T | AppError): value is AppError => {
-  if (value !== null && typeof value === 'object') {
-    return 'reason' in value;
+  constructor(message: string, error: unknown) {
+    super(message);
+    this.error = error;
   }
-  return false;
-};
-
-export const MyError = {
-  create,
-  hasError,
-};
+}

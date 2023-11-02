@@ -1,58 +1,13 @@
-import { deepStrictEqual, strictEqual } from 'node:assert';
-import { describe, it } from 'node:test';
-import { MyError } from 'src/libs/core/MyError';
+import { MyError } from '.';
 
-describe('create', () => {
-  it('only reason', () => {
-    const param = {
-      code: 100,
-      subject: 'foo',
-      message: 'bar',
-    };
-    const actual = MyError.create(param);
-    deepStrictEqual(actual, {
-      reason: {
-        ...param,
-      },
-      error: undefined,
-    });
-  });
+describe('constructor', () => {
+  it('生成されるオブジェクトの構造が正しいこと', () => {
+    const actual = new MyError('foo', 123);
 
-  it('reason with error', () => {
-    const param = {
-      code: 100,
-      subject: 'foo',
-      message: 'bar',
-    };
-    const err = new Error('foo');
-    const actual = MyError.create(param, err);
-    deepStrictEqual(actual, {
-      reason: {
-        ...param,
-      },
-      error: err,
-    });
-  });
-});
-
-describe('hasError', () => {
-  it('has error', () => {
-    const param = {
-      code: 100,
-      subject: 'foo',
-      message: 'bar',
-    };
-    const actual = MyError.hasError(MyError.create(param));
-    strictEqual(actual, true);
-  });
-
-  it('has not error', () => {
-    const param = {
-      code: 100,
-      subject: 'foo',
-      message: 'bar',
-    };
-    const actual = MyError.hasError(param);
-    strictEqual(actual, false);
+    // エラーを継承していること
+    expect(actual).toBeInstanceOf(Error);
+    // プロパティに正しく設定されていること
+    expect(actual.message).toBe('foo');
+    expect(actual.error).toBe(123);
   });
 });
