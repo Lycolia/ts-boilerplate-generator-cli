@@ -1,9 +1,9 @@
 import { existsSync, rmSync, mkdirSync, appendFileSync } from 'fs';
 import path from 'path';
 import { ProjectCreator } from '.';
-import { TestUtil } from 'src/libs/core/TestUtil';
-import { MyError } from 'src/libs/core/MyError';
-import { ErrorReasons } from 'src/models/ErrorReasons';
+import { ErrorReasons } from '../../../models/ErrorReasons';
+import { MyError } from '../MyError';
+import { TestUtil } from '../TestUtil';
 
 const platform = TestUtil.getTestingPlatform();
 const baseDir = 'test-project';

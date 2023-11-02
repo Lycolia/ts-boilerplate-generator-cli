@@ -1,5 +1,5 @@
-import { ProjectOption } from 'src/models/ProjectOptions';
 import { replacePackageJson } from '.';
+import { ProjectOption } from '../../../models/ProjectOptions';
 
 describe('replacePackageJson', () => {
   const pkgJson = {

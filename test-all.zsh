@@ -12,7 +12,7 @@ runner() {
     image_name=$1
     echo "
 ${fg_bold[green]}run $image_name${reset_color}"
-    docker-compose run --rm $image_name
+    docker compose run --rm $image_name
 }
 
 beginTime=`date +%s`

@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { MyError } from 'src/libs/core/MyError';
-import { ErrorReasons } from 'src/models/ErrorReasons';
+import { ErrorReasons } from '../../../models/ErrorReasons';
+import { MyError } from '../../core/MyError';
 
 /**
  * get current working directory path,

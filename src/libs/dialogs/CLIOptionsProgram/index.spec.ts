@@ -1,5 +1,5 @@
-import { ProjectOptionDef } from 'src/models/ProjectOptions';
 import { CLIOptionsProgram as CCOP } from '.';
+import { ProjectOptionDef } from '../../../models/ProjectOptions';
 
 /**
  * every time after it

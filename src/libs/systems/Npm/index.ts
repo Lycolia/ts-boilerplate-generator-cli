@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
-import { ErrorReasons } from 'src/models/ErrorReasons';
-import { MyError } from 'src/libs/core/MyError';
+import { ErrorReasons } from '../../../models/ErrorReasons';
+import { MyError } from '../../core/MyError';
 
 /**
  * install npm modules
