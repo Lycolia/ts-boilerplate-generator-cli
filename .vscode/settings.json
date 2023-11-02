@@ -10,20 +10,23 @@
   "git.suggestSmartCommit": false,
   "git.autofetch": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.formatOnSave": true,
   "[javascript]": {
     "editor.tabSize": 2
   },
+  "javascript.suggest.paths": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[typescript]": {
     "editor.tabSize": 2
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.referencesCodeLens.enabled": true,
   "typescript.validate.enable": true,
-  "typescript.preferences.importModuleSpecifier": "relative"
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "eslint.workingDirectories": [{ "mode": "auto" }]
 }
