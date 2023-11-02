@@ -1,8 +1,8 @@
 import prompts from 'prompts';
-import { ProjectOption } from 'src/models/ProjectOptions';
-import { DialogInputOptions } from 'src/models/DialogInputOptions';
-import { ErrorReasons } from 'src/models/ErrorReasons';
-import { MyError } from 'src/libs/core/MyError';
+import { DialogInputOptions } from '../../../models/DialogInputOptions';
+import { ErrorReasons } from '../../../models/ErrorReasons';
+import { ProjectOption } from '../../../models/ProjectOptions';
+import { MyError } from '../../core/MyError';
 
 /**
  * @throws {AppError}

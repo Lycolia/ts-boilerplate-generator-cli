@@ -1,5 +1,6 @@
 module.exports = {
   resetMocks: true,
+  clearMocks: true,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   testEnvironment: 'node',
@@ -23,11 +24,6 @@ module.exports = {
             tsx: false,
             decorators: false,
             dynamicImport: false,
-          },
-          baseUrl: '.',
-          paths: {
-            'src/*': ['src/*'],
-            'package.json': ['package.json'],
           },
         },
       },

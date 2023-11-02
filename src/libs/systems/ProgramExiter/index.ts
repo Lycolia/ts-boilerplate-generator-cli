@@ -1,5 +1,5 @@
-import { MyLog } from 'src/libs/core/MyLog';
-import { AppError } from 'src/models/ErrorReasons/type';
+import { AppError } from '../../../models/ErrorReasons/type';
+import { MyLog } from '../../core/MyLog';
 
 /**
  * exit this app
