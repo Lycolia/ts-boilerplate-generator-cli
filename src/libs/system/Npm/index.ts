@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 import { ErrorReasons } from '../../../models/ErrorReasons';
-import { MyError } from '../../core/MyError';
+import { MyError } from '../../util/MyError';
 
 export namespace Npm {
   /**
@@ -13,7 +13,7 @@ export namespace Npm {
         stdio: 'ignore',
       });
     } catch (error) {
-      return MyError.create(ErrorReasons.failNpmInst, error);
+      return new MyError(ErrorReasons.failNpmInst, error);
     }
   };
 }

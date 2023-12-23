@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, rmSync } from 'fs';
 import path from 'path';
 import { File } from '.';
 import { ErrorReasons } from '../../../models/ErrorReasons';
-import { MyError } from '../../core/MyError';
+import { MyError } from '../../util/MyError';
 
 /**
  * working base
@@ -30,7 +30,7 @@ describe('availableDestination', () => {
   });
   it('unavailable (exists)', () => {
     const actual = File.availableDestination(basePath);
-    if (MyError.hasError(actual)) {
+    if (actual instanceof MyError) {
       expect(actual.reason).toBe(ErrorReasons.existsDestPath);
     }
   });
@@ -59,14 +59,14 @@ describe('renameDirectory', () => {
   it('new dir exists', () => {
     mkdirSync(newPath);
     const actual = File.renameDirectory(repoUrl, 'new');
-    if (MyError.hasError(actual)) {
+    if (actual instanceof MyError) {
       expect(actual.reason).toStrictEqual(ErrorReasons.mvCmdFail);
     }
   });
 
   it('old, new dir not exists', () => {
     const actual = File.renameDirectory(repoUrl, 'new');
-    if (MyError.hasError(actual)) {
+    if (actual instanceof MyError) {
       expect(actual.reason).toStrictEqual(ErrorReasons.mvCmdFail);
     }
   });

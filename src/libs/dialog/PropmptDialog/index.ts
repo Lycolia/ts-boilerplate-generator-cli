@@ -2,7 +2,7 @@ import prompts from 'prompts';
 import { DialogInputOptions } from '../../../models/DialogInputOptions';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 import { ProjectOption } from '../../../models/ProjectOptions';
-import { MyError } from '../../core/MyError';
+import { MyError } from '../../util/MyError';
 
 export namespace PropmptDialog {
   /**
@@ -11,7 +11,7 @@ export namespace PropmptDialog {
   export const prompt = async () => {
     return (await prompts(DialogInputOptions, {
       onCancel: () => {
-        throw MyError.create(ErrorReasons.cancelledCreatePj);
+        throw new MyError(ErrorReasons.cancelledCreatePj);
       },
     })) as Promise<ProjectOption>;
   };

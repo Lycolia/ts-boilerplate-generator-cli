@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { MyError } from './libs/core/MyError';
-import { ProjectCreator } from './libs/core/ProjectCreator';
-import { CLIOptionsProgram } from './libs/dialogs/CLIOptionsProgram';
-import { PropmptDialog } from './libs/dialogs/PropmptDialog';
-import { MyProgram } from './libs/systems/MyProgram';
+import { MyError } from './libs/util/MyError';
+import { ProjectCreator } from './libs/util/ProjectCreator';
+import { CLIOptionsProgram } from './libs/dialog/CLIOptionsProgram';
+import { PropmptDialog } from './libs/dialog/PropmptDialog';
+import { MyProgram } from './libs/system/MyProgram';
 import { ErrorReasons } from './models/ErrorReasons';
 import { ProjectOption } from './models/ProjectOptions';
 
@@ -29,10 +29,10 @@ getProjectOptions()
   .then((options) => {
     const err = ProjectCreator.createProject(options);
 
-    if (MyError.hasError(err)) {
+    if (err instanceof MyError) {
       MyProgram.exit(err);
     }
   })
   .catch((error) => {
-    MyProgram.exit(MyError.create(ErrorReasons.unmanagedException, error));
+    MyProgram.exit(new MyError(ErrorReasons.unmanagedException, error));
   });

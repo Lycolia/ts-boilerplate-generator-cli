@@ -1,18 +1,18 @@
 import { execSync } from 'child_process';
+import { MyError } from '../../util/MyError';
+import { MyLog } from '../../util/MyLog';
 import { ErrorReasons } from '../../../models/ErrorReasons';
-import { MyError } from '../../core/MyError';
-import { MyLog } from '../../core/MyLog';
 
 export namespace Git {
-  export const validateInstalled = () => {
+  export const hasInstalled = () => {
     try {
       execSync('git --help');
     } catch (error) {
-      return MyError.create(ErrorReasons.gitNotFound, error);
+      return new MyError(ErrorReasons.gitNotFound, error);
     }
   };
 
-  export const validateCommiting = () => {
+  export const canCommit = () => {
     try {
       const configs = execSync('git config --list').toString();
 
@@ -20,10 +20,10 @@ export namespace Git {
         (configs.match(/user\.name=.+/) !== null) === false ||
         (configs.match(/user\.email=.+/) !== null) === false
       ) {
-        return MyError.create(ErrorReasons.gitNotConfigure);
+        return new MyError(ErrorReasons.gitNotConfigure, undefined);
       }
     } catch (error) {
-      return MyError.create(ErrorReasons.unmanagedException, error);
+      return new MyError(ErrorReasons.unmanagedException, error);
     }
   };
 
@@ -36,7 +36,7 @@ export namespace Git {
         stdio: 'ignore',
       });
     } catch (error) {
-      return MyError.create(ErrorReasons.failPull, error);
+      return new MyError(ErrorReasons.failPull, error);
     }
   };
 

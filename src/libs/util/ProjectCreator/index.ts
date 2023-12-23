@@ -2,11 +2,10 @@ import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import path from 'path';
 import { ProjectOption } from '../../../models/ProjectOptions';
 import { Repositories } from '../../../models/Repositories';
-import { Git } from '../../systems/Git';
-import { installModules } from '../../systems/Npm';
-import { replacePackageJson } from '../../systems/PackageJsonReplacer';
+import { Git } from '../../system/Git';
 import { MyError } from '../MyError';
 import { MyLog } from '../MyLog';
+import { MyFile } from '../../system/MyFile';
 
 export namespace ProjectCreator {
   /**
@@ -16,20 +15,20 @@ export namespace ProjectCreator {
   export const createProject = (projectOpt: ProjectOption) => {
     MyLog.info('Checking enviroments...');
     const dest = getDestDirWithValidate(projectOpt.projectName);
-    if (MyError.hasError(dest)) {
+    if (dest instanceof MyError) {
       return dest;
     }
 
     MyLog.info('Cloning Project...');
     const repoUrl = Repositories[projectOpt.type];
     const gitError = Git.clone(repoUrl);
-    if (MyError.hasError(gitError)) {
+    if (gitError instanceof MyError) {
       return gitError;
     }
 
     MyLog.info('Parsing project options...');
-    const renameError = File.renameDirectory(repoUrl, dest.dirName);
-    if (MyError.hasError(renameError)) {
+    const renameError = MyFile.renameDir(repoUrl, dest.dirName);
+    if (renameError instanceof MyError) {
       return renameError;
     }
 
@@ -50,23 +49,23 @@ export namespace ProjectCreator {
    * @param projectName
    */
   export const getDestDirWithValidate = (projectName: string) => {
-    const validateInstalled = Git.validateInstalled();
-    if (MyError.hasError(validateInstalled)) {
+    const validateInstalled = Git.hasInstalled();
+    if (validateInstalled instanceof Error) {
       return validateInstalled;
     }
-    const canCommiting = Git.validateCommiting();
-    if (MyError.hasError(canCommiting)) {
+    const canCommiting = Git.canCommit();
+    if (canCommiting instanceof Error) {
       return canCommiting;
     }
 
-    const cwdPath = File.getCwdPath();
-    if (MyError.hasError(cwdPath)) {
+    const cwdPath = MyFile.getCwdPath();
+    if (cwdPath instanceof Error) {
       return cwdPath;
     }
     const dirName = File.getDirNameFromProjectName(projectName);
     const fullPath = path.join(cwdPath, dirName);
     const availabled = File.availableDestination(fullPath);
-    if (MyError.hasError(availabled)) {
+    if (availabled instanceof MyError) {
       return availabled;
     }
 

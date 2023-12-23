@@ -1,5 +1,5 @@
 import { AppError } from '../../../models/ErrorReasons/type';
-import { MyLog } from '../../core/MyLog';
+import { MyLog } from '../../util/MyLog';
 
 export namespace MyProgram {
   export const exit = (err: AppError) => {

@@ -1,46 +1,41 @@
-import { ErrorReason } from './type';
-
 export const ErrorReasons = {
-  ok: { code: 0, subject: 'OK', message: 'OK' } as ErrorReason,
+  ok: { code: 0, subject: 'OK', message: 'OK' },
   gitNotFound: {
-    code: 1,
-    subject: 'Git not found',
-    message: 'should install Git or export Git path',
-  } as ErrorReason,
-  gitNotConfigure: {
-    code: 2,
-    subject: 'Git not configure',
-    message: 'should configure Git user.name and user.email',
-  } as ErrorReason,
-  cdNotExists: {
     code: 100,
-    subject: 'Current directory may does not exist',
-    message: 'be retry in existing directory',
-  } as ErrorReason,
-  existsDestPath: {
+    message: 'Git not found\nshould install Git or export Git path',
+  },
+  gitNotConfigure: {
     code: 101,
-    subject: 'Project directory already exists',
-    message: 'please specify another project name',
-  } as ErrorReason,
-  mvCmdFail: {
+    message: 'Git not configure\nshould configure Git user.name and user.email',
+  },
+  cdNotExists: {
+    code: 102,
+    message:
+      'Current directory may does not exist\nbe retry in existing directory',
+  },
+  existsDestPath: {
     code: 103,
-    subject: 'failed create project directory',
-  } as ErrorReason,
+    message:
+      'Project directory already exists\nplease specify another project name',
+  },
+  mvCmdFail: {
+    code: 104,
+    message: 'failed create project directory',
+  },
   failPull: {
-    code: 200,
-    subject: 'failed git pull from boilerplate repository',
-  } as ErrorReason,
+    code: 105,
+    message: 'failed git pull from boilerplate repository',
+  },
   cancelledCreatePj: {
-    code: 300,
-    subject: 'Cancelled project creation by user',
-    message: 'be retry create project',
-  } as ErrorReason,
+    code: 106,
+    message: 'Cancelled project creation by user\nbe retry create project',
+  },
   failNpmInst: {
-    code: 400,
-    subject: 'failed npm install',
-  } as ErrorReason,
+    code: 107,
+    message: 'failed npm install',
+  },
   unmanagedException: {
-    code: 999,
-    subject: 'unmanaged exception has occurred',
-  } as ErrorReason,
-};
+    code: 1,
+    message: 'unmanaged exception has occurred',
+  },
+} as const;

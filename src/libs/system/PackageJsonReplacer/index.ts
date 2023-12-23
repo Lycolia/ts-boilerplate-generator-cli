@@ -15,8 +15,7 @@ type PackageJson = {
 
 export namespace PackageJsonReplacer {
   /**
-   * @param pkgJson
-   * @param projectOpt
+   * @param pkgJsonaa   * @param projectOpt
    */
   export const replacePackageJson = (
     pkgJson: PackageJson,

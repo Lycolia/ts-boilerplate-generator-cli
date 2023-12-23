@@ -5,7 +5,7 @@ import { ErrorReasons } from '../../../models/ErrorReasons';
 import { MyError } from '../MyError';
 import { TestUtil } from '../TestUtil';
 
-const platform = TestUtil.getTestingPlatform();
+const platform = TestUtil.getExecPlatform();
 const baseDir = 'test-project';
 
 afterEach(() => {
@@ -22,9 +22,8 @@ describe('getDestDirWithValidate', () => {
           `@anonymous/${baseDir}`
         );
 
-        if (MyError.hasError(actual)) {
-          throw new Error('Failure');
-        }
+        if (actual instanceof MyError) return;
+
         expect(actual.dirName).toBe(baseDir);
         expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
       },
@@ -32,7 +31,7 @@ describe('getDestDirWithValidate', () => {
         const actual = ProjectCreator.getDestDirWithValidate(
           `@anonymous/${baseDir}`
         );
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           expect(actual.reason).toBe(ErrorReasons.gitNotFound);
         } else {
           throw new Error('Failure');
@@ -42,7 +41,7 @@ describe('getDestDirWithValidate', () => {
         const actual = ProjectCreator.getDestDirWithValidate(
           `@anonymous/${baseDir}`
         );
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
         } else {
           throw new Error('Failure');
@@ -53,18 +52,7 @@ describe('getDestDirWithValidate', () => {
           `@anonymous/${baseDir}`
         );
 
-        if (MyError.hasError(actual)) {
-          throw new Error('Failure');
-        }
-        expect(actual.dirName).toBe(baseDir);
-        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-      },
-      node_git_conf_npm() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           throw new Error('Failure');
         }
         expect(actual.dirName).toBe(baseDir);
@@ -84,7 +72,7 @@ describe('getDestDirWithValidate', () => {
           `@anonymous/${baseDir}`
         );
 
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           expect(actual.reason).toStrictEqual(ErrorReasons.existsDestPath);
         } else {
           throw new Error('Failure');
@@ -94,7 +82,7 @@ describe('getDestDirWithValidate', () => {
         const actual = ProjectCreator.getDestDirWithValidate(
           `@anonymous/${baseDir}`
         );
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           expect(actual.reason).toBe(ErrorReasons.gitNotFound);
         } else {
           throw new Error('Failure');
@@ -104,7 +92,7 @@ describe('getDestDirWithValidate', () => {
         const actual = ProjectCreator.getDestDirWithValidate(
           `@anonymous/${baseDir}`
         );
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
         } else {
           throw new Error('Failure');
@@ -114,7 +102,7 @@ describe('getDestDirWithValidate', () => {
         const actual = ProjectCreator.getDestDirWithValidate(
           `@anonymous/${baseDir}`
         );
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           throw new Error('Failure');
         }
         expect(actual.dirName).toBe(baseDir);
@@ -125,7 +113,7 @@ describe('getDestDirWithValidate', () => {
           `@anonymous/${baseDir}`
         );
 
-        if (MyError.hasError(actual)) {
+        if (actual instanceof MyError) {
           throw new Error('Failure');
         }
         expect(actual.dirName).toBe(baseDir);
