@@ -4,8 +4,6 @@ volumes:
   only-node_testdir:
   node-git_testdir:
   node-git-conf_testdir:
-  node16-git-conf-npm8_testdir:
-  node14-git-conf-npm6_testdir:
 services:
   # installed node, without git
   only-node:
