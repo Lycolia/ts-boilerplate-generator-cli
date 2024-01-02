@@ -1,5 +1,29 @@
 export const ErrorReasons = {
   ok: { code: 0, subject: 'OK', message: 'OK' },
+  unmanagedException: {
+    code: 1,
+    message: 'unmanaged exception has occurred',
+  },
+  invalidAuthorOptions: {
+    code: 10,
+    message: '-a, --author option should be specified as a string',
+  },
+  invalidDescriptionOptions: {
+    code: 11,
+    message: '-d, --description option should be specified as a string',
+  },
+  invalidLicenseOptions: {
+    code: 12,
+    message: '-l, --license option should be specified as a string',
+  },
+  invalidProjectNameOptions: {
+    code: 13,
+    message: '-p, --project-name option should be specified as a string',
+  },
+  invalidTypeOptions: {
+    code: 14,
+    message: '-t, --type option should be specified as a string',
+  },
   gitNotFound: {
     code: 100,
     message: 'Git not found\nshould install Git or export Git path',
@@ -33,9 +57,5 @@ export const ErrorReasons = {
   failNpmInst: {
     code: 107,
     message: 'failed npm install',
-  },
-  unmanagedException: {
-    code: 1,
-    message: 'unmanaged exception has occurred',
   },
 } as const;
