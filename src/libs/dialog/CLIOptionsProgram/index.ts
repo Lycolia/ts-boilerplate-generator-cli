@@ -1,10 +1,8 @@
 import { version } from 'package.json';
 import { Option, Command } from 'commander';
-import {
-  ProjectOptionDef,
-  ProjectTypes,
-  ProjectOption,
-} from '../../../models/ProjectOptions';
+import { ProjectOptionDef, ProjectTypes } from '../../../models/ProjectOptions';
+import { MyError } from '../../util/MyError';
+import { CLIOptionsProgramUtil } from './util';
 
 export namespace CLIOptionsProgram {
   /**
@@ -56,20 +54,15 @@ export namespace CLIOptionsProgram {
       .addHelpText('beforeAll', banner)
       .parse(process.argv);
 
-    const options = {
-      ...(cmd.opts() as ProjectOption),
-      useGenerator: hasNotDefinedOptions(cmd.args.length),
-    };
+    const opts = CLIOptionsProgramUtil.parseOpts(cmd.opts());
 
-    return options;
-  };
-
-  /**
-   * no cli options or only undefined options
-   *
-   * @param programArgsLength
-   */
-  export const hasNotDefinedOptions = (programArgsLength: number) => {
-    return process.argv.length - 2 - programArgsLength === 0;
+    if (opts instanceof MyError) {
+      return opts;
+    } else {
+      return {
+        ...opts,
+        isInteractive: CLIOptionsProgramUtil.isInteractive(cmd.args.length),
+      };
+    }
   };
 }
