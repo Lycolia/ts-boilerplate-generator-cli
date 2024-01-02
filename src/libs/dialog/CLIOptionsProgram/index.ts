@@ -17,8 +17,7 @@ export namespace CLIOptionsProgram {
    * @returns parsed CLI options
    */
   export const create = () => {
-    const banner = `|| TypeScript project Generator ||
-`;
+    const banner = '|| TypeScript project Generator ||\n';
 
     const cmd = new Command();
     cmd
