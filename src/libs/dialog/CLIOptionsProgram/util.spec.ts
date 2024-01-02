@@ -19,7 +19,7 @@ describe('parseOpts', () => {
       expect: new MyError(ErrorReasons.invalidAuthorOptions),
     },
     {
-      name: 'authorが空文字の場合にauthorに空文字が設定されること',
+      name: 'authorが空文字の場合にauthorのみに空文字が設定されること',
       param: {
         author: '',
         description: 'a',
@@ -36,7 +36,7 @@ describe('parseOpts', () => {
       },
     },
     {
-      name: 'authorに文字列が設定されている場合にauthorにその文字列が設定されること',
+      name: 'authorに文字列が設定されている場合にauthorのみにその文字列が設定されること',
       param: {
         author: 'hoge',
         description: 'a',
@@ -64,7 +64,7 @@ describe('parseOpts', () => {
       expect: new MyError(ErrorReasons.invalidDescriptionOptions),
     },
     {
-      name: 'descriptionが空文字の場合にdescriptionに空文字が設定されること',
+      name: 'descriptionが空文字の場合にdescriptionのみに空文字が設定されること',
       param: {
         author: 'a',
         description: '',
@@ -81,7 +81,7 @@ describe('parseOpts', () => {
       },
     },
     {
-      name: 'descriptionに文字列が設定されている場合にdescriptionにその文字列が設定されること',
+      name: 'descriptionに文字列が設定されている場合にdescriptionのみにその文字列が設定されること',
       param: {
         author: 'a',
         description: 'hoge',
@@ -109,7 +109,7 @@ describe('parseOpts', () => {
       expect: new MyError(ErrorReasons.invalidLicenseOptions),
     },
     {
-      name: 'licenseが空文字の場合にlicenseに空文字が設定されること',
+      name: 'licenseが空文字の場合にlicenseのみに空文字が設定されること',
       param: {
         author: 'a',
         description: 'b',
@@ -126,7 +126,7 @@ describe('parseOpts', () => {
       },
     },
     {
-      name: 'licenseに文字列が設定されている場合にlicenseにその文字列が設定されること',
+      name: 'licenseに文字列が設定されている場合にlicenseのみにその文字列が設定されること',
       param: {
         author: 'a',
         description: 'c',
@@ -154,7 +154,7 @@ describe('parseOpts', () => {
       expect: new MyError(ErrorReasons.invalidProjectNameOptions),
     },
     {
-      name: 'projectNameが空文字の場合にprojectNameに空文字が設定されること',
+      name: 'projectNameが空文字の場合にprojectNameのみに空文字が設定されること',
       param: {
         author: 'a',
         description: 'b',
@@ -171,7 +171,7 @@ describe('parseOpts', () => {
       },
     },
     {
-      name: 'authorに文字列が設定されている場合にauthorにその文字列が設定されること',
+      name: 'projectNameに文字列が設定されている場合にprojectNameのみにその文字列が設定されること',
       param: {
         author: 'a',
         description: 'b',
@@ -210,7 +210,7 @@ describe('parseOpts', () => {
       expect: new MyError(ErrorReasons.invalidTypeOptions),
     },
     {
-      name: 'typeに文字列が設定されている場合にtypeにその文字列が設定されること',
+      name: 'typeに文字列が設定されている場合にtypeのみにその文字列が設定されること',
       param: {
         author: 'a',
         description: 'b',
