@@ -7,9 +7,9 @@ export class MyError extends Error {
   /**
    *
    * @param reason
-   * @param error なければ明示的にundefinedを入れる
+   * @param error
    */
-  constructor(reason: ErrorReason, error: unknown) {
+  constructor(reason: ErrorReason, error?: unknown) {
     super(reason.message);
     this.error = error;
     this.reason = reason;
