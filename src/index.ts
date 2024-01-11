@@ -8,10 +8,7 @@ import { MyProgram } from './libs/system/MyProgram';
 import { ErrorReasons } from './models/ErrorReasons';
 import { ProjectOption } from './models/ProjectOptions';
 
-/**
- * get project options (argument | dialog)
- */
-export const getProjectOptions = async (): Promise<ProjectOption> => {
+export const getProjectOptions = async () => {
   const opts = CLIOptionsProgram.create();
 
   return opts.useGenerator
