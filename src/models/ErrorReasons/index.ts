@@ -4,24 +4,34 @@ export const ErrorReasons = {
     code: 1,
     message: 'unmanaged exception has occurred',
   },
+  /**
+   * TODO 将来的にNode.jsのパーサーに置き換えたい
+   * @param message commanderのエラーメッセージ
+   */
+  invalidOptions(message: string) {
+    return {
+      code: 10,
+      message,
+    };
+  },
   invalidAuthorOptions: {
-    code: 10,
+    code: 11,
     message: '-a, --author option should be specified as a string',
   },
   invalidDescriptionOptions: {
-    code: 11,
+    code: 12,
     message: '-d, --description option should be specified as a string',
   },
   invalidLicenseOptions: {
-    code: 12,
+    code: 13,
     message: '-l, --license option should be specified as a string',
   },
   invalidProjectNameOptions: {
-    code: 13,
+    code: 14,
     message: '-p, --project-name option should be specified as a string',
   },
   invalidTypeOptions: {
-    code: 14,
+    code: 15,
     message: '-t, --type option should be specified as a string',
   },
   gitNotFound: {
