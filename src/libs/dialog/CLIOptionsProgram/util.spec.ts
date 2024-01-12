@@ -1,4 +1,4 @@
-import { before, describe, it } from 'node:test';
+import { afterEach, describe, it } from 'node:test';
 import assert from 'node:assert';
 import { CLIOptionsProgramUtil } from './util';
 import { MyError } from '../../util/MyError';
@@ -238,21 +238,21 @@ describe('parseOpts', () => {
 });
 
 describe('isInteractive', () => {
-  before(() => {
+  afterEach(() => {
     process.argv.length = 0;
     process.argv.push('/path/to/node');
     process.argv.push('/path/to/index.js');
   });
 
   it('オプションパラメーターがないケースで対話モード判定にならないこと', () => {
-    const actual = CLIOptionsProgramUtil.isInteractive(0);
+    const actual = CLIOptionsProgramUtil.hasCommandLineOptions(0);
 
     assert.strictEqual(actual, true);
   });
 
   it('オプションパラメーターがあるケースで対話モード判定になること', () => {
     process.argv.push('--hoge');
-    const actual = CLIOptionsProgramUtil.isInteractive(1);
+    const actual = CLIOptionsProgramUtil.hasCommandLineOptions(1);
 
     assert.strictEqual(actual, true);
   });

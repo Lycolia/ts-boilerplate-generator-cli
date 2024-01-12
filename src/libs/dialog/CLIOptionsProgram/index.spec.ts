@@ -1,66 +1,70 @@
-import { CLIOptionsProgram as CCOP } from '.';
+import { describe, it, afterEach } from 'node:test';
+import assert from 'node:assert';
+import { CLIOptionsProgram } from '.';
 import { ProjectOptionDef } from '../../../models/ProjectOptions';
-
-/**
- * every time after it
- */
-afterEach(() => {
-  // cleanup argv
-  process.argv.length = 2;
-});
+import { MyError } from '../../util/MyError';
 
 describe('create', () => {
-  it('no options', () => {
-    // testing
-    const argv = CCOP.create();
-    expect(argv.author).toBe(ProjectOptionDef.default.author);
-    expect(argv.description).toBe(ProjectOptionDef.default.description);
-    expect(argv.license).toBe(ProjectOptionDef.default.license);
-    expect(argv.type).toBe(ProjectOptionDef.default.type);
-    expect(argv.useGenerator).toBe(true);
+  afterEach(() => {
+    process.argv.length = 0;
+    process.argv.push('/path/to/node');
+    process.argv.push('/path/to/index.js');
   });
 
-  it('unknown arguments', () => {
-    // setup
-    process.argv.push('foo');
-    // testing
-    const argv = CCOP.create();
-    expect(argv.author).toBe(ProjectOptionDef.default.author);
-    expect(argv.description).toBe(ProjectOptionDef.default.description);
-    expect(argv.license).toBe(ProjectOptionDef.default.license);
-    expect(argv.type).toBe(ProjectOptionDef.default.type);
-    expect(argv.useGenerator).toBe(true);
+  it('オプションなしの場合、初期値が設定されること', () => {
+    const argv = CLIOptionsProgram.create();
+
+    if (argv instanceof Error) {
+      throw argv;
+    }
+
+    assert.strictEqual(argv.author, ProjectOptionDef.default.author);
+    assert.strictEqual(argv.description, ProjectOptionDef.default.description);
+    assert.strictEqual(argv.license, ProjectOptionDef.default.license);
+    assert.strictEqual(argv.type, ProjectOptionDef.default.type);
   });
 
-  it('single defined arguments', () => {
+  it('不正な短いオプションが指定されたとき、エラーになること', () => {
+    process.argv.push('-z');
+    const argv = CLIOptionsProgram.create();
+    // メッセージの中身までは見ない
+    assert.ok(argv instanceof MyError);
+  });
+
+  it('不正な長いオプションが指定されたとき、エラーになること', () => {
+    process.argv.push('--foo');
+    const argv = CLIOptionsProgram.create();
+    // メッセージの中身までは見ない
+    assert.ok(argv instanceof MyError);
+  });
+
+  it('一つだけオプションが指定されたときに、指定の一つだけ設定されること', () => {
     // setup
     process.argv.push('-d');
     process.argv.push('foo');
     // testing
-    const argv = CCOP.create();
-    expect(argv.author).toBe(ProjectOptionDef.default.author);
-    expect(argv.description).toBe('foo');
-    expect(argv.license).toBe(ProjectOptionDef.default.license);
-    expect(argv.type).toBe(ProjectOptionDef.default.type);
-    expect(argv.useGenerator).toBe(false);
+    const argv = CLIOptionsProgram.create();
+    if (argv instanceof MyError) throw argv;
+    assert.strictEqual(argv.author, ProjectOptionDef.default.author);
+    assert.strictEqual(argv.description, 'foo');
+    assert.strictEqual(argv.license, ProjectOptionDef.default.license);
+    assert.strictEqual(argv.type, ProjectOptionDef.default.type);
   });
 
-  it('defined options and unknown arguments', () => {
-    // setup
-    process.argv.push('hoge');
+  it('未定義のパラメーターが渡ってきたときに無視されること', () => {
+    process.argv.push('hoge'); // 未定義のパラメーター
     process.argv.push('-d');
     process.argv.push('foo');
-    // testing
-    const argv = CCOP.create();
-    expect(argv.author).toBe(ProjectOptionDef.default.author);
-    expect(argv.description).toBe('foo');
-    expect(argv.license).toBe(ProjectOptionDef.default.license);
-    expect(argv.type).toBe(ProjectOptionDef.default.type);
-    expect(argv.useGenerator).toBe(false);
+
+    const argv = CLIOptionsProgram.create();
+    if (argv instanceof MyError) throw argv;
+    assert.strictEqual(argv.author, ProjectOptionDef.default.author);
+    assert.strictEqual(argv.description, 'foo');
+    assert.strictEqual(argv.license, ProjectOptionDef.default.license);
+    assert.strictEqual(argv.type, ProjectOptionDef.default.type);
   });
 
-  it('defined all options', () => {
-    // setup
+  it('全オプションが指定されたときにすべて指定されること', () => {
     process.argv.push('-a');
     process.argv.push('foo');
     process.argv.push('-d');
@@ -69,12 +73,12 @@ describe('create', () => {
     process.argv.push('gpl-3.0');
     process.argv.push('-t');
     process.argv.push('ts-cli');
-    // testing
-    const argv = CCOP.create();
-    expect(argv.author).toBe('foo');
-    expect(argv.description).toBe('sample desc');
-    expect(argv.license).toBe('gpl-3.0');
-    expect(argv.type).toBe('ts-cli');
-    expect(argv.useGenerator).toBe(false);
+
+    const argv = CLIOptionsProgram.create();
+    if (argv instanceof MyError) throw argv;
+    assert.strictEqual(argv.author, 'foo');
+    assert.strictEqual(argv.description, 'sample desc');
+    assert.strictEqual(argv.license, 'gpl-3.0');
+    assert.strictEqual(argv.type, 'ts-cli');
   });
 });

@@ -1,8 +1,9 @@
 import { version } from 'package.json';
-import { Option, Command } from 'commander';
+import { Option, Command, OptionValues, CommanderError } from 'commander';
 import { ProjectOptionDef, ProjectTypes } from '../../../models/ProjectOptions';
 import { MyError } from '../../util/MyError';
 import { CLIOptionsProgramUtil } from './util';
+import { ErrorReasons } from '../../../models/ErrorReasons';
 
 export namespace CLIOptionsProgram {
   /**
@@ -50,18 +51,32 @@ export namespace CLIOptionsProgram {
           .default(ProjectOptionDef.default.type)
       )
       .version(version)
-      .addHelpText('beforeAll', banner)
-      .parse(process.argv);
+      .exitOverride()
+      .addHelpText('beforeAll', banner);
 
-    const opts = CLIOptionsProgramUtil.parseOpts(cmd.opts());
-
-    if (opts instanceof MyError) {
-      return opts;
-    } else {
-      return {
-        ...opts,
-        isInteractive: CLIOptionsProgramUtil.isInteractive(cmd.args.length),
-      };
+    try {
+      cmd.parse(process.argv);
+    } catch (error) {
+      if (error instanceof CommanderError) {
+        // 入力不正と思われるのでハンドリングする
+        throw new MyError(ErrorReasons.invalidOptions(error.message));
+      } else {
+        // 想定外のエラーなので再スローする
+        throw error;
+      }
     }
+
+    return cmd.opts();
+  };
+
+  export const parseOpts = (optionValues: OptionValues) => {
+    const opts = CLIOptionsProgramUtil.parseOpts(optionValues);
+
+    return {
+      ...opts,
+      hasCommandlineOptions: CLIOptionsProgramUtil.hasCommandLineOptions(
+        optionValues.args.length
+      ),
+    };
   };
 }
