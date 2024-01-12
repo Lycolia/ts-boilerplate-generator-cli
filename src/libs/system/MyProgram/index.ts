@@ -1,17 +1,10 @@
-import { AppError } from '../../../models/ErrorReasons/type';
+import { MyError } from '../../util/MyError';
 import { MyLog } from '../../util/MyLog';
 
 export namespace MyProgram {
-  export const exit = (err: AppError) => {
-    const { reason, error } = err;
-    MyLog.error(reason.subject);
-    if (reason.message !== undefined) {
-      MyLog.error(reason.message);
-    }
-    if (error !== undefined) {
-      MyLog.error(error);
-    }
+  export const exit = (err: MyError) => {
+    MyLog.error(err);
 
-    process.exit(reason.code);
+    process.exit(err.reason.code);
   };
 }
