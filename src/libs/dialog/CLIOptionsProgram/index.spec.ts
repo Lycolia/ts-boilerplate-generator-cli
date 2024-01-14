@@ -14,10 +14,13 @@ describe('create', () => {
   it('オプションなしの場合、初期値が設定されること', () => {
     const argv = CLIOptionsProgram.create();
 
-    assert.strictEqual(argv.author, ProjectOptionDef.default.author);
-    assert.strictEqual(argv.description, ProjectOptionDef.default.description);
-    assert.strictEqual(argv.license, ProjectOptionDef.default.license);
-    assert.strictEqual(argv.type, ProjectOptionDef.default.type);
+    assert.strictEqual(argv.opts.author, ProjectOptionDef.default.author);
+    assert.strictEqual(
+      argv.opts.description,
+      ProjectOptionDef.default.description
+    );
+    assert.strictEqual(argv.opts.license, ProjectOptionDef.default.license);
+    assert.strictEqual(argv.opts.type, ProjectOptionDef.default.type);
   });
 
   it('不正な短いオプションが指定されたとき、エラーになること', () => {
@@ -41,10 +44,10 @@ describe('create', () => {
     // testing
     const argv = CLIOptionsProgram.create();
 
-    assert.strictEqual(argv.author, ProjectOptionDef.default.author);
-    assert.strictEqual(argv.description, 'foo');
-    assert.strictEqual(argv.license, ProjectOptionDef.default.license);
-    assert.strictEqual(argv.type, ProjectOptionDef.default.type);
+    assert.strictEqual(argv.opts.author, ProjectOptionDef.default.author);
+    assert.strictEqual(argv.opts.description, 'foo');
+    assert.strictEqual(argv.opts.license, ProjectOptionDef.default.license);
+    assert.strictEqual(argv.opts.type, ProjectOptionDef.default.type);
   });
 
   it('未定義のパラメーターが渡ってきたときに無視されること', () => {
@@ -54,10 +57,10 @@ describe('create', () => {
 
     const argv = CLIOptionsProgram.create();
 
-    assert.strictEqual(argv.author, ProjectOptionDef.default.author);
-    assert.strictEqual(argv.description, 'foo');
-    assert.strictEqual(argv.license, ProjectOptionDef.default.license);
-    assert.strictEqual(argv.type, ProjectOptionDef.default.type);
+    assert.strictEqual(argv.opts.author, ProjectOptionDef.default.author);
+    assert.strictEqual(argv.opts.description, 'foo');
+    assert.strictEqual(argv.opts.license, ProjectOptionDef.default.license);
+    assert.strictEqual(argv.opts.type, ProjectOptionDef.default.type);
   });
 
   it('全オプションが指定されたときにすべて指定されること', () => {
@@ -72,9 +75,9 @@ describe('create', () => {
 
     const argv = CLIOptionsProgram.create();
 
-    assert.strictEqual(argv.author, 'foo');
-    assert.strictEqual(argv.description, 'sample desc');
-    assert.strictEqual(argv.license, 'gpl-3.0');
-    assert.strictEqual(argv.type, 'ts-cli');
+    assert.strictEqual(argv.opts.author, 'foo');
+    assert.strictEqual(argv.opts.description, 'sample desc');
+    assert.strictEqual(argv.opts.license, 'gpl-3.0');
+    assert.strictEqual(argv.opts.type, 'ts-cli');
   });
 });
