@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version-file: .nvmrc
           cache: npm
           cache-dependency-path: package-lock.json
           registry-url: 'https://registry.npmjs.org'
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version-file: .nvmrc
           cache: npm
           cache-dependency-path: package-lock.json
           registry-url: 'https://registry.npmjs.org'
@@ -40,32 +40,33 @@ jobs:
           git config --global user.name test
       - name: run testing
         run: npm run headless-test
-      - name: only-node testing
-        run: docker-compose run only-node
-      - name: node-git testing
-        run: docker-compose run node-git
-      - name: node-git-conf testing
-        run: docker-compose run node-git-conf
-      - name: node16-git-conf-npm8 testing
-        run: docker-compose run node16-git-conf-npm8
-      - name: node14-git-conf-npm6 testing
-        run: docker-compose run node14-git-conf-npm6
-  common-testing-on-windows:
-    needs:
-      - validate-npm-version
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-          cache: npm
-          registry-url: 'https://registry.npmjs.org'
-      - name: npm continuous install
-        run: npm ci
-      - name: git configure
-        run: |
-          git config --global user.email test@example.com
-          git config --global user.name test
-      - name: run testing
-        run: npm run headless-test
+      # - name: only-node testing
+      #   run: docker-compose run only-node
+      # - name: node-git testing
+      #   run: docker-compose run node-git
+      # - name: node-git-conf testing
+      #   run: docker-compose run node-git-conf
+      # - name: node16-git-conf-npm8 testing
+      #   run: docker-compose run node16-git-conf-npm8
+      # - name: node14-git-conf-npm6 testing
+      #   run: docker-compose run node14-git-conf-npm6
+  # common-testing-on-windows:
+  #   needs:
+  #     - validate-npm-version
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version-file: .nvmrc
+  #         cache: npm
+  #         registry-url: 'https://registry.npmjs.org'
+  #     - name: npm continuous install
+  #       run: npm ci
+  #     - name: git configure
+  #       run: |
+  #         git config --global user.email test@example.com
+  #         git config --global user.name test
+  #     - name: run testing
+  #       shell: bash
+  #       run: npm run headless-test

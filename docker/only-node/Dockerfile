@@ -1,2 +1,3 @@
-FROM node:16-alpine3.12
+FROM node:20-alpine3.17
+RUN apk add perl
 WORKDIR /work
