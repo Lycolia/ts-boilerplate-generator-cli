@@ -5,9 +5,14 @@ import { MyError } from '../../util/MyError';
 import { CLIOptionsProgramUtil } from './util';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 
+type ParsingOptionSource = {
+  opts: OptionValues;
+  srcArgsLength: number;
+};
+
 export namespace CLIOptionsProgram {
   /** process.argvを参照し、オプションパラメーターを作成する */
-  export const create = () => {
+  export const create = (): ParsingOptionSource => {
     const banner = '|| TypeScript project Generator ||\n';
 
     const cmd = new Command();
@@ -56,17 +61,20 @@ export namespace CLIOptionsProgram {
       }
     }
 
-    return cmd.opts();
+    return {
+      opts: cmd.opts(),
+      srcArgsLength: cmd.args.length,
+    };
   };
 
   /** オプションパラメーターをパースする */
-  export const parseOpts = (optionValues: OptionValues) => {
-    const opts = CLIOptionsProgramUtil.parseOpts(optionValues);
+  export const parseOpts = (optionSrc: ParsingOptionSource) => {
+    const opts = CLIOptionsProgramUtil.parseOpts(optionSrc.opts);
 
     return {
       ...opts,
       hasCommandLineOptions: CLIOptionsProgramUtil.hasCommandLineOptions(
-        optionValues.args.length
+        optionSrc.srcArgsLength
       ),
     };
   };
