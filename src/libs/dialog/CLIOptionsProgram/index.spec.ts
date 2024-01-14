@@ -14,10 +14,6 @@ describe('create', () => {
   it('オプションなしの場合、初期値が設定されること', () => {
     const argv = CLIOptionsProgram.create();
 
-    if (argv instanceof Error) {
-      throw argv;
-    }
-
     assert.strictEqual(argv.author, ProjectOptionDef.default.author);
     assert.strictEqual(argv.description, ProjectOptionDef.default.description);
     assert.strictEqual(argv.license, ProjectOptionDef.default.license);
@@ -26,16 +22,16 @@ describe('create', () => {
 
   it('不正な短いオプションが指定されたとき、エラーになること', () => {
     process.argv.push('-z');
-    const argv = CLIOptionsProgram.create();
-    // メッセージの中身までは見ない
-    assert.ok(argv instanceof MyError);
+    assert.throws(() => {
+      CLIOptionsProgram.create();
+    }, MyError);
   });
 
   it('不正な長いオプションが指定されたとき、エラーになること', () => {
     process.argv.push('--foo');
-    const argv = CLIOptionsProgram.create();
-    // メッセージの中身までは見ない
-    assert.ok(argv instanceof MyError);
+    assert.throws(() => {
+      CLIOptionsProgram.create();
+    }, MyError);
   });
 
   it('一つだけオプションが指定されたときに、指定の一つだけ設定されること', () => {
@@ -44,7 +40,7 @@ describe('create', () => {
     process.argv.push('foo');
     // testing
     const argv = CLIOptionsProgram.create();
-    if (argv instanceof MyError) throw argv;
+
     assert.strictEqual(argv.author, ProjectOptionDef.default.author);
     assert.strictEqual(argv.description, 'foo');
     assert.strictEqual(argv.license, ProjectOptionDef.default.license);
@@ -57,7 +53,7 @@ describe('create', () => {
     process.argv.push('foo');
 
     const argv = CLIOptionsProgram.create();
-    if (argv instanceof MyError) throw argv;
+
     assert.strictEqual(argv.author, ProjectOptionDef.default.author);
     assert.strictEqual(argv.description, 'foo');
     assert.strictEqual(argv.license, ProjectOptionDef.default.license);
@@ -75,7 +71,7 @@ describe('create', () => {
     process.argv.push('ts-cli');
 
     const argv = CLIOptionsProgram.create();
-    if (argv instanceof MyError) throw argv;
+
     assert.strictEqual(argv.author, 'foo');
     assert.strictEqual(argv.description, 'sample desc');
     assert.strictEqual(argv.license, 'gpl-3.0');

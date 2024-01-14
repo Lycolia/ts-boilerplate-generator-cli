@@ -1,7 +1,8 @@
+import { afterEach, describe, it } from 'node:test';
+import assert from 'node:assert';
 import { existsSync, mkdirSync, rmSync } from 'fs';
 import path from 'path';
-import { File } from '.';
-import { ErrorReasons } from '../../../models/ErrorReasons';
+import { MyFile } from '.';
 import { MyError } from '../../util/MyError';
 
 /**
@@ -17,87 +18,88 @@ const getPath = (destPath: string) => {
   return path.join(basePath, destPath);
 };
 
-describe('getdestPath', () => {
-  it('function can work', () => {
-    expect(File.getCwdPath()).toBe(process.cwd());
+describe('getCwdPath', () => {
+  it('process.cwd()の値が取得できること', () => {
+    assert.strictEqual(MyFile.getCwdPath(), process.cwd());
   });
 });
 
 describe('availableDestination', () => {
-  it('available (does not exists)', () => {
+  it('パスが存在しないときに例外がスローされないこと', () => {
     const destPath = getPath('/foo');
-    expect(File.availableDestination(destPath)).toBe(true);
+    assert.doesNotThrow(() => {
+      MyFile.availableDestination(destPath);
+    });
   });
-  it('unavailable (exists)', () => {
-    const actual = File.availableDestination(basePath);
-    if (actual instanceof MyError) {
-      expect(actual.reason).toBe(ErrorReasons.existsDestPath);
-    }
+  it('パスが存在しないときに例外がスローされること', () => {
+    assert.throws(() => {
+      MyFile.availableDestination(basePath);
+    }, MyError);
   });
 });
 
-describe('renameDirectory', () => {
+describe('renameDir', () => {
   const repoUrl = 'https://github.com/Lycolia/old.git';
-  const oldPath = getPath('old');
-  const newPath = getPath('new');
+  const srcPath = getPath('old');
+  const destPath = getPath('new');
 
   afterEach(() => {
-    if (existsSync(oldPath)) {
-      rmSync(oldPath, { force: true, recursive: true });
+    if (existsSync(srcPath)) {
+      rmSync(srcPath, { force: true, recursive: true });
     }
-    if (existsSync(newPath)) {
-      rmSync(newPath, { force: true, recursive: true });
-    }
-  });
-
-  it('old dir exists', () => {
-    mkdirSync(oldPath);
-    const actual = File.renameDirectory(repoUrl, 'new');
-    expect(actual).toBeUndefined();
-  });
-
-  it('new dir exists', () => {
-    mkdirSync(newPath);
-    const actual = File.renameDirectory(repoUrl, 'new');
-    if (actual instanceof MyError) {
-      expect(actual.reason).toStrictEqual(ErrorReasons.mvCmdFail);
+    if (existsSync(destPath)) {
+      rmSync(destPath, { force: true, recursive: true });
     }
   });
 
-  it('old, new dir not exists', () => {
-    const actual = File.renameDirectory(repoUrl, 'new');
-    if (actual instanceof MyError) {
-      expect(actual.reason).toStrictEqual(ErrorReasons.mvCmdFail);
-    }
+  it('リネーム元ディレクトリがある場合に正常終了すること', () => {
+    mkdirSync(srcPath);
+    const actual = MyFile.renameDir(repoUrl, 'new');
+    assert.strictEqual(actual, undefined);
+  });
+
+  it('リネーム先ディレクトリがある場合に例外がスローされること', () => {
+    mkdirSync(destPath);
+    assert.throws(() => {
+      MyFile.renameDir(repoUrl, 'new');
+    }, MyError);
+  });
+
+  it('リネーム元ディレクトリがない場合に例外がスローされること', () => {
+    assert.throws(() => {
+      MyFile.renameDir(repoUrl, 'new');
+    }, MyError);
   });
 });
 
-describe('getPathFromClonedProject', () => {
-  it('get path', () => {
-    const gotPath = File.getRepositoryNameFromUrl(
+describe('getRepoNameFromUrl', () => {
+  it('リポジトリURLからリポジトリ名が取得できること', () => {
+    const gotPath = MyFile.getRepoNameFromUrl(
       'https://github.com/Lycolia/ts-server-boilerplate.git'
     );
-    expect(gotPath).toBe('ts-server-boilerplate');
+    assert.strictEqual(gotPath, 'ts-server-boilerplate');
   });
 });
 
 describe('getDirNameFromProjectName', () => {
-  it('get name by namespased name', () => {
-    const gotName = File.getDirNameFromProjectName('@unknown/no-name-project');
-    expect(gotName).toBe('no-name-project');
+  it('@始まりで@があるセグメントを含まないスラッシュ以降の文字列が取得できること', () => {
+    const gotName = MyFile.getDirNameFromProjectName(
+      '@unknown/no-name-project'
+    );
+    assert.strictEqual(gotName, 'no-name-project');
   });
 
-  it('get name by slashed name', () => {
-    const gotName = File.getDirNameFromProjectName(
+  it('@始まりでなく複数スラッシュがある場合に最後のスラッシュ以降の文字列が取得できること', () => {
+    const gotName = MyFile.getDirNameFromProjectName(
       'slash/slash/no-name-project'
     );
-    expect(gotName).toBe('slash/slash/no-name-project');
+    assert.strictEqual(gotName, 'slash/slash/no-name-project');
   });
 
-  it('get name by combined namespased and slashed name', () => {
-    const gotName = File.getDirNameFromProjectName(
+  it('複数スラッシュがあるときに@始まりで@があるセグメントを含まないスラッシュ以降の文字列が取得できること', () => {
+    const gotName = MyFile.getDirNameFromProjectName(
       '@unknown/slash/no-name-project'
     );
-    expect(gotName).toBe('slash/no-name-project');
+    assert.strictEqual(gotName, 'slash/no-name-project');
   });
 });

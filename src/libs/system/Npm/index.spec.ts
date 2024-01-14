@@ -1,19 +1,19 @@
-import { execSync } from 'child_process';
-import { installModules } from '.';
+import { describe, it, mock } from 'node:test';
+import assert from 'node:assert';
+import child_process from 'node:child_process';
+import { Npm } from '.';
 
-jest.mock('child_process');
-const mockExecSync = execSync as jest.MockedFunction<typeof execSync>;
+const mockedExecSync = mock.method(child_process, 'execSync', () => {});
 
-describe('installModules', () => {
-  mockExecSync.mockImplementation((command: string) => Buffer.from(command));
-
+describe('install', () => {
   it('check npm version', () => {
-    installModules('test');
-    expect(mockExecSync).toHaveBeenCalledWith(
+    Npm.install('test');
+
+    assert.deepStrictEqual(mockedExecSync.mock.calls[0].arguments, [
       'cd test && npm ci && npx prettier -w package.json',
       {
         stdio: 'ignore',
-      }
-    );
+      },
+    ]);
   });
 });

@@ -4,31 +4,34 @@ import { MyLog } from '../../util/MyLog';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 
 export namespace Git {
+  /**
+   * @throws なんかのエラー
+   */
   export const hasInstalled = () => {
     try {
       execSync('git --help');
     } catch (error) {
-      return new MyError(ErrorReasons.gitNotFound, error);
+      throw new MyError(ErrorReasons.gitNotFound, error);
     }
   };
 
-  export const canCommit = () => {
-    try {
-      const configs = execSync('git config --list').toString();
+  /**
+   * @throws なんかのエラー
+   */
+  export const validateCommit = () => {
+    const configs = execSync('git config --list').toString();
 
-      if (
-        (configs.match(/user\.name=.+/) !== null) === false ||
-        (configs.match(/user\.email=.+/) !== null) === false
-      ) {
-        return new MyError(ErrorReasons.gitNotConfigure, undefined);
-      }
-    } catch (error) {
-      return new MyError(ErrorReasons.unmanagedException, error);
+    if (
+      (configs.match(/user\.name=.+/) !== null) === false ||
+      (configs.match(/user\.email=.+/) !== null) === false
+    ) {
+      throw new MyError(ErrorReasons.gitNotConfigure, undefined);
     }
   };
 
   /**
    * @param cloneUrl git clone url
+   * @throws なんかのエラー
    */
   export const clone = (cloneUrl: string) => {
     try {
@@ -36,10 +39,13 @@ export namespace Git {
         stdio: 'ignore',
       });
     } catch (error) {
-      return new MyError(ErrorReasons.failPull, error);
+      throw new MyError(ErrorReasons.failPull, error);
     }
   };
 
+  /**
+   * @throws なんかのエラー
+   */
   export const init = (projectDest: string) => {
     MyLog.info('Initialize Git...');
     execSync(`git -C ${projectDest} init`);

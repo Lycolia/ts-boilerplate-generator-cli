@@ -1,19 +1,15 @@
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 import { MyError } from '../../util/MyError';
 
 export namespace Npm {
-  /**
-   * install npm modules
-   * @param projectDest
-   */
-  export const installModules = (projectDest: string) => {
+  export const install = (projectDest: string) => {
     try {
       execSync(`cd ${projectDest} && npm ci && npx prettier -w package.json`, {
         stdio: 'ignore',
       });
     } catch (error) {
-      return new MyError(ErrorReasons.failNpmInst, error);
+      throw new MyError(ErrorReasons.failNpmInst, error);
     }
   };
 }

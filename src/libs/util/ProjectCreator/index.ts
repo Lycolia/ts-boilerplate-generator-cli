@@ -3,41 +3,30 @@ import path from 'path';
 import { ProjectOption } from '../../../models/ProjectOptions';
 import { Repositories } from '../../../models/Repositories';
 import { Git } from '../../system/Git';
-import { MyError } from '../MyError';
 import { MyLog } from '../MyLog';
 import { MyFile } from '../../system/MyFile';
+import { PackageJsonReplacer } from '../../system/PackageJsonReplacer';
+import { Npm } from '../../system/Npm';
 
 export namespace ProjectCreator {
   /**
-   * create project
-   * @param projectOpt
+   * @throws なんかのエラー
    */
   export const createProject = (projectOpt: ProjectOption) => {
     MyLog.info('Checking enviroments...');
     const dest = getDestDirWithValidate(projectOpt.projectName);
-    if (dest instanceof MyError) {
-      return dest;
-    }
-
     MyLog.info('Cloning Project...');
     const repoUrl = Repositories[projectOpt.type];
-    const gitError = Git.clone(repoUrl);
-    if (gitError instanceof MyError) {
-      return gitError;
-    }
-
+    Git.clone(repoUrl);
     MyLog.info('Parsing project options...');
-    const renameError = MyFile.renameDir(repoUrl, dest.dirName);
-    if (renameError instanceof MyError) {
-      return renameError;
-    }
+    MyFile.renameDir(repoUrl, dest.dirName);
 
     cleanup(dest.fullPath);
     updateReadMe(projectOpt, dest.fullPath);
     updatePackageJson(projectOpt, dest.fullPath);
 
     MyLog.info('Installing npm modules...');
-    installModules(dest.fullPath);
+    Npm.install(dest.fullPath);
     Git.init(dest.fullPath);
 
     MyLog.info('Project created!!');
@@ -45,29 +34,15 @@ export namespace ProjectCreator {
   };
 
   /**
-   * enviroments validation and return new project path and directory name
-   * @param projectName
+   * @throws なんかのエラー
    */
   export const getDestDirWithValidate = (projectName: string) => {
-    const validateInstalled = Git.hasInstalled();
-    if (validateInstalled instanceof Error) {
-      return validateInstalled;
-    }
-    const canCommiting = Git.canCommit();
-    if (canCommiting instanceof Error) {
-      return canCommiting;
-    }
-
+    Git.hasInstalled();
+    Git.validateCommit();
+    const dirName = MyFile.getDirNameFromProjectName(projectName);
     const cwdPath = MyFile.getCwdPath();
-    if (cwdPath instanceof Error) {
-      return cwdPath;
-    }
-    const dirName = File.getDirNameFromProjectName(projectName);
     const fullPath = path.join(cwdPath, dirName);
-    const availabled = File.availableDestination(fullPath);
-    if (availabled instanceof MyError) {
-      return availabled;
-    }
+    MyFile.availableDestination(fullPath);
 
     return {
       fullPath,
@@ -76,9 +51,7 @@ export namespace ProjectCreator {
   };
 
   /**
-   * cleanup unnecessary files
-   *
-   * @param projectDest
+   * @throws なんかのエラー
    */
   export const cleanup = (projectDest: string) => {
     const targets = [
@@ -102,6 +75,7 @@ export namespace ProjectCreator {
    * update readme
    * @param projectOpt
    * @param projectDest
+   * @throws なんかのエラー
    */
   export const updateReadMe = (
     projectOpt: ProjectOption,
@@ -129,6 +103,7 @@ export namespace ProjectCreator {
    * update PackageJson
    * @param projectOpt
    * @param projectDest
+   * @throws なんかのエラー
    */
   export const updatePackageJson = (
     projectOpt: ProjectOption,
@@ -136,7 +111,9 @@ export namespace ProjectCreator {
   ) => {
     const pkgJsonPath = path.join(projectDest, './package.json');
     const pkgJson = JSON.parse(readFileSync(pkgJsonPath).toString());
-    const replaced = JSON.stringify(replacePackageJson(pkgJson, projectOpt));
+    const replaced = JSON.stringify(
+      PackageJsonReplacer.replace(pkgJson, projectOpt)
+    );
     writeFileSync(pkgJsonPath, replaced);
   };
 }

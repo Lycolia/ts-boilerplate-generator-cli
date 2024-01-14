@@ -1,138 +1,136 @@
-import { existsSync, rmSync, mkdirSync, appendFileSync } from 'fs';
-import path from 'path';
+import assert from 'node:assert';
+import { describe, it } from 'node:test';
 import { ProjectCreator } from '.';
-import { ErrorReasons } from '../../../models/ErrorReasons';
-import { MyError } from '../MyError';
-import { TestUtil } from '../TestUtil';
+import { Git } from '../../system/Git';
+import { MyFile } from '../../system/MyFile';
+import { Npm } from '../../system/Npm';
 
-const platform = TestUtil.getExecPlatform();
-const baseDir = 'test-project';
+describe('createProject', () => {
+  it('getDestDirWithValidateが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(ProjectCreator, 'getDestDirWithValidate', () => {
+      throw new Error('test');
+    });
 
-afterEach(() => {
-  if (existsSync(baseDir)) {
-    rmSync(baseDir, { force: true, recursive: true });
-  }
-});
-
-describe('getDestDirWithValidate', () => {
-  it('destination path is not exists', () => {
-    const testCaseItems = {
-      development() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-
-        if (actual instanceof MyError) return;
-
-        expect(actual.dirName).toBe(baseDir);
-        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-      },
-      only_node() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-        if (actual instanceof MyError) {
-          expect(actual.reason).toBe(ErrorReasons.gitNotFound);
-        } else {
-          throw new Error('Failure');
-        }
-      },
-      node_git() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-        if (actual instanceof MyError) {
-          expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
-        } else {
-          throw new Error('Failure');
-        }
-      },
-      node_git_conf() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-
-        if (actual instanceof MyError) {
-          throw new Error('Failure');
-        }
-        expect(actual.dirName).toBe(baseDir);
-        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-      },
-    };
-
-    testCaseItems[platform]();
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, Error);
   });
 
-  it('destination path is exists', () => {
-    const testCaseItems = {
-      development() {
-        mkdirSync(baseDir);
+  it('Git.cloneが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(Git, 'clone', () => {
+      throw new Error('test');
+    });
 
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-
-        if (actual instanceof MyError) {
-          expect(actual.reason).toStrictEqual(ErrorReasons.existsDestPath);
-        } else {
-          throw new Error('Failure');
-        }
-      },
-      only_node() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-        if (actual instanceof MyError) {
-          expect(actual.reason).toBe(ErrorReasons.gitNotFound);
-        } else {
-          throw new Error('Failure');
-        }
-      },
-      node_git() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-        if (actual instanceof MyError) {
-          expect(actual.reason).toBe(ErrorReasons.gitNotConfigure);
-        } else {
-          throw new Error('Failure');
-        }
-      },
-      node_git_conf() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-        if (actual instanceof MyError) {
-          throw new Error('Failure');
-        }
-        expect(actual.dirName).toBe(baseDir);
-        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-      },
-      node_git_conf_npm() {
-        const actual = ProjectCreator.getDestDirWithValidate(
-          `@anonymous/${baseDir}`
-        );
-
-        if (actual instanceof MyError) {
-          throw new Error('Failure');
-        }
-        expect(actual.dirName).toBe(baseDir);
-        expect(actual.fullPath).toBe(path.join(process.cwd(), baseDir));
-      },
-    };
-
-    testCaseItems[platform]();
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, {});
   });
-});
 
-describe('cleanup', () => {
-  it('function can work', () => {
-    mkdirSync(baseDir);
-    appendFileSync(`${baseDir}/LICENSE`, '-');
-    mkdirSync(`${baseDir}/.git`);
-    ProjectCreator.cleanup('test-project');
+  it('MyFile.renameDirが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(MyFile, 'renameDir', () => {
+      throw new Error('test');
+    });
 
-    expect(existsSync(`${baseDir}/LICENSE`)).toBe(false);
-    expect(existsSync(`${baseDir}/.git`)).toBe(false);
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, Error);
+  });
+
+  it('cleanupが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(ProjectCreator, 'cleanup', () => {
+      throw new Error('test');
+    });
+
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, Error);
+  });
+
+  it('updateReadMeが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(ProjectCreator, 'updateReadMe', () => {
+      throw new Error('test');
+    });
+
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, Error);
+  });
+
+  it('updatePackageJsonが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(ProjectCreator, 'updatePackageJson', () => {
+      throw new Error('test');
+    });
+
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, Error);
+  });
+
+  it('Npm.installが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(Npm, 'install', () => {
+      throw new Error('test');
+    });
+
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, Error);
+  });
+
+  it('Git.initが例外をスローしたときに例外がスローされること', (t) => {
+    t.mock.method(Git, 'init', () => {
+      throw new Error('test');
+    });
+
+    assert.throws(() => {
+      ProjectCreator.createProject({
+        author: 'hoge',
+        description: 'piyo',
+        license: 'fuga',
+        projectName: 'foo',
+        type: 'ts-cli',
+      });
+    }, Error);
   });
 });

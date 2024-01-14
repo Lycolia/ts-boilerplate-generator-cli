@@ -17,10 +17,7 @@ export namespace PackageJsonReplacer {
   /**
    * @param pkgJsonaa   * @param projectOpt
    */
-  export const replacePackageJson = (
-    pkgJson: PackageJson,
-    projectOpt: ProjectOption
-  ) => {
+  export const replace = (pkgJson: PackageJson, projectOpt: ProjectOption) => {
     return {
       ...pkgJson,
       repository: {

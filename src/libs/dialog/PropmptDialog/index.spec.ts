@@ -1,3 +1,6 @@
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+
 import prompts from 'prompts';
 import { PropmptDialog } from '.';
 import {
@@ -14,13 +17,15 @@ const testCtx: ProjectOption = {
 };
 
 describe('prompt', () => {
-  it('inputed blank all', async () => {
+  it('対話モードで全て空入力の場合、デフォルトがセットされること', async () => {
+    // 疑似的に対話モードを再現している
     prompts.inject([undefined, undefined, undefined, undefined, undefined]);
     const result = await PropmptDialog.prompt();
-    expect(result).toEqual(ProjectOptionDef.default);
+    assert.deepStrictEqual(result, ProjectOptionDef.default);
   });
 
-  it('inputed all', async () => {
+  it('対話モードで全て入力があった場合、入力値が入ること', async () => {
+    // 疑似的に対話モードを再現している
     prompts.inject([
       testCtx.type,
       testCtx.projectName,
@@ -29,6 +34,6 @@ describe('prompt', () => {
       testCtx.license,
     ]);
     const result = await PropmptDialog.prompt();
-    expect(result).toEqual(testCtx);
+    assert.deepStrictEqual(result, testCtx);
   });
 });

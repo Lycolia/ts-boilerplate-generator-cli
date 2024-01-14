@@ -8,11 +8,21 @@ export namespace PropmptDialog {
   /**
    * @throws {AppError}
    */
-  export const prompt = async () => {
-    return (await prompts(DialogInputOptions, {
+  export const prompt = async (): Promise<ProjectOption> => {
+    const result = await prompts(DialogInputOptions, {
       onCancel: () => {
         throw new MyError(ErrorReasons.cancelledCreatePj);
       },
-    })) as Promise<ProjectOption>;
+    });
+
+    // prompts.Answers<string>は辞書
+    // 型の担保はテストでやる
+    return {
+      author: result.author,
+      description: result.description,
+      license: result.license,
+      projectName: result.projectName,
+      type: result.type,
+    };
   };
 }

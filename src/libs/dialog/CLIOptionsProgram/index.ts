@@ -6,17 +6,7 @@ import { CLIOptionsProgramUtil } from './util';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 
 export namespace CLIOptionsProgram {
-  /**
-   * create CLI options and helps
-   *
-   * if got undefined arguments then this arguments ignore
-   *  ex. tsg xxx -> ignore arguments and proceed
-   * if got undefined option then put error to stdout exit program
-   *  ex. tsg -x -> exit by put following error message
-   *    `error: unknown option '-x'`
-   *
-   * @returns parsed CLI options
-   */
+  /** process.argvを参照し、オプションパラメーターを作成する */
   export const create = () => {
     const banner = '|| TypeScript project Generator ||\n';
 
@@ -69,12 +59,13 @@ export namespace CLIOptionsProgram {
     return cmd.opts();
   };
 
+  /** オプションパラメーターをパースする */
   export const parseOpts = (optionValues: OptionValues) => {
     const opts = CLIOptionsProgramUtil.parseOpts(optionValues);
 
     return {
       ...opts,
-      hasCommandlineOptions: CLIOptionsProgramUtil.hasCommandLineOptions(
+      hasCommandLineOptions: CLIOptionsProgramUtil.hasCommandLineOptions(
         optionValues.args.length
       ),
     };
