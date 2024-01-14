@@ -12,8 +12,6 @@ services:
       - .:/work
       - only-node_testdir:/test
     command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
-    environment:
-      EXEC_PLATFORM: only-node
   # installed node, git
   node-git:
     build: ./docker/node-git/
@@ -21,8 +19,6 @@ services:
       - .:/work
       - node-git_testdir:/test
     command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
-    environment:
-      EXEC_PLATFORM: node-git
   # installed node, with configured git
   node-git-conf:
     build: ./docker/node-git-conf/
@@ -30,5 +26,3 @@ services:
       - .:/work
       - node-git-conf_testdir:/test
     command: sh -c 'cp -R . /test; cd /test; npm run headless-test'
-    environment:
-      EXEC_PLATFORM: node-git-conf
