@@ -29,6 +29,6 @@ export namespace CLIOptionsProgramUtil {
   };
 
   export const hasCommandLineOptions = (commandArgsLength: number) => {
-    return process.argv.length - 2 - commandArgsLength > 0;
+    return process.argv.length - 2 + commandArgsLength > 0;
   };
 }
