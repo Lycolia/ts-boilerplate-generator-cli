@@ -1,38 +1,40 @@
 #!/usr/bin/env node
 
-import { MyError } from './libs/core/MyError';
-import { ProjectCreator } from './libs/core/ProjectCreator';
-import { CLIOptionsProgram } from './libs/dialogs/CLIOptionsProgram';
-import { PropmptDialog } from './libs/dialogs/PropmptDialog';
-import { ProgramExiter } from './libs/systems/ProgramExiter';
+import { MyError } from './libs/util/MyError';
+import { ProjectCreator } from './libs/util/ProjectCreator';
+import { CLIOptionsProgram } from './libs/dialog/CLIOptionsProgram';
+import { PropmptDialog } from './libs/dialog/PropmptDialog';
+import { MyProgram } from './libs/system/MyProgram';
 import { ErrorReasons } from './models/ErrorReasons';
-import { ProjectOption } from './models/ProjectOptions';
 
-/**
- * get project options (argument | dialog)
- */
-export const getProjectOptions = async (): Promise<ProjectOption> => {
-  const opts = CLIOptionsProgram.create();
+export const getProjectOptions = async () => {
+  const srcCmdOpts = CLIOptionsProgram.create();
+  const cmdOpts = CLIOptionsProgram.parseOpts(srcCmdOpts);
 
-  return opts.useGenerator
-    ? await PropmptDialog.prompt()
-    : {
-        author: opts.author,
-        description: opts.description,
-        license: opts.license,
-        projectName: opts.projectName,
-        type: opts.type,
-      };
+  return cmdOpts.hasCommandLineOptions
+    ? {
+        author: cmdOpts.author,
+        description: cmdOpts.description,
+        license: cmdOpts.license,
+        projectName: cmdOpts.projectName,
+        type: cmdOpts.type,
+      }
+    : await PropmptDialog.prompt();
 };
 
 getProjectOptions()
   .then((options) => {
-    const err = ProjectCreator.createProject(options);
-
-    if (MyError.hasError(err)) {
-      ProgramExiter.exit(err);
+    if (options instanceof MyError) {
+      MyProgram.exit(options);
+    } else {
+      ProjectCreator.createProject(options);
     }
   })
   .catch((error) => {
-    ProgramExiter.exit(MyError.create(ErrorReasons.unmanagedException, error));
+    // 全てのエラーはここに飛ばして落とす
+    if (error instanceof MyError) {
+      MyProgram.exit(error);
+    } else {
+      MyProgram.exit(new MyError(ErrorReasons.unmanagedException, error));
+    }
   });

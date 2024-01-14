@@ -1,17 +1,7 @@
-/**
- * generation project types
- */
 export const ProjectTypes = ['ts-cli', 'ts-next'] as const;
 
-/**
- * generation project types
- * related by ProjectOptions.ProjectTypes
- */
-export type ProjectType = typeof ProjectTypes[number];
+export type ProjectType = (typeof ProjectTypes)[number];
 
-/**
- * project context
- */
 export type ProjectOption = {
   author: string;
   description: string;
@@ -20,9 +10,6 @@ export type ProjectOption = {
   type: ProjectType;
 };
 
-/**
- * project context defines
- */
 export const ProjectOptionDef = {
   options: {
     author: '-a, --author <author>',

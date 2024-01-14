@@ -1,3 +1,3 @@
-FROM node:16-alpine3.12
-RUN apk add git
+FROM node:20-alpine3.17
+RUN apk add git && apk add perl
 WORKDIR /work
