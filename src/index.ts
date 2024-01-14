@@ -11,7 +11,7 @@ export const getProjectOptions = async () => {
   const srcCmdOpts = CLIOptionsProgram.create();
   const cmdOpts = CLIOptionsProgram.parseOpts(srcCmdOpts);
 
-  return cmdOpts.hasCommandlineOptions
+  return cmdOpts.hasCommandLineOptions
     ? {
         author: cmdOpts.author,
         description: cmdOpts.description,
