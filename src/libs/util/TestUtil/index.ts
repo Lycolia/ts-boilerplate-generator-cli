@@ -6,16 +6,14 @@ const TestingPlatform = {
 
 export namespace TestUtil {
   export const getExecPlatform = () => {
-    if (process.env.EXEC_PLATFORM === undefined) {
-      return 'full-test';
-    } else if (
+    if (
       process.env.EXEC_PLATFORM === TestingPlatform['only-node'] ||
       process.env.EXEC_PLATFORM === TestingPlatform['node-git'] ||
       process.env.EXEC_PLATFORM === TestingPlatform['node-git-conf']
     ) {
       return process.env.EXEC_PLATFORM;
     } else {
-      return 'full-test';
+      return;
     }
   };
 }
