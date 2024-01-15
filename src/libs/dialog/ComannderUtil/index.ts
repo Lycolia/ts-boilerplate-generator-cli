@@ -2,7 +2,7 @@ import { OptionValues } from 'commander';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 import { MyError } from '../../util/MyError';
 
-export namespace CLIOptionsProgramUtil {
+export namespace ComannderUtil {
   export const parseOpts = (opts: OptionValues) => {
     if (typeof opts.author !== 'string') {
       throw new MyError(ErrorReasons.invalidAuthorOptions);
@@ -30,5 +30,9 @@ export namespace CLIOptionsProgramUtil {
 
   export const hasCommandLineOptions = (commandArgsLength: number) => {
     return process.argv.length - 2 + commandArgsLength > 0;
+  };
+
+  export const shouldTerminate = (code: string) => {
+    return code === 'commander.helpDisplayed' || code === 'commander.version';
   };
 }

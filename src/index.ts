@@ -2,14 +2,14 @@
 
 import { MyError } from './libs/util/MyError';
 import { ProjectCreator } from './libs/util/ProjectCreator';
-import { CLIOptionsProgram } from './libs/dialog/CLIOptionsProgram';
+import { CliOption } from './libs/dialog/CliOption';
 import { PropmptDialog } from './libs/dialog/PropmptDialog';
 import { MyProgram } from './libs/system/MyProgram';
 import { ErrorReasons } from './models/ErrorReasons';
 
-export const getProjectOptions = async () => {
-  const srcCmdOpts = CLIOptionsProgram.create();
-  const cmdOpts = CLIOptionsProgram.parseOpts(srcCmdOpts);
+export const getProjectOptions = async (argv: string[]) => {
+  const srcCmdOpts = CliOption.get(argv);
+  const cmdOpts = CliOption.parse(srcCmdOpts);
 
   return cmdOpts.hasCommandLineOptions
     ? {
@@ -22,7 +22,7 @@ export const getProjectOptions = async () => {
     : await PropmptDialog.prompt();
 };
 
-getProjectOptions()
+getProjectOptions(process.argv)
   .then((options) => {
     if (options instanceof MyError) {
       MyProgram.exit(options);
