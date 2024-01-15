@@ -1,14 +1,14 @@
 import { afterEach, describe, it } from 'node:test';
 import assert from 'node:assert';
-import { CLIOptionsProgramUtil } from './util';
 import { MyError } from '../../util/MyError';
 import { ErrorReasons } from '../../../models/ErrorReasons';
+import { ComannderUtil } from '.';
 
 // TODO テストが巨大すぎるので何とかしたいがこれ以上関数を小分けにするのも…
 describe('parseOpts', () => {
   it('authorがstringでない場合に例外がスローされること', () => {
     assert.throws(() => {
-      CLIOptionsProgramUtil.parseOpts({
+      ComannderUtil.parseOpts({
         author: 123,
         description: 'a',
         license: 'b',
@@ -19,7 +19,7 @@ describe('parseOpts', () => {
   });
 
   it('authorが空文字の場合にauthorのみに空文字が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: '',
       description: 'a',
       license: 'b',
@@ -37,7 +37,7 @@ describe('parseOpts', () => {
   });
 
   it('authorに文字列が設定されている場合にauthorのみにその文字列が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'hoge',
       description: 'a',
       license: 'b',
@@ -56,7 +56,7 @@ describe('parseOpts', () => {
 
   it('descriptionがstringでない場合にエラーになること', () => {
     assert.throws(() => {
-      CLIOptionsProgramUtil.parseOpts({
+      ComannderUtil.parseOpts({
         author: 'a',
         description: 123,
         license: 'b',
@@ -67,7 +67,7 @@ describe('parseOpts', () => {
   });
 
   it('descriptionが空文字の場合にdescriptionのみに空文字が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'a',
       description: '',
       license: 'b',
@@ -85,7 +85,7 @@ describe('parseOpts', () => {
   });
 
   it('descriptionに文字列が設定されている場合にdescriptionのみにその文字列が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'a',
       description: 'hoge',
       license: 'b',
@@ -104,7 +104,7 @@ describe('parseOpts', () => {
 
   it('licenseがstringでない場合にエラーになること', () => {
     assert.throws(() => {
-      CLIOptionsProgramUtil.parseOpts({
+      ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 123,
@@ -115,7 +115,7 @@ describe('parseOpts', () => {
   });
 
   it('licenseが空文字の場合にlicenseのみに空文字が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: '',
@@ -133,7 +133,7 @@ describe('parseOpts', () => {
   });
 
   it('licenseに文字列が設定されている場合にlicenseのみにその文字列が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'a',
       description: 'c',
       license: 'hoge',
@@ -152,7 +152,7 @@ describe('parseOpts', () => {
 
   it('projectNameがstringでない場合にエラーになること', () => {
     assert.throws(() => {
-      CLIOptionsProgramUtil.parseOpts({
+      ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 'c',
@@ -163,7 +163,7 @@ describe('parseOpts', () => {
   });
 
   it('projectNameが空文字の場合にprojectNameのみに空文字が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: 'c',
@@ -181,7 +181,7 @@ describe('parseOpts', () => {
   });
 
   it('projectNameに文字列が設定されている場合にprojectNameのみにその文字列が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: 'c',
@@ -200,7 +200,7 @@ describe('parseOpts', () => {
 
   it('typeがstringでない場合にエラーになること', () => {
     assert.throws(() => {
-      CLIOptionsProgramUtil.parseOpts({
+      ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 'c',
@@ -212,7 +212,7 @@ describe('parseOpts', () => {
 
   it('typeがts-cliかts-nextでない場合にエラーになること', () => {
     assert.throws(() => {
-      CLIOptionsProgramUtil.parseOpts({
+      ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 'c',
@@ -223,7 +223,7 @@ describe('parseOpts', () => {
   });
 
   it('typeに文字列が設定されている場合にtypeのみにその文字列が設定されること', () => {
-    const actual = CLIOptionsProgramUtil.parseOpts({
+    const actual = ComannderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: 'c',
@@ -249,14 +249,14 @@ describe('isInteractive', () => {
   });
 
   it('オプションパラメーターがないケースで対話モード判定にならないこと', () => {
-    const actual = CLIOptionsProgramUtil.hasCommandLineOptions(0);
+    const actual = ComannderUtil.hasCommandLineOptions(0);
 
     assert.strictEqual(actual, false);
   });
 
   it('オプションパラメーターがあるケースで対話モード判定になること', () => {
     process.argv.push('--hoge');
-    const actual = CLIOptionsProgramUtil.hasCommandLineOptions(1);
+    const actual = ComannderUtil.hasCommandLineOptions(1);
 
     assert.strictEqual(actual, true);
   });
