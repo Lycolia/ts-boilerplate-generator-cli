@@ -8,8 +8,8 @@ import { MyProgram } from './libs/system/MyProgram';
 import { ErrorReasons } from './models/ErrorReasons';
 
 export const getProjectOptions = async (argv: string[]) => {
-  const srcCmdOpts = CliOption.get(argv);
-  const cmdOpts = CliOption.parse(srcCmdOpts);
+  const cmd = CliOption.create();
+  const cmdOpts = CliOption.parse(cmd, argv);
 
   return cmdOpts.hasCommandLineOptions
     ? {

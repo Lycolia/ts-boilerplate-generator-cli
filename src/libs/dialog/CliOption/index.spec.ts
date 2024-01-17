@@ -1,73 +1,76 @@
 import { CliOption } from '.';
-import { ProjectOptionDef } from '../../../models/ProjectOptions';
+import { Command, CommanderError } from 'commander';
+import { CommanderUtil } from '../CommanderUtil';
 
-describe('get', () => {
-  const createArgv = (additionalArgv: string[]) => {
-    return ['/path/to/node', '/path/to/index.js'].concat(additionalArgv);
-  };
+describe('create', () => {
+  it('Commandインスタンスが取得できること', () => {
+    const actual = CliOption.create();
+    expect(actual).toBeInstanceOf(Command);
+  });
+});
 
-  it('オプションなしの場合、初期値が設定されること', () => {
-    const argv = CliOption.get(createArgv([]));
+describe('parse', () => {
+  it('強制終了エラーが発生した場合にprocess.exit(0)されること', () => {
+    const mockCmd = {
+      parse() {
+        throw new CommanderError(0, 'hoge', 'piyo');
+      },
+    } as unknown as Command;
+    jest.spyOn(CommanderUtil, 'shouldTerminate').mockReturnValue(true);
+    const mockedProcessExit = jest.spyOn(process, 'exit').mockImplementation();
 
-    expect(argv.opts.author).toBe(ProjectOptionDef.default.author);
-    expect(argv.opts.description).toBe(ProjectOptionDef.default.description);
-    expect(argv.opts.license).toBe(ProjectOptionDef.default.license);
-    expect(argv.opts.type).toBe(ProjectOptionDef.default.type);
+    CliOption.parse(mockCmd, []);
+    expect(mockedProcessExit).toHaveBeenCalledWith(0);
   });
 
-  it('不正な短いオプションが指定されたとき、エラーになること', () => {
-    const argv = createArgv(['-z']);
+  it('予期しない例外が出た場合に、再スローされること', () => {
+    const mockCmd = {
+      parse() {
+        throw new Error('test');
+      },
+    } as unknown as Command;
 
     expect(() => {
-      CliOption.get(argv);
+      CliOption.parse(mockCmd, []);
     }).toThrow();
   });
 
-  it('不正な長いオプションが指定されたとき、エラーになること', () => {
-    const argv = createArgv(['--foo']);
+  it('例外がスローされなかったときに正しいフローで処理されること', () => {
+    const mockCmd = {
+      parse() {},
+      opts() {
+        return {
+          hoge: 'piyo',
+        };
+      },
+      args: [],
+    } as unknown as Command;
+    const mockedParseOpts = jest
+      .spyOn(CommanderUtil, 'parseOpts')
+      .mockReturnValue({
+        author: 'a',
+        description: 'b',
+        license: 'c',
+        projectName: 'd',
+        type: 'ts-cli',
+      });
+    const mockedHasCommandLineOptions = jest
+      .spyOn(CommanderUtil, 'hasCommandLineOptions')
+      .mockReturnValue(true);
 
-    expect(() => {
-      CliOption.get(argv);
-    }).toThrow();
-  });
+    const actual = CliOption.parse(mockCmd, ['hoge']);
 
-  it('一つだけオプションが指定されたときに、指定の一つだけ設定されること', () => {
-    const argv = createArgv(['-d', 'foo']);
-    const actual = CliOption.get(argv);
-
-    expect(actual.opts.author).toBe(ProjectOptionDef.default.author);
-    expect(actual.opts.description).toBe('foo');
-    expect(actual.opts.license).toBe(ProjectOptionDef.default.license);
-    expect(actual.opts.type).toBe(ProjectOptionDef.default.type);
-  });
-
-  it('未定義のパラメーターが渡ってきたときに無視されること', () => {
-    // fooは未定義のパラメーター
-    const argv = createArgv(['hoge', '-d', 'foo']);
-    const actual = CliOption.get(argv);
-
-    expect(actual.opts.author).toBe(ProjectOptionDef.default.author);
-    expect(actual.opts.description).toBe('foo');
-    expect(actual.opts.license).toBe(ProjectOptionDef.default.license);
-    expect(actual.opts.type).toBe(ProjectOptionDef.default.type);
-  });
-
-  it('全オプションが指定されたときにすべて指定されること', () => {
-    const argv = createArgv([
-      '-a',
-      'foo',
-      '-d',
-      'sample desc',
-      '-l',
-      'gpl-3.0',
-      '-t',
-      'ts-cli',
-    ]);
-    const actual = CliOption.get(argv);
-
-    expect(actual.opts.author).toBe('foo');
-    expect(actual.opts.description).toBe('sample desc');
-    expect(actual.opts.license).toBe('gpl-3.0');
-    expect(actual.opts.type).toBe('ts-cli');
+    expect(mockedParseOpts).toHaveBeenCalledWith({
+      hoge: 'piyo',
+    });
+    expect(mockedHasCommandLineOptions).toHaveBeenCalledWith(0, 1);
+    expect(actual).toStrictEqual({
+      author: 'a',
+      description: 'b',
+      license: 'c',
+      projectName: 'd',
+      type: 'ts-cli',
+      hasCommandLineOptions: true,
+    });
   });
 });

@@ -2,7 +2,7 @@ import { OptionValues } from 'commander';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 import { MyError } from '../../util/MyError';
 
-export namespace ComannderUtil {
+export namespace CommanderUtil {
   export const parseOpts = (opts: OptionValues) => {
     if (typeof opts.author !== 'string') {
       throw new MyError(ErrorReasons.invalidAuthorOptions);
@@ -28,8 +28,17 @@ export namespace ComannderUtil {
     }
   };
 
-  export const hasCommandLineOptions = (commandArgsLength: number) => {
-    return process.argv.length - 2 + commandArgsLength > 0;
+  /**
+   * TODO: cmd.optsをパースした結果がデフォルト値かどうかで判定したほうが筋が良い
+   * @param processArgvLength process.argv.length、最低2が入る
+   * @param optionParamLength commanderのoptsの長さ
+   * @returns
+   */
+  export const hasCommandLineOptions = (
+    processArgvLength: number,
+    optionParamLength: number
+  ) => {
+    return processArgvLength - 2 + optionParamLength > 0;
   };
 
   export const shouldTerminate = (code: string) => {

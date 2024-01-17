@@ -1,16 +1,10 @@
 import { version } from 'package.json';
-import { Option, Command, OptionValues, CommanderError } from 'commander';
+import { Option, Command, CommanderError, OptionValues } from 'commander';
 import { ProjectOptionDef, ProjectTypes } from '../../../models/ProjectOptions';
-import { ComannderUtil } from '../ComannderUtil';
-
-type ParsingOptionSource = {
-  opts: OptionValues;
-  srcArgsLength: number;
-};
+import { CommanderUtil } from '../CommanderUtil';
 
 export namespace CliOption {
-  /** process.argvを参照し、オプションパラメーターを取得する */
-  export const get = (argv: string[]): ParsingOptionSource => {
+  export const create = () => {
     const banner = '|| TypeScript project Generator ||\n';
 
     const cmd = new Command();
@@ -47,12 +41,30 @@ export namespace CliOption {
       .exitOverride()
       .addHelpText('beforeAll', banner);
 
+    return cmd;
+  };
+
+  /**
+   * @throws
+   */
+  export const parse = (cmd: Command, argv: string[]) => {
     try {
       cmd.parse(argv);
+
+      const cliOptions = CommanderUtil.parseOpts(cmd.opts());
+      const hasCommandLineOptions = CommanderUtil.hasCommandLineOptions(
+        cmd.args.length,
+        argv.length
+      );
+
+      return {
+        ...cliOptions,
+        hasCommandLineOptions,
+      };
     } catch (error) {
       if (
         error instanceof CommanderError &&
-        ComannderUtil.shouldTerminate(error.code)
+        CommanderUtil.shouldTerminate(error.code)
       ) {
         // ヘルプやバージョンを指定すると例外が飛ぶので、この階層で正常終了させる
         process.exit(0);
@@ -61,22 +73,5 @@ export namespace CliOption {
         throw error;
       }
     }
-
-    return {
-      opts: cmd.opts(),
-      srcArgsLength: cmd.args.length,
-    };
-  };
-
-  /** オプションパラメーターをパースする */
-  export const parse = (optionSrc: ParsingOptionSource) => {
-    const opts = ComannderUtil.parseOpts(optionSrc.opts);
-
-    return {
-      ...opts,
-      hasCommandLineOptions: ComannderUtil.hasCommandLineOptions(
-        optionSrc.srcArgsLength
-      ),
-    };
   };
 }

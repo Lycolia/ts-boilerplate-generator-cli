@@ -1,12 +1,12 @@
 import { MyError } from '../../util/MyError';
 import { ErrorReasons } from '../../../models/ErrorReasons';
-import { ComannderUtil } from '.';
+import { CommanderUtil } from '.';
 
 // TODO テストが巨大すぎるので何とかしたいがこれ以上関数を小分けにするのも…
 describe('parseOpts', () => {
   it('authorがstringでない場合に例外がスローされること', () => {
     expect(() => {
-      ComannderUtil.parseOpts({
+      CommanderUtil.parseOpts({
         author: 123,
         description: 'a',
         license: 'b',
@@ -17,7 +17,7 @@ describe('parseOpts', () => {
   });
 
   it('authorが空文字の場合にauthorのみに空文字が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: '',
       description: 'a',
       license: 'b',
@@ -35,7 +35,7 @@ describe('parseOpts', () => {
   });
 
   it('authorに文字列が設定されている場合にauthorのみにその文字列が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'hoge',
       description: 'a',
       license: 'b',
@@ -54,7 +54,7 @@ describe('parseOpts', () => {
 
   it('descriptionがstringでない場合にエラーになること', () => {
     expect(() => {
-      ComannderUtil.parseOpts({
+      CommanderUtil.parseOpts({
         author: 'a',
         description: 123,
         license: 'b',
@@ -65,7 +65,7 @@ describe('parseOpts', () => {
   });
 
   it('descriptionが空文字の場合にdescriptionのみに空文字が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'a',
       description: '',
       license: 'b',
@@ -83,7 +83,7 @@ describe('parseOpts', () => {
   });
 
   it('descriptionに文字列が設定されている場合にdescriptionのみにその文字列が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'a',
       description: 'hoge',
       license: 'b',
@@ -102,7 +102,7 @@ describe('parseOpts', () => {
 
   it('licenseがstringでない場合にエラーになること', () => {
     expect(() => {
-      ComannderUtil.parseOpts({
+      CommanderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 123,
@@ -113,7 +113,7 @@ describe('parseOpts', () => {
   });
 
   it('licenseが空文字の場合にlicenseのみに空文字が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: '',
@@ -131,7 +131,7 @@ describe('parseOpts', () => {
   });
 
   it('licenseに文字列が設定されている場合にlicenseのみにその文字列が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'a',
       description: 'c',
       license: 'hoge',
@@ -150,7 +150,7 @@ describe('parseOpts', () => {
 
   it('projectNameがstringでない場合にエラーになること', () => {
     expect(() => {
-      ComannderUtil.parseOpts({
+      CommanderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 'c',
@@ -161,7 +161,7 @@ describe('parseOpts', () => {
   });
 
   it('projectNameが空文字の場合にprojectNameのみに空文字が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: 'c',
@@ -179,7 +179,7 @@ describe('parseOpts', () => {
   });
 
   it('projectNameに文字列が設定されている場合にprojectNameのみにその文字列が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: 'c',
@@ -198,7 +198,7 @@ describe('parseOpts', () => {
 
   it('typeがstringでない場合にエラーになること', () => {
     expect(() => {
-      ComannderUtil.parseOpts({
+      CommanderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 'c',
@@ -210,7 +210,7 @@ describe('parseOpts', () => {
 
   it('typeがts-cliかts-nextでない場合にエラーになること', () => {
     expect(() => {
-      ComannderUtil.parseOpts({
+      CommanderUtil.parseOpts({
         author: 'a',
         description: 'b',
         license: 'c',
@@ -221,7 +221,7 @@ describe('parseOpts', () => {
   });
 
   it('typeに文字列が設定されている場合にtypeのみにその文字列が設定されること', () => {
-    const actual = ComannderUtil.parseOpts({
+    const actual = CommanderUtil.parseOpts({
       author: 'a',
       description: 'b',
       license: 'c',
@@ -241,14 +241,15 @@ describe('parseOpts', () => {
 
 describe('isInteractive', () => {
   it('オプションパラメーターがないケースで対話モード判定にならないこと', () => {
-    const actual = ComannderUtil.hasCommandLineOptions(0);
+    // tsg呼び出しの時
+    const actual = CommanderUtil.hasCommandLineOptions(2, 0);
 
     expect(actual).toBe(false);
   });
 
   it('オプションパラメーターがあるケースで対話モード判定になること', () => {
-    process.argv.push('--hoge');
-    const actual = ComannderUtil.hasCommandLineOptions(1);
+    // tsg --hoge呼び出しの時
+    const actual = CommanderUtil.hasCommandLineOptions(3, 1);
 
     expect(actual).toBe(true);
   });
