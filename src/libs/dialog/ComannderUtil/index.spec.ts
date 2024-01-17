@@ -1,5 +1,3 @@
-import { afterEach, describe, it } from 'node:test';
-import assert from 'node:assert';
 import { MyError } from '../../util/MyError';
 import { ErrorReasons } from '../../../models/ErrorReasons';
 import { ComannderUtil } from '.';
@@ -7,7 +5,7 @@ import { ComannderUtil } from '.';
 // TODO テストが巨大すぎるので何とかしたいがこれ以上関数を小分けにするのも…
 describe('parseOpts', () => {
   it('authorがstringでない場合に例外がスローされること', () => {
-    assert.throws(() => {
+    expect(() => {
       ComannderUtil.parseOpts({
         author: 123,
         description: 'a',
@@ -15,7 +13,7 @@ describe('parseOpts', () => {
         projectName: 'c',
         type: 'ts-cli',
       });
-    }, new MyError(ErrorReasons.invalidAuthorOptions));
+    }).toThrow(new MyError(ErrorReasons.invalidAuthorOptions));
   });
 
   it('authorが空文字の場合にauthorのみに空文字が設定されること', () => {
@@ -33,7 +31,7 @@ describe('parseOpts', () => {
       projectName: 'c',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('authorに文字列が設定されている場合にauthorのみにその文字列が設定されること', () => {
@@ -51,11 +49,11 @@ describe('parseOpts', () => {
       projectName: 'c',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('descriptionがstringでない場合にエラーになること', () => {
-    assert.throws(() => {
+    expect(() => {
       ComannderUtil.parseOpts({
         author: 'a',
         description: 123,
@@ -63,7 +61,7 @@ describe('parseOpts', () => {
         projectName: 'c',
         type: 'ts-cli',
       });
-    }, new MyError(ErrorReasons.invalidDescriptionOptions));
+    }).toThrow(new MyError(ErrorReasons.invalidDescriptionOptions));
   });
 
   it('descriptionが空文字の場合にdescriptionのみに空文字が設定されること', () => {
@@ -81,7 +79,7 @@ describe('parseOpts', () => {
       projectName: 'c',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('descriptionに文字列が設定されている場合にdescriptionのみにその文字列が設定されること', () => {
@@ -99,11 +97,11 @@ describe('parseOpts', () => {
       projectName: 'c',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('licenseがstringでない場合にエラーになること', () => {
-    assert.throws(() => {
+    expect(() => {
       ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
@@ -111,7 +109,7 @@ describe('parseOpts', () => {
         projectName: 'c',
         type: 'ts-cli',
       });
-    }, new MyError(ErrorReasons.invalidLicenseOptions));
+    }).toThrow(new MyError(ErrorReasons.invalidLicenseOptions));
   });
 
   it('licenseが空文字の場合にlicenseのみに空文字が設定されること', () => {
@@ -129,7 +127,7 @@ describe('parseOpts', () => {
       projectName: 'c',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('licenseに文字列が設定されている場合にlicenseのみにその文字列が設定されること', () => {
@@ -147,11 +145,11 @@ describe('parseOpts', () => {
       projectName: 'c',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('projectNameがstringでない場合にエラーになること', () => {
-    assert.throws(() => {
+    expect(() => {
       ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
@@ -159,7 +157,7 @@ describe('parseOpts', () => {
         projectName: 123,
         type: 'ts-cli',
       });
-    }, new MyError(ErrorReasons.invalidProjectNameOptions));
+    }).toThrow(new MyError(ErrorReasons.invalidProjectNameOptions));
   });
 
   it('projectNameが空文字の場合にprojectNameのみに空文字が設定されること', () => {
@@ -177,7 +175,7 @@ describe('parseOpts', () => {
       projectName: '',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('projectNameに文字列が設定されている場合にprojectNameのみにその文字列が設定されること', () => {
@@ -195,11 +193,11 @@ describe('parseOpts', () => {
       projectName: 'hoge',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 
   it('typeがstringでない場合にエラーになること', () => {
-    assert.throws(() => {
+    expect(() => {
       ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
@@ -207,11 +205,11 @@ describe('parseOpts', () => {
         projectName: 'd',
         type: 123,
       });
-    }, new MyError(ErrorReasons.invalidTypeOptions));
+    }).toThrow(new MyError(ErrorReasons.invalidTypeOptions));
   });
 
   it('typeがts-cliかts-nextでない場合にエラーになること', () => {
-    assert.throws(() => {
+    expect(() => {
       ComannderUtil.parseOpts({
         author: 'a',
         description: 'b',
@@ -219,7 +217,7 @@ describe('parseOpts', () => {
         projectName: 'd',
         type: 'hoge',
       });
-    }, new MyError(ErrorReasons.invalidTypeOptions));
+    }).toThrow(new MyError(ErrorReasons.invalidTypeOptions));
   });
 
   it('typeに文字列が設定されている場合にtypeのみにその文字列が設定されること', () => {
@@ -237,27 +235,21 @@ describe('parseOpts', () => {
       projectName: 'd',
       type: 'ts-cli',
     };
-    assert.deepStrictEqual(actual, expected);
+    expect(actual).toStrictEqual(expected);
   });
 });
 
 describe('isInteractive', () => {
-  afterEach(() => {
-    process.argv.length = 0;
-    process.argv.push('/path/to/node');
-    process.argv.push('/path/to/index.js');
-  });
-
   it('オプションパラメーターがないケースで対話モード判定にならないこと', () => {
     const actual = ComannderUtil.hasCommandLineOptions(0);
 
-    assert.strictEqual(actual, false);
+    expect(actual).toBe(false);
   });
 
   it('オプションパラメーターがあるケースで対話モード判定になること', () => {
     process.argv.push('--hoge');
     const actual = ComannderUtil.hasCommandLineOptions(1);
 
-    assert.strictEqual(actual, true);
+    expect(actual).toBe(true);
   });
 });

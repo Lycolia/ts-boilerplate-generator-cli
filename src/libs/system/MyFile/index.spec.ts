@@ -1,9 +1,6 @@
-import { afterEach, describe, it } from 'node:test';
-import assert from 'node:assert';
 import { existsSync, mkdirSync, rmSync } from 'fs';
 import path from 'path';
 import { MyFile } from '.';
-import { MyError } from '../../util/MyError';
 
 /**
  * working base
@@ -20,21 +17,21 @@ const getPath = (destPath: string) => {
 
 describe('getCwdPath', () => {
   it('process.cwd()の値が取得できること', () => {
-    assert.strictEqual(MyFile.getCwdPath(), process.cwd());
+    expect(MyFile.getCwdPath()).toBe(process.cwd());
   });
 });
 
 describe('availableDestination', () => {
   it('パスが存在しないときに例外がスローされないこと', () => {
     const destPath = getPath('/foo');
-    assert.doesNotThrow(() => {
+    expect(() => {
       MyFile.availableDestination(destPath);
-    });
+    }).not.toThrow();
   });
   it('パスが存在しないときに例外がスローされること', () => {
-    assert.throws(() => {
+    expect(() => {
       MyFile.availableDestination(basePath);
-    }, MyError);
+    }).toThrow();
   });
 });
 
@@ -55,20 +52,20 @@ describe('renameDir', () => {
   it('リネーム元ディレクトリがある場合に正常終了すること', () => {
     mkdirSync(srcPath);
     const actual = MyFile.renameDir(repoUrl, 'new');
-    assert.strictEqual(actual, undefined);
+    expect(actual).toBe(undefined);
   });
 
   it('リネーム先ディレクトリがある場合に例外がスローされること', () => {
     mkdirSync(destPath);
-    assert.throws(() => {
+    expect(() => {
       MyFile.renameDir(repoUrl, 'new');
-    }, MyError);
+    }).toThrow();
   });
 
   it('リネーム元ディレクトリがない場合に例外がスローされること', () => {
-    assert.throws(() => {
+    expect(() => {
       MyFile.renameDir(repoUrl, 'new');
-    }, MyError);
+    }).toThrow();
   });
 });
 
@@ -77,7 +74,7 @@ describe('getRepoNameFromUrl', () => {
     const gotPath = MyFile.getRepoNameFromUrl(
       'https://github.com/Lycolia/ts-server-boilerplate.git'
     );
-    assert.strictEqual(gotPath, 'ts-server-boilerplate');
+    expect(gotPath).toBe('ts-server-boilerplate');
   });
 });
 
@@ -86,20 +83,20 @@ describe('getDirNameFromProjectName', () => {
     const gotName = MyFile.getDirNameFromProjectName(
       '@unknown/no-name-project'
     );
-    assert.strictEqual(gotName, 'no-name-project');
+    expect(gotName).toBe('no-name-project');
   });
 
   it('@始まりでなく複数スラッシュがある場合に最後のスラッシュ以降の文字列が取得できること', () => {
     const gotName = MyFile.getDirNameFromProjectName(
       'slash/slash/no-name-project'
     );
-    assert.strictEqual(gotName, 'slash/slash/no-name-project');
+    expect(gotName).toBe('slash/slash/no-name-project');
   });
 
   it('複数スラッシュがあるときに@始まりで@があるセグメントを含まないスラッシュ以降の文字列が取得できること', () => {
     const gotName = MyFile.getDirNameFromProjectName(
       '@unknown/slash/no-name-project'
     );
-    assert.strictEqual(gotName, 'slash/no-name-project');
+    expect(gotName).toBe('slash/no-name-project');
   });
 });
