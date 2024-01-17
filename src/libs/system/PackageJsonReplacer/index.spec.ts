@@ -1,5 +1,3 @@
-import { describe, it, mock } from 'node:test';
-import assert from 'node:assert';
 import { PackageJsonReplacer } from '.';
 import { ProjectOption } from '../../../models/ProjectOptions';
 
@@ -28,7 +26,7 @@ describe('replace', () => {
     license: 'pkg-lic',
     type: 'ts-cli',
   };
-  const expect = {
+  const expectResult = {
     name: prjOpt.projectName,
     version: '0.1.0',
     description: prjOpt.description,
@@ -45,9 +43,10 @@ describe('replace', () => {
       baz: '^1.2.3',
     },
   };
+
   it('第一引数の値が第二引数の値で正しく置換されること', () => {
     const actual = PackageJsonReplacer.replace(pkgJson, prjOpt);
 
-    assert.deepStrictEqual(actual, expect);
+    expect(actual).toStrictEqual(expectResult);
   });
 });

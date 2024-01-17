@@ -1,39 +1,37 @@
-import assert from 'node:assert';
-import { describe, it, mock } from 'node:test';
 import { MyLog } from '.';
 
 describe('info', () => {
   it('console.log()が引数の回数分、呼ばれ、引数が渡っていること', () => {
-    const mockedInfo = mock.method(console, 'info');
+    const mockedInfo = jest.spyOn(console, 'info').mockImplementation();
     MyLog.info({ test: 'foo', hoge: 'bar' }, 'test');
-    assert.deepStrictEqual(mockedInfo.mock.calls[0].arguments[2], {
+    expect(mockedInfo.mock.calls[0][2]).toStrictEqual({
       test: 'foo',
       hoge: 'bar',
     });
-    assert.deepStrictEqual(mockedInfo.mock.calls[1].arguments[2], 'test');
+    expect(mockedInfo.mock.calls[1][2]).toBe('test');
   });
 });
 
 describe('warn', () => {
   it('console.warn()が引数の回数分、呼ばれ、引数が渡っていること', () => {
-    const mockedWarn = mock.method(console, 'warn');
+    const mockedWarn = jest.spyOn(console, 'warn').mockImplementation();
     MyLog.warn({ test: 'foo', hoge: 'bar' }, 'test');
-    assert.deepStrictEqual(mockedWarn.mock.calls[0].arguments[2], {
+    expect(mockedWarn.mock.calls[0][2]).toStrictEqual({
       test: 'foo',
       hoge: 'bar',
     });
-    assert.deepStrictEqual(mockedWarn.mock.calls[1].arguments[2], 'test');
+    expect(mockedWarn.mock.calls[1][2]).toBe('test');
   });
 });
 
 describe('error', () => {
   it('console.error()が引数の回数分、呼ばれ、引数が渡っていること', () => {
-    const mockedError = mock.method(console, 'error');
+    const mockedError = jest.spyOn(console, 'error').mockImplementation();
     MyLog.error({ test: 'foo', hoge: 'bar' }, 'test');
-    assert.deepStrictEqual(mockedError.mock.calls[0].arguments[2], {
+    expect(mockedError.mock.calls[0][2]).toStrictEqual({
       test: 'foo',
       hoge: 'bar',
     });
-    assert.deepStrictEqual(mockedError.mock.calls[1].arguments[2], 'test');
+    expect(mockedError.mock.calls[1][2]).toBe('test');
   });
 });
