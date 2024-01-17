@@ -8,7 +8,6 @@
       "type": "node",
       "request": "attach",
       "name": "Attach by Process",
-      "protocol": "inspector",
       "port": 9229,
       "skipFiles": [
         "${workspaceFolder}/node_modules/**/*.js",
