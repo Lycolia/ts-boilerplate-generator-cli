@@ -19,7 +19,7 @@ This is generator for TypeScript project boilerplate
 
 - Git
   - and configured git user
-- Node.js 20+
+- Node.js 22+
 - npm 10+
 
 ## Usage
