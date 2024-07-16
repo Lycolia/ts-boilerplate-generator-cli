@@ -1,6 +1,6 @@
 # TypeScript project Generator CLI
 
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Node.js v22 later](https://img.shields.io/badge/node.js-v20_later-green)](LICENSE) [![npm v10 later](https://img.shields.io/badge/npm-v10_later-green)](LICENSE)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Node.js v22 later](https://img.shields.io/badge/node.js-v22_later-green)](LICENSE) [![npm v10 later](https://img.shields.io/badge/npm-v10_later-green)](LICENSE)
 
 This is generator for TypeScript project boilerplate
 
