@@ -1,5 +1,5 @@
 import { version } from 'package.json';
-import { Option, Command, CommanderError, OptionValues } from 'commander';
+import { Option, Command, CommanderError } from 'commander';
 import { ProjectOptionDef, ProjectTypes } from '../../../models/ProjectOptions';
 import { CommanderUtil } from '../CommanderUtil';
 
