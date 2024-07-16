@@ -52,7 +52,7 @@ describe('renameDir', () => {
   it('リネーム元ディレクトリがある場合に正常終了すること', () => {
     mkdirSync(srcPath);
     const actual = MyFile.renameDir(repoUrl, 'new');
-    expect(actual).toBe(undefined);
+    expect(actual).toBeUndefined();
   });
 
   it('リネーム先ディレクトリがある場合に例外がスローされること', () => {
