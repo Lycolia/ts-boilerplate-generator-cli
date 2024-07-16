@@ -24,8 +24,9 @@
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "dev": "npm run build && node --inspect-brk dist/index.js",
-    "type-check": "tsc --noEmit && eslint \"**/*.{js,ts}\" .",
-    "build": "rm -Rf dist/ && swc src/ --config-file .swcrc_build -d dist/ && mv dist/src/* dist/ && rm -Rf dist/src/",
+    "type-check": "tsc --noEmit && eslint .",
+    "build": "npm run type-check && npm run build-ts",
+    "build-ts": "rm -Rf dist/ && swc src/ --config-file .swcrc_build -d dist/ --strip-leading-paths",
     "test": "jest --watch",
     "headless-test": "jest --colors",
     "coverage": "jest --coverage"
@@ -39,7 +40,6 @@
     "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^8.57.0",
     "@lycolia/eslint-config": "^0.9.2",
     "@swc/cli": "^0.4.0",
     "@swc/core": "^1.6.13",
@@ -48,8 +48,8 @@
     "@types/node": "^20.14.10",
     "@types/prompts": "^2.4.7",
     "@types/validate-npm-package-name": "^4.0.1",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^27.9.0",
