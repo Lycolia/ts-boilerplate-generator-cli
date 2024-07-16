@@ -19,7 +19,7 @@
     "url": "https://github.com/Lycolia/ts-boilerplate-generator-cli"
   },
   "bin": {
-    "tsg": "dist/index.js"
+    "tsg": "dist/src/index.js"
   },
   "scripts": {
     "start": "npm run build && node dist/index.js",
