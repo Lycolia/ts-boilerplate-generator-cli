@@ -1,5 +1,5 @@
-import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
-import path from 'path';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
 import { ProjectOption } from '../../../models/ProjectOptions';
 import { Repositories } from '../../../models/Repositories';
 import { Git } from '../../system/Git';
@@ -46,7 +46,7 @@ export namespace ProjectCreator {
 
     return {
       fullPath,
-      dirName,
+      dirName
     };
   };
 
@@ -56,7 +56,7 @@ export namespace ProjectCreator {
   export const cleanup = (projectDest: string) => {
     const targets = [
       { path: './LICENSE', isDir: false },
-      { path: './.git', isDir: true },
+      { path: './.git', isDir: true }
     ];
 
     targets.forEach((item) => {

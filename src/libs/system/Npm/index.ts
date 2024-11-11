@@ -6,7 +6,7 @@ export namespace Npm {
   export const install = (projectDest: string) => {
     try {
       execSync(`cd ${projectDest} && npm ci && npx prettier -w package.json`, {
-        stdio: 'ignore',
+        stdio: 'ignore'
       });
     } catch (error) {
       throw new MyError(ErrorReasons.failNpmInst, error);

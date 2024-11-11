@@ -10,7 +10,7 @@ describe('constructor', () => {
     expect(actual.cause).toBe(123);
     expect(actual.reason).toStrictEqual({
       code: 123,
-      message: 'foo',
+      message: 'foo'
     });
   });
 

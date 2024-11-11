@@ -14,7 +14,7 @@ describe('parse', () => {
     const mockCmd = {
       parse() {
         throw new CommanderError(0, 'hoge', 'piyo');
-      },
+      }
     } as unknown as Command;
     jest.spyOn(CommanderUtil, 'shouldTerminate').mockReturnValue(true);
     const mockedProcessExit = jest.spyOn(process, 'exit').mockImplementation();
@@ -27,7 +27,7 @@ describe('parse', () => {
     const mockCmd = {
       parse() {
         throw new Error('test');
-      },
+      }
     } as unknown as Command;
 
     expect(() => {
@@ -40,10 +40,10 @@ describe('parse', () => {
       parse() {},
       opts() {
         return {
-          hoge: 'piyo',
+          hoge: 'piyo'
         };
       },
-      args: [],
+      args: []
     } as unknown as Command;
     const mockedParseOpts = jest
       .spyOn(CommanderUtil, 'parseOpts')
@@ -52,7 +52,7 @@ describe('parse', () => {
         description: 'b',
         license: 'c',
         projectName: 'd',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     const mockedHasCommandLineOptions = jest
       .spyOn(CommanderUtil, 'hasCommandLineOptions')
@@ -61,7 +61,7 @@ describe('parse', () => {
     const actual = CliOption.parse(mockCmd, ['hoge']);
 
     expect(mockedParseOpts).toHaveBeenCalledWith({
-      hoge: 'piyo',
+      hoge: 'piyo'
     });
     expect(mockedHasCommandLineOptions).toHaveBeenCalledWith(0, 1);
     expect(actual).toStrictEqual({
@@ -70,7 +70,7 @@ describe('parse', () => {
       license: 'c',
       projectName: 'd',
       type: 'ts-cli',
-      hasCommandLineOptions: true,
+      hasCommandLineOptions: true
     });
   });
 });

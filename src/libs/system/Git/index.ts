@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
 import { MyError } from '../../util/MyError';
 import { MyLog } from '../../util/MyLog';
 import { ErrorReasons } from '../../../models/ErrorReasons';
@@ -36,7 +36,7 @@ export namespace Git {
   export const clone = (cloneUrl: string) => {
     try {
       execSync(`git clone ${cloneUrl}`, {
-        stdio: 'ignore',
+        stdio: 'ignore'
       });
     } catch (error) {
       throw new MyError(ErrorReasons.failPull, error);

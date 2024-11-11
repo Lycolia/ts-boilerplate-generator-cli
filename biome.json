@@ -1,0 +1,112 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": []
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "recommended": true,
+        "noForEach": "off"
+      },
+      "performance": {
+        "noReExportAll": "error"
+      },
+      "style": {
+        "noArguments": "error",
+        "noCommaOperator": "error",
+        "noImplicitBoolean": "error",
+        "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
+        "noUselessElse": "off",
+        "noUnusedTemplateLiteral": "error",
+        "noVar": "error",
+        "noYodaExpression": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": {
+            "syntax": "shorthand"
+          }
+        },
+        "useConsistentBuiltinInstantiation": "error",
+        "useConst": "error",
+        "useDefaultParameterLast": "error",
+        "useDefaultSwitchClause": "error",
+        "useForOf": "error",
+        "useFragmentSyntax": "error",
+        "useImportType": "off",
+        "useLiteralEnumMembers": "error",
+        "useNodejsImportProtocol": "error",
+        "useNumberNamespace": "error",
+        "useSelfClosingElements": "error",
+        "useShorthandAssign": "warn",
+        "useThrowOnlyError": "error",
+        "useWhile": "error"
+      },
+      "security": {
+        "recommended": true
+      },
+      "suspicious": {
+        "noApproximativeNumericConstant": "error",
+        "noAssignInExpressions": "error",
+        "noCatchAssign": "error",
+        "noCommentText": "error",
+        "noClassAssign": "error",
+        "noDoubleEquals": "error",
+        "noDuplicateAtImportRules": "error",
+        "noDuplicateCase": "error",
+        "noDuplicateClassMembers": "error",
+        "noDuplicateFontNames": "error",
+        "noDuplicateJsxProps": "error",
+        "noDuplicateObjectKeys": "error",
+        "noDuplicateParameters": "error",
+        "noDuplicateTestHooks": "error",
+        "noEmptyBlock": "error",
+        "noExportsInTest": "error",
+        "noExtraNonNullAssertion": "error",
+        "noGlobalIsNan": "error",
+        "noImplicitAnyLet": "error",
+        "noPrototypeBuiltins": "error",
+        "noSelfCompare": "error",
+        "noShadowRestrictedNames": "error",
+        "useErrorMessage": "error",
+        "useValidTypeof": "error"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "trailingCommas": "none"
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true
+    }
+  }
+}

@@ -17,7 +17,7 @@ export const getProjectOptions = async (argv: string[]) => {
         description: cmdOpts.description,
         license: cmdOpts.license,
         projectName: cmdOpts.projectName,
-        type: cmdOpts.type,
+        type: cmdOpts.type
       }
     : await PropmptDialog.prompt();
 };
