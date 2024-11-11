@@ -10,21 +10,21 @@ describe('replace', () => {
     license: 'pkg-lic',
     repository: {
       type: 'aaa',
-      url: 'bbb',
+      url: 'bbb'
     },
     keywords: ['aaa', 'bbb', 'ccc'],
     dependencies: {
       foo: '^0.0.3',
       bar: '^0.2.3',
-      baz: '^1.2.3',
-    },
+      baz: '^1.2.3'
+    }
   };
   const prjOpt: ProjectOption = {
     projectName: 'pkg-name',
     description: 'pkg-desc',
     author: 'pkg-author',
     license: 'pkg-lic',
-    type: 'ts-cli',
+    type: 'ts-cli'
   };
   const expectResult = {
     name: prjOpt.projectName,
@@ -34,14 +34,14 @@ describe('replace', () => {
     license: prjOpt.license,
     repository: {
       type: '',
-      url: '',
+      url: ''
     },
     keywords: [],
     dependencies: {
       foo: '^0.0.3',
       bar: '^0.2.3',
-      baz: '^1.2.3',
-    },
+      baz: '^1.2.3'
+    }
   };
 
   it('第一引数の値が第二引数の値で正しく置換されること', () => {

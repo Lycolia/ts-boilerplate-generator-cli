@@ -6,7 +6,7 @@ describe('info', () => {
     MyLog.info({ test: 'foo', hoge: 'bar' }, 'test');
     expect(mockedInfo.mock.calls[0][2]).toStrictEqual({
       test: 'foo',
-      hoge: 'bar',
+      hoge: 'bar'
     });
     expect(mockedInfo.mock.calls[1][2]).toBe('test');
   });
@@ -18,7 +18,7 @@ describe('warn', () => {
     MyLog.warn({ test: 'foo', hoge: 'bar' }, 'test');
     expect(mockedWarn.mock.calls[0][2]).toStrictEqual({
       test: 'foo',
-      hoge: 'bar',
+      hoge: 'bar'
     });
     expect(mockedWarn.mock.calls[1][2]).toBe('test');
   });
@@ -30,7 +30,7 @@ describe('error', () => {
     MyLog.error({ test: 'foo', hoge: 'bar' }, 'test');
     expect(mockedError.mock.calls[0][2]).toStrictEqual({
       test: 'foo',
-      hoge: 'bar',
+      hoge: 'bar'
     });
     expect(mockedError.mock.calls[1][2]).toBe('test');
   });

@@ -23,7 +23,7 @@ export namespace CommanderUtil {
         description: opts.description,
         license: opts.license,
         projectName: opts.projectName,
-        type: opts.type,
+        type: opts.type
       } as const;
     }
   };

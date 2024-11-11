@@ -1,0 +1,22 @@
+#!/bin/bash
+
+has_change=$(git diff | wc -l )
+if [ $has_change != 0 ]; then
+  print_exit "コミットされていない差分があります。" 2
+fi
+
+npm run lint
+if [ $? != 0 ]; then
+  print_exit "Lintに失敗しました。" 3
+fi
+
+npm t
+if [ $? != 0 ]; then
+  print_exit "テストに失敗しました。" 4
+fi
+
+npm run fix
+has_change=$(git diff | wc -l)
+if [ $has_change != 0 ]; then
+  print_exit "オートフォーマットで差分が出ています。" 6
+fi

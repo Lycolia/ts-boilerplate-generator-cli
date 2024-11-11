@@ -16,20 +16,20 @@ export const ProjectOptionDef = {
     description: '-d, --description <description>',
     license: '-l, --license <license>',
     projectName: '-p, --project-name <projectName>',
-    type: '-t, --type <type>',
+    type: '-t, --type <type>'
   },
   description: {
     author: 'project author',
     description: 'project description',
     license: 'project license',
     projectName: 'project name',
-    type: 'project type',
+    type: 'project type'
   },
   default: {
     author: 'unknown',
     description: 'no description',
     license: 'MIT',
     projectName: '@unknown/no-name-project',
-    type: 'ts-cli',
-  } as ProjectOption,
+    type: 'ts-cli'
+  } as ProjectOption
 };

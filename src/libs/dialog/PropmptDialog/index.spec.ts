@@ -2,7 +2,7 @@ import prompts from 'prompts';
 import { PropmptDialog } from '.';
 import {
   ProjectOption,
-  ProjectOptionDef,
+  ProjectOptionDef
 } from '../../../models/ProjectOptions';
 
 const testCtx: ProjectOption = {
@@ -10,7 +10,7 @@ const testCtx: ProjectOption = {
   description: '2wsxc',
   license: 'AGPL-3.0-or-later',
   projectName: '3edc4rfv',
-  type: 'ts-cli',
+  type: 'ts-cli'
 };
 
 describe('prompt', () => {
@@ -28,7 +28,7 @@ describe('prompt', () => {
       testCtx.projectName,
       testCtx.description,
       testCtx.author,
-      testCtx.license,
+      testCtx.license
     ]);
     const actual = await PropmptDialog.prompt();
     expect(actual).toStrictEqual(testCtx);

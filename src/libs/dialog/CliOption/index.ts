@@ -59,7 +59,7 @@ export namespace CliOption {
 
       return {
         ...cliOptions,
-        hasCommandLineOptions,
+        hasCommandLineOptions
       };
     } catch (error) {
       if (
