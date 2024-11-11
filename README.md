@@ -37,7 +37,7 @@ When no option then launch yeoman style generator
     - `ts-cli`
       - create from [blank boilerplate for CLI app](https://github.com/Lycolia/ts-cli-boilerplate)
     - `ts-next`
-      - create from [React v18 included SSG boilerplate for Next.js v13](https://github.com/Lycolia/ts-next-boilerplate)
+      - create from [React v18 included SSG boilerplate for Next.js v14](https://github.com/Lycolia/ts-next-boilerplate)
   - `-V`, `--version` output the version number
   - `-h`, `--help` display help for command
 - Example
