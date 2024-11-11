@@ -6,7 +6,7 @@ type PackageJson = {
   description: string;
   author: string;
   license: string;
-  keywords: Array<string>;
+  keywords: string[];
   repository: {
     type: string;
     url: string;
@@ -22,14 +22,14 @@ export namespace PackageJsonReplacer {
       ...pkgJson,
       repository: {
         type: '',
-        url: '',
+        url: ''
       },
       keywords: [],
       name: projectOpt.projectName,
       version: '0.1.0',
       description: projectOpt.description,
       author: projectOpt.author,
-      license: projectOpt.license,
+      license: projectOpt.license
     };
   };
 }

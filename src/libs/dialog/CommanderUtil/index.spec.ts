@@ -11,7 +11,7 @@ describe('parseOpts', () => {
         description: 'a',
         license: 'b',
         projectName: 'c',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new MyError(ErrorReasons.invalidAuthorOptions));
   });
@@ -22,14 +22,14 @@ describe('parseOpts', () => {
       description: 'a',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: '',
       description: 'a',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -40,14 +40,14 @@ describe('parseOpts', () => {
       description: 'a',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'hoge',
       description: 'a',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -59,7 +59,7 @@ describe('parseOpts', () => {
         description: 123,
         license: 'b',
         projectName: 'c',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new MyError(ErrorReasons.invalidDescriptionOptions));
   });
@@ -70,14 +70,14 @@ describe('parseOpts', () => {
       description: '',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'a',
       description: '',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -88,14 +88,14 @@ describe('parseOpts', () => {
       description: 'hoge',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'a',
       description: 'hoge',
       license: 'b',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -107,7 +107,7 @@ describe('parseOpts', () => {
         description: 'b',
         license: 123,
         projectName: 'c',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new MyError(ErrorReasons.invalidLicenseOptions));
   });
@@ -118,14 +118,14 @@ describe('parseOpts', () => {
       description: 'b',
       license: '',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'a',
       description: 'b',
       license: '',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -136,14 +136,14 @@ describe('parseOpts', () => {
       description: 'c',
       license: 'hoge',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'a',
       description: 'c',
       license: 'hoge',
       projectName: 'c',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -155,7 +155,7 @@ describe('parseOpts', () => {
         description: 'b',
         license: 'c',
         projectName: 123,
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new MyError(ErrorReasons.invalidProjectNameOptions));
   });
@@ -166,14 +166,14 @@ describe('parseOpts', () => {
       description: 'b',
       license: 'c',
       projectName: '',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'a',
       description: 'b',
       license: 'c',
       projectName: '',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -184,14 +184,14 @@ describe('parseOpts', () => {
       description: 'b',
       license: 'c',
       projectName: 'hoge',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'a',
       description: 'b',
       license: 'c',
       projectName: 'hoge',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });
@@ -203,7 +203,7 @@ describe('parseOpts', () => {
         description: 'b',
         license: 'c',
         projectName: 'd',
-        type: 123,
+        type: 123
       });
     }).toThrow(new MyError(ErrorReasons.invalidTypeOptions));
   });
@@ -215,7 +215,7 @@ describe('parseOpts', () => {
         description: 'b',
         license: 'c',
         projectName: 'd',
-        type: 'hoge',
+        type: 'hoge'
       });
     }).toThrow(new MyError(ErrorReasons.invalidTypeOptions));
   });
@@ -226,14 +226,14 @@ describe('parseOpts', () => {
       description: 'b',
       license: 'c',
       projectName: 'd',
-      type: 'ts-cli',
+      type: 'ts-cli'
     });
     const expected = {
       author: 'a',
       description: 'b',
       license: 'c',
       projectName: 'd',
-      type: 'ts-cli',
+      type: 'ts-cli'
     };
     expect(actual).toStrictEqual(expected);
   });

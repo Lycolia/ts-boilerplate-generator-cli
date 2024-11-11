@@ -17,7 +17,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error getDestDirWithValidate'));
   });
@@ -33,7 +33,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error Git.clone'));
   });
@@ -55,7 +55,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error MyFile.renameDir'));
   });
@@ -78,7 +78,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error cleanup'));
   });
@@ -101,7 +101,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error updateReadMe'));
   });
@@ -127,7 +127,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error updatePackageJson'));
   });
@@ -154,7 +154,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error Npm.install'));
   });
@@ -182,7 +182,7 @@ describe('createProject', () => {
         description: 'piyo',
         license: 'fuga',
         projectName: 'foo',
-        type: 'ts-cli',
+        type: 'ts-cli'
       });
     }).toThrow(new Error('error Git.init'));
   });

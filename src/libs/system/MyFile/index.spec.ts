@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, rmSync } from 'fs';
-import path from 'path';
+import { existsSync, mkdirSync, rmSync } from 'node:fs';
+import path from 'node:path';
 import { MyFile } from '.';
 
 /**

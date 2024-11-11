@@ -8,7 +8,7 @@ import { ProjectOptionDef, ProjectTypes } from '../ProjectOptions';
 export const ProjectTypesChoices = [...ProjectTypes].map((type) => {
   return {
     title: type,
-    value: type,
+    value: type
   };
 });
 
@@ -21,7 +21,7 @@ export const DialogInputOptions: PromptObject<string>[] = [
     name: 'type',
     message: ProjectOptionDef.description.type,
     initial: ProjectOptionDef.default.type,
-    choices: ProjectTypesChoices,
+    choices: ProjectTypesChoices
   },
   {
     type: 'text',
@@ -45,19 +45,19 @@ export const DialogInputOptions: PromptObject<string>[] = [
           .concat(getItems(ctx.warnings))
           .join(' and ');
       }
-    },
+    }
   },
   {
     type: 'text',
     name: 'description',
     message: ProjectOptionDef.description.description,
-    initial: ProjectOptionDef.default.description,
+    initial: ProjectOptionDef.default.description
   },
   {
     type: 'text',
     name: 'author',
     message: ProjectOptionDef.description.author,
-    initial: ProjectOptionDef.default.author,
+    initial: ProjectOptionDef.default.author
   },
   {
     type: 'autocomplete',
@@ -117,15 +117,15 @@ export const DialogInputOptions: PromptObject<string>[] = [
       { title: 'BSD-3-Clause-LBNL', value: 'BSD-3-Clause-LBNL' },
       {
         title: 'BSD-3-Clause-No-Nuclear-License',
-        value: 'BSD-3-Clause-No-Nuclear-License',
+        value: 'BSD-3-Clause-No-Nuclear-License'
       },
       {
         title: 'BSD-3-Clause-No-Nuclear-License-2014',
-        value: 'BSD-3-Clause-No-Nuclear-License-2014',
+        value: 'BSD-3-Clause-No-Nuclear-License-2014'
       },
       {
         title: 'BSD-3-Clause-No-Nuclear-Warranty',
-        value: 'BSD-3-Clause-No-Nuclear-Warranty',
+        value: 'BSD-3-Clause-No-Nuclear-Warranty'
       },
       { title: 'BSD-3-Clause-Open-MPI', value: 'BSD-3-Clause-Open-MPI' },
       { title: 'BSD-4-Clause', value: 'BSD-4-Clause' },
@@ -138,7 +138,7 @@ export const DialogInputOptions: PromptObject<string>[] = [
       { title: 'CAL-1.0', value: 'CAL-1.0' },
       {
         title: 'CAL-1.0-Combined-Work-Exception',
-        value: 'CAL-1.0-Combined-Work-Exception',
+        value: 'CAL-1.0-Combined-Work-Exception'
       },
       { title: 'Caldera', value: 'Caldera' },
       { title: 'CATOSL-1.1', value: 'CATOSL-1.1' },
@@ -197,7 +197,7 @@ export const DialogInputOptions: PromptObject<string>[] = [
       { title: 'CNRI-Python', value: 'CNRI-Python' },
       {
         title: 'CNRI-Python-GPL-Compatible',
-        value: 'CNRI-Python-GPL-Compatible',
+        value: 'CNRI-Python-GPL-Compatible'
       },
       { title: 'Condor-1.1', value: 'Condor-1.1' },
       { title: 'copyleft-next-0.3.0', value: 'copyleft-next-0.3.0' },
@@ -242,45 +242,45 @@ export const DialogInputOptions: PromptObject<string>[] = [
       { title: 'GFDL-1.1-invariants-only', value: 'GFDL-1.1-invariants-only' },
       {
         title: 'GFDL-1.1-invariants-or-later',
-        value: 'GFDL-1.1-invariants-or-later',
+        value: 'GFDL-1.1-invariants-or-later'
       },
       {
         title: 'GFDL-1.1-no-invariants-only',
-        value: 'GFDL-1.1-no-invariants-only',
+        value: 'GFDL-1.1-no-invariants-only'
       },
       {
         title: 'GFDL-1.1-no-invariants-or-later',
-        value: 'GFDL-1.1-no-invariants-or-later',
+        value: 'GFDL-1.1-no-invariants-or-later'
       },
       { title: 'GFDL-1.1-only', value: 'GFDL-1.1-only' },
       { title: 'GFDL-1.1-or-later', value: 'GFDL-1.1-or-later' },
       { title: 'GFDL-1.2-invariants-only', value: 'GFDL-1.2-invariants-only' },
       {
         title: 'GFDL-1.2-invariants-or-later',
-        value: 'GFDL-1.2-invariants-or-later',
+        value: 'GFDL-1.2-invariants-or-later'
       },
       {
         title: 'GFDL-1.2-no-invariants-only',
-        value: 'GFDL-1.2-no-invariants-only',
+        value: 'GFDL-1.2-no-invariants-only'
       },
       {
         title: 'GFDL-1.2-no-invariants-or-later',
-        value: 'GFDL-1.2-no-invariants-or-later',
+        value: 'GFDL-1.2-no-invariants-or-later'
       },
       { title: 'GFDL-1.2-only', value: 'GFDL-1.2-only' },
       { title: 'GFDL-1.2-or-later', value: 'GFDL-1.2-or-later' },
       { title: 'GFDL-1.3-invariants-only', value: 'GFDL-1.3-invariants-only' },
       {
         title: 'GFDL-1.3-invariants-or-later',
-        value: 'GFDL-1.3-invariants-or-later',
+        value: 'GFDL-1.3-invariants-or-later'
       },
       {
         title: 'GFDL-1.3-no-invariants-only',
-        value: 'GFDL-1.3-no-invariants-only',
+        value: 'GFDL-1.3-no-invariants-only'
       },
       {
         title: 'GFDL-1.3-no-invariants-or-later',
-        value: 'GFDL-1.3-no-invariants-or-later',
+        value: 'GFDL-1.3-no-invariants-or-later'
       },
       { title: 'GFDL-1.3-only', value: 'GFDL-1.3-only' },
       { title: 'GFDL-1.3-or-later', value: 'GFDL-1.3-or-later' },
@@ -359,7 +359,7 @@ export const DialogInputOptions: PromptObject<string>[] = [
       { title: 'MPL-2.0', value: 'MPL-2.0' },
       {
         title: 'MPL-2.0-no-copyleft-exception',
-        value: 'MPL-2.0-no-copyleft-exception',
+        value: 'MPL-2.0-no-copyleft-exception'
       },
       { title: 'MS-PL', value: 'MS-PL' },
       { title: 'MS-RL', value: 'MS-RL' },
@@ -440,11 +440,11 @@ export const DialogInputOptions: PromptObject<string>[] = [
       { title: 'Plexus', value: 'Plexus' },
       {
         title: 'PolyForm-Noncommercial-1.0.0',
-        value: 'PolyForm-Noncommercial-1.0.0',
+        value: 'PolyForm-Noncommercial-1.0.0'
       },
       {
         title: 'PolyForm-Small-Business-1.0.0',
-        value: 'PolyForm-Small-Business-1.0.0',
+        value: 'PolyForm-Small-Business-1.0.0'
       },
       { title: 'PostgreSQL', value: 'PostgreSQL' },
       { title: 'PSF-2.0', value: 'PSF-2.0' },
@@ -527,7 +527,7 @@ export const DialogInputOptions: PromptObject<string>[] = [
       { title: 'zlib-acknowledgement', value: 'zlib-acknowledgement' },
       { title: 'ZPL-1.1', value: 'ZPL-1.1' },
       { title: 'ZPL-2.0', value: 'ZPL-2.0' },
-      { title: 'ZPL-2.1', value: 'ZPL-2.1' },
-    ],
-  },
+      { title: 'ZPL-2.1', value: 'ZPL-2.1' }
+    ]
+  }
 ];

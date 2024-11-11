@@ -12,7 +12,7 @@ export namespace PropmptDialog {
     const result = await prompts(DialogInputOptions, {
       onCancel: () => {
         throw new MyError(ErrorReasons.cancelledCreatePj);
-      },
+      }
     });
 
     // prompts.Answers<string>は辞書
@@ -22,7 +22,7 @@ export namespace PropmptDialog {
       description: result.description,
       license: result.license,
       projectName: result.projectName,
-      type: result.type,
+      type: result.type
     };
   };
 }

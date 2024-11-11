@@ -12,7 +12,7 @@ describe('install', () => {
     expect(mockedExecSync).toHaveBeenCalledWith(
       'cd test && npm ci && npx prettier -w package.json',
       {
-        stdio: 'ignore',
+        stdio: 'ignore'
       }
     );
   });
