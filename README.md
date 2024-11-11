@@ -6,23 +6,22 @@ This is generator for TypeScript project boilerplate
 
 ## Support projects
 
-| Target      | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [Biome](https://biomejs.dev/) | [Prettier](https://prettier.io/) (Markdown) | [Storybook](https://storybook.js.org/) |
-| ----------- | ---------------------- | -------------------------- | ----------------------------- | ------------------------------------------- | -------------------------------------- |
-| Node CLI    | ✅                     | ✅                         | ✅                            | ✅                                          | ❌                                     |
-| Next.js v14 | ✅                     | ✅                         | ✅                            | ✅                                          | ✅                                     |
+| Target      | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [Biome](https://biomejs.dev/) | [Prettier](https://prettier.io/) (Markdownのみ) | [Storybook](https://storybook.js.org/) |
+| ----------- | ---------------------- | -------------------------- | ----------------------------- | ----------------------------------------------- | -------------------------------------- |
+| Node CLI    | ✅                     | ✅                         | ✅                            | ✅                                              | ❌                                     |
+| Next.js v14 | ✅                     | ✅                         | ✅                            | ✅                                              | ✅                                     |
 
 ## Install
 
 - `npm i -g @lycolia/ts-boilerplate-generator-cli`
 
-## Required
+## 動作要件
 
-- Git
-  - and configured git user
+- コミットユーザー設定済みのGit
 - Node.js 22+
 - npm 10+
 
-## Usage
+## 使い方
 
 Can setup for README.md and package.json and workspace directory by configure CLI options
 When no option then launch yeoman style generator
