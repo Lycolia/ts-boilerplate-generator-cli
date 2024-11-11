@@ -6,10 +6,10 @@ This is generator for TypeScript project boilerplate
 
 ## Support projects
 
-| Target      | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [ESLint](https://eslint.org/) | [Prettier](https://prettier.io/) | [Storybook](https://storybook.js.org/) |
-| ----------- | ---------------------- | -------------------------- | ----------------------------- | -------------------------------- | -------------------------------------- |
-| Node CLI    | ✅                     | ✅                         | ✅                            | ✅                               | ❌                                     |
-| Next.js v14 | ✅                     | ✅                         | ✅                            | ✅                               | ✅                                     |
+| Target      | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [Biome](https://biomejs.dev/) | [Prettier](https://prettier.io/) (Markdown) | [Storybook](https://storybook.js.org/) |
+| ----------- | ---------------------- | -------------------------- | ----------------------------- | ------------------------------------------- | -------------------------------------- |
+| Node CLI    | ✅                     | ✅                         | ✅                            | ✅                                          | ❌                                     |
+| Next.js v14 | ✅                     | ✅                         | ✅                            | ✅                                          | ✅                                     |
 
 ## Install
 
