@@ -1,5 +1,13 @@
 #!/bin/bash
 
+print_exit() {
+  mes=$1
+  code=$2
+
+  echo "$1"
+  exit $code
+}
+
 has_change=$(git diff | wc -l )
 if [ $has_change != 0 ]; then
   print_exit "コミットされていない差分があります。" 2
@@ -10,7 +18,7 @@ if [ $? != 0 ]; then
   print_exit "Lintに失敗しました。" 3
 fi
 
-npm t
+npm run headless-test
 if [ $? != 0 ]; then
   print_exit "テストに失敗しました。" 4
 fi
