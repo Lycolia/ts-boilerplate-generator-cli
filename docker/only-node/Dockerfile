@@ -1,3 +1,3 @@
-FROM node:20-alpine3.17
+FROM node:24-bullseye
 RUN apk add perl
 WORKDIR /work
