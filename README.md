@@ -1,6 +1,6 @@
 # TypeScript project Generator CLI
 
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Node.js v22 later](https://img.shields.io/badge/node.js-v22_later-green)](LICENSE) [![npm v10 later](https://img.shields.io/badge/npm-v10_later-green)](LICENSE)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Node.js v24 later](https://img.shields.io/badge/node.js-v24_later-green)](LICENSE) [![npm v11 later](https://img.shields.io/badge/npm-v11_later-green)](LICENSE)
 
 This is generator for TypeScript project boilerplate
 
@@ -18,8 +18,8 @@ This is generator for TypeScript project boilerplate
 ## 動作要件
 
 - コミットユーザー設定済みのGit
-- Node.js 22+
-- npm 10+
+- Node.js 24+
+- npm 11+
 
 ## 使い方
 
