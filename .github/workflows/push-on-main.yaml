@@ -11,15 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: npm
-          cache-dependency-path: package-lock.json
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
           registry-url: 'https://registry.npmjs.org'
-      - name: npm continuous install
-        run: npm ci
-      - name: npm build
-        run: npm run build
+      - name: pnpm continuous install
+        run: pnpm install
+      - name: pnpm build
+        run: pnpm build
       - name: run publish
-        run: npm publish
+        run: pnpm publish
