@@ -10,7 +10,7 @@ describe('install', () => {
     Npm.install('test');
 
     expect(mockedExecSync).toHaveBeenCalledWith(
-      'cd test && npm ci && npx -y prettier -w package.json',
+      'cd test && git init && npm ci && npx -y prettier -w package.json',
       {
         stdio: 'ignore'
       }
