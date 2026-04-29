@@ -16,17 +16,17 @@ if [ -n "$change_files" ]; then
   print_exit "コミットされていない差分があります。" 2 "$change_files"
 fi
 
-npm run lint
+pnpm lint
 if [ $? != 0 ]; then
   print_exit "Lintに失敗しました。" 3
 fi
 
-npm run headless-test
+pnpm headless-test
 if [ $? != 0 ]; then
   print_exit "テストに失敗しました。" 4
 fi
 
-npm run fix
+pnpm fix
 change_files=$(git status --short)
 if [ -n "$change_files" ]; then
   print_exit "オートフォーマットで差分が出ています。" 6 "$change_files"
