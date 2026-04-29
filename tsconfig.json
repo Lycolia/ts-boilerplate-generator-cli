@@ -2,6 +2,10 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "NodeNext",
+    "types": [
+      "node",
+      "jest"
+    ],
     "allowJs": false,
     "checkJs": false,
     "sourceMap": true,

@@ -29,6 +29,7 @@
         "noReExportAll": "error"
       },
       "style": {
+        "useArrayLiterals": "off",
         "noImplicitBoolean": "error",
         "noNonNullAssertion": "error",
         "noParameterAssign": "error",
