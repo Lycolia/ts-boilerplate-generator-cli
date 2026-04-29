@@ -6,10 +6,10 @@ This is generator for TypeScript project boilerplate
 
 ## Support projects
 
-| Target      | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [Biome](https://biomejs.dev/) | [Prettier](https://prettier.io/) (Markdownのみ) | [Storybook](https://storybook.js.org/) |
-| ----------- | ---------------------- | -------------------------- | ----------------------------- | ----------------------------------------------- | -------------------------------------- |
-| Node CLI    | ✅                     | ✅                         | ✅                            | ✅                                              | ❌                                     |
-| Next.js v14 | ✅                     | ✅                         | ✅                            | ✅                                              | ✅                                     |
+| Target      | [pnpm](https://pnpm.io/) | [SWC](https://swc.rs/) | [Jest](https://jestjs.io/) | [Biome](https://biomejs.dev/) | [Prettier](https://prettier.io/) (Markdownのみ) | [Storybook](https://storybook.js.org/) |
+| ----------- | ------------------------ | ---------------------- | -------------------------- | ----------------------------- | ----------------------------------------------- | -------------------------------------- |
+| Node CLI    | ✅                       | ✅                     | ✅                         | ✅                            | ✅                                              | ❌                                     |
+| Next.js v16 | ✅                       | ✅                     | ✅                         | ✅                            | ✅                                              | ✅                                     |
 
 ## Install
 
@@ -19,7 +19,7 @@ This is generator for TypeScript project boilerplate
 
 - コミットユーザー設定済みのGit
 - Node.js 24+
-- npm 11+
+- pnpm 10+
 
 ## 使い方
 
