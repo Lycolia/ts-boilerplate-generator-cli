@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
   "vcs": {
     "enabled": false,
     "clientKind": "git",
@@ -7,35 +7,33 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": []
+    "includes": ["**"]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space"
   },
-  "organizeImports": {
-    "enabled": true
-  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "complexity": {
         "recommended": true,
-        "noForEach": "off"
+        "noForEach": "off",
+        "noArguments": "error",
+        "noCommaOperator": "error",
+        "useWhile": "error"
       },
       "performance": {
         "noReExportAll": "error"
       },
       "style": {
-        "noArguments": "error",
-        "noCommaOperator": "error",
         "noImplicitBoolean": "error",
         "noNonNullAssertion": "error",
         "noParameterAssign": "error",
         "noUselessElse": "off",
         "noUnusedTemplateLiteral": "error",
-        "noVar": "error",
         "noYodaExpression": "error",
         "useConsistentArrayType": {
           "level": "error",
@@ -55,8 +53,7 @@
         "useNumberNamespace": "error",
         "useSelfClosingElements": "error",
         "useShorthandAssign": "warn",
-        "useThrowOnlyError": "error",
-        "useWhile": "error"
+        "useThrowOnlyError": "error"
       },
       "security": {
         "recommended": true
@@ -85,6 +82,9 @@
         "noSelfCompare": "error",
         "noShadowRestrictedNames": "error",
         "useErrorMessage": "error",
+        "noVar": "error"
+      },
+      "correctness": {
         "useValidTypeof": "error"
       }
     }
