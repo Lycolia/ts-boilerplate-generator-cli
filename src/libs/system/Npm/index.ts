@@ -6,7 +6,7 @@ export namespace Npm {
   export const install = (projectDest: string) => {
     try {
       execSync(
-        `cd ${projectDest} && git init && npm ci && npx -y prettier -w package.json`,
+        `cd ${projectDest} && git init && pnpm i && npx -y prettier -w package.json`,
         {
           stdio: 'ignore'
         }
