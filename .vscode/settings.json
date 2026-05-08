@@ -10,7 +10,7 @@
   "git.autofetch": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "quickfix.biome": "explicit"
+    "source.fixAll.biome": "explicit"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -22,17 +22,15 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "biomejs.biome"
   },
-  "javascript.suggest.paths": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
   "[typescript]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "biomejs.biome"
   },
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.referencesCodeLens.enabled": true,
-  "typescript.validate.enable": true,
-  "typescript.preferences.importModuleSpecifier": "relative",
-  "eslint.workingDirectories": [{ "mode": "auto" }]
+  "js/ts.suggest.paths": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.referencesCodeLens.enabled": true,
+  "js/ts.validate.enabled": true,
+  "js/ts.preferences.importModuleSpecifier": "relative"
 }
