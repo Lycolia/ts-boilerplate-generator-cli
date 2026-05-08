@@ -12,12 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           registry-url: 'https://registry.npmjs.org'
       - name: can npm publish?
-        run: npx can-npm-publish
+        run: pnpx can-npm-publish
   basics-testing-on-ubuntu:
     needs:
       - validate-npm-version
@@ -40,4 +43,4 @@ jobs:
           git config --global user.email test@example.com
           git config --global user.name test
       - name: run testing
-        run: pnpm run headless-test
+        run: pnpm headless-test
